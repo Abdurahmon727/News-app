@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:news_app/core/data/storage_repository.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import 'dio_interceptor.dart';
+import 'dio_request_retrier.dart';
 
 class DioSettings {
   Dio _dioBaseOptions = Dio(BaseOptions(
@@ -8,7 +11,7 @@ class DioSettings {
     receiveTimeout: const Duration(milliseconds: 33000),
     followRedirects: false,
     headers: <String, dynamic>{
-      'Accept-Language': StorageRepository.getString('language', defValue: 'en')
+      'x-api-key': '05SAC5bdNzsr1Hjbiq2OaVxbmRjCDTLspRiLWAleH9Q'
     },
     validateStatus: (status) => status != null && status <= 500,
   ))
@@ -23,7 +26,13 @@ class DioSettings {
       followRedirects: false,
       validateStatus: (status) => status != null && status <= 500,
     ))
-      ..interceptors.addAll([]);
+      ..interceptors.addAll([
+        DioInterceptor(
+          requestRetrier: DioConnectivityRequestRetrier(
+            connectivity: InternetConnectionChecker(),
+          ),
+        )
+      ]);
   }
 
   Dio get dio => _dioBaseOptions;
