@@ -1,4 +1,5 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    controller.addListener(() {
+      print(controller.state?.index);
+    });
+    super.initState();
+  }
+
   final controller = AppinioSwiperController();
   @override
   Widget build(BuildContext context) {
@@ -43,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               );
             } else if (state.status == FormzStatus.submissionInProgress) {
-              return CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator.adaptive());
             } else {
               return Center(
                 child: Text(state.errorMessage),
