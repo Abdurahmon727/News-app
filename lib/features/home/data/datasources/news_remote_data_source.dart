@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-import '../../../../core/data/service_locator.dart';
 import '../../../../core/error/exeptions.dart';
 import '../models/news.dart';
 
@@ -9,7 +8,11 @@ abstract class NewsRemoteDataSource {
 }
 
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
-  final _dio = getIt<Dio>();
+  NewsRemoteDataSourceImpl() {
+    _dio.options.headers['x-api-key'] =
+        '3reHg3Qu1SdmA5Vrt-UUkwkIclgKrOjCExrctHOHj_k';
+  }
+  final _dio = Dio();
   @override
   Future<List<NewsModel>> getNews() async {
     final response = await _dio

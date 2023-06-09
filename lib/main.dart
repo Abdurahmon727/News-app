@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/data/service_locator.dart';
-import 'package:news_app/core/data/storage_repository.dart';
 import 'package:news_app/features/home/presentation/home_screen.dart';
 
 void main() {
   setupLocator();
-  StorageRepository.getInstance();
+
   runApp(const MyApp());
 }
 
