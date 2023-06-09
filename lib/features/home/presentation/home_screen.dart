@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: AppinioSwiper(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               controller: controller,
               padding: const EdgeInsets.all(20),
               cardsBuilder: (context, index) {
