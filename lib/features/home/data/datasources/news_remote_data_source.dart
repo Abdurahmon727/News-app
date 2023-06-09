@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:news_app/core/data/service_locator.dart';
-import 'package:news_app/core/error/exeptions.dart';
-import 'package:news_app/features/home/data/models/news.dart';
+
+import '../../../../core/data/service_locator.dart';
+import '../../../../core/error/exeptions.dart';
+import '../models/news.dart';
 
 abstract class NewsRemoteDataSource {
   Future<List<NewsModel>> getNews();

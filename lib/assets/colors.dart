@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const scaffoldBackgroundColor = black;
+const scaffoldBackgroundColor = white;
 
 //Named colors
 const miskyRose = Color(0XFFFFE8E5);

@@ -1,5 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
+
 import 'package:flutter/material.dart';
+import 'package:news_app/assets/colors.dart';
 import 'package:news_app/features/home/presentation/widgets/preview_news.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: black,
       body: Column(
         children: [
           Expanded(
@@ -31,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.recent_actors),
         onPressed: () {
           controller.unswipe();
         },
