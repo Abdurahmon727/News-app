@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:news_app/core/data/service_locator.dart';
 import 'package:news_app/features/home/presentation/home_screen.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

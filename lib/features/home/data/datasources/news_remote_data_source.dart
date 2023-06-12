@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import '../../../../core/error/exeptions.dart';
 import '../models/news.dart';
 
+// '3reHg3Qu1SdmA5Vrt-UUkwkIclgKrOjCExrctHOHj_k';
+
 abstract class NewsRemoteDataSource {
   Future<(List<NewsModel>, int)> getNews();
 }
@@ -11,7 +13,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   final int page;
   NewsRemoteDataSourceImpl(this.page) {
     _dio.options.headers['x-api-key'] =
-        '3reHg3Qu1SdmA5Vrt-UUkwkIclgKrOjCExrctHOHj_k';
+        'qmj66DZ-bwkCmfk6FvFKS89C4bDnDB9o7l8zu-9Et5Q';
   }
   final _dio = Dio();
   @override
