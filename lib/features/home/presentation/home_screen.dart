@@ -30,41 +30,44 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NewsBloc()..add(const NewsEvent.getNews()),
-      child: Scaffold(
-        backgroundColor: black,
-        body: BlocBuilder<NewsBloc, NewsState>(
-          builder: (context, state) {
-            if (state.status == FormzStatus.submissionSuccess) {
-              final data = state.models;
-              return Column(
-                children: [
-                  Expanded(
-                    child: AppinioSwiper(
-                      duration: const Duration(milliseconds: 300),
-                      controller: controller,
-                      padding: const EdgeInsets.all(20),
-                      cardsBuilder: (context, index) {
-                        return WPreviewNews(model: data[index]);
-                      },
-                      cardsCount: data.length,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: black,
+          body: BlocBuilder<NewsBloc, NewsState>(
+            builder: (context, state) {
+              if (state.status == FormzStatus.submissionSuccess) {
+                final data = state.models;
+                return Column(
+                  children: [
+                    Expanded(
+                      child: AppinioSwiper(
+                        duration: const Duration(milliseconds: 300),
+                        controller: controller,
+                        padding: const EdgeInsets.all(20),
+                        cardsBuilder: (context, index) {
+                          return WPreviewNews(model: data[index]);
+                        },
+                        cardsCount: data.length,
+                      ),
                     ),
-                  ),
-                ],
-              );
-            } else if (state.status == FormzStatus.submissionInProgress) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            } else {
-              return Center(
-                child: Text(state.errorMessage),
-              );
-            }
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.recent_actors),
-          onPressed: () {
-            controller.unswipe();
-          },
+                  ],
+                );
+              } else if (state.status == FormzStatus.submissionInProgress) {
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
+              } else {
+                return Center(
+                  child: Text(state.errorMessage),
+                );
+              }
+            },
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.recent_actors),
+            onPressed: () {
+              controller.unswipe();
+            },
+          ),
         ),
       ),
     );

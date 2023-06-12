@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/assets/colors.dart';
+import 'package:news_app/core/app_functions.dart';
 import 'package:news_app/features/home/data/models/news.dart';
 
 class WPreviewNews extends StatelessWidget {
@@ -10,13 +11,15 @@ class WPreviewNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: white,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(
-            model.media ?? '',
-          ),
-        ),
+        color: AppFunctions.randomColor(model.title.length),
+        image: model.media != null
+            ? DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  model.media!,
+                ),
+              )
+            : null,
         boxShadow: const [
           BoxShadow(
             offset: Offset(1, 1),
