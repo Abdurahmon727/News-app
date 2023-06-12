@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/assets/colors.dart';
-import 'package:news_app/core/app_functions.dart';
-import 'package:news_app/features/home/data/models/news.dart';
-import 'package:news_app/features/home/presentation/pages/inside_news_page.dart';
+import '../../../../assets/colors.dart';
+import '../../../../core/app_functions.dart';
+import '../../data/models/news.dart';
+import '../pages/inside_news_page.dart';
 
 class WPreviewNews extends StatelessWidget {
   const WPreviewNews({super.key, required this.model});
@@ -11,7 +11,7 @@ class WPreviewNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
