@@ -15,9 +15,7 @@ class WPreviewNews extends StatelessWidget {
         image: model.media != null
             ? DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                  model.media!,
-                ),
+                image: NetworkImage(model.media!),
               )
             : null,
         boxShadow: const [
@@ -49,7 +47,7 @@ class WPreviewNews extends StatelessWidget {
               model.title,
               style: const TextStyle(fontSize: 24, color: white),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 5),
             Text(
               model.publishedDate ?? '',
               style: const TextStyle(color: white),
@@ -58,7 +56,7 @@ class WPreviewNews extends StatelessWidget {
               model.author,
               style: const TextStyle(color: white),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 5),
             Text(
               model.excerpt ?? '',
               style: const TextStyle(color: white),

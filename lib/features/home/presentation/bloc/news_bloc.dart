@@ -14,17 +14,24 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc() : super(const _NewsState()) {
     on<_GetNews>((event, emit) async {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
-      final _repository = NewsRepositoryImpl();
-      final result = await _repository.getNews();
+      final isLoadingNextPage = state.maxPage > state.curruntPage;
+
+      final repository = NewsRepositoryImpl(
+          page: isLoadingNextPage ? state.curruntPage + 1 : 1);
+      final result = await repository.getNews();
       result.either((failure) {
         emit(
           state.copyWith(
-              status: FormzStatus.submissionFailure,
-              errorMessage: (failure as ServerFailure).errorMessage),
+            status: FormzStatus.submissionFailure,
+            errorMessage: (failure as ServerFailure).errorMessage,
+          ),
         );
       }, (data) {
         emit(state.copyWith(
-            status: FormzStatus.submissionSuccess, models: data));
+          status: FormzStatus.submissionSuccess,
+          models: data.$1,
+          maxPage: data.$2,
+        ));
       });
     });
   }

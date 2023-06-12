@@ -167,6 +167,8 @@ mixin _$NewsState {
   FormzStatus get status => throw _privateConstructorUsedError;
   List<NewsModel> get models => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  int get curruntPage => throw _privateConstructorUsedError;
+  int get maxPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsStateCopyWith<NewsState> get copyWith =>
@@ -178,7 +180,12 @@ abstract class $NewsStateCopyWith<$Res> {
   factory $NewsStateCopyWith(NewsState value, $Res Function(NewsState) then) =
       _$NewsStateCopyWithImpl<$Res, NewsState>;
   @useResult
-  $Res call({FormzStatus status, List<NewsModel> models, String errorMessage});
+  $Res call(
+      {FormzStatus status,
+      List<NewsModel> models,
+      String errorMessage,
+      int curruntPage,
+      int maxPage});
 }
 
 /// @nodoc
@@ -197,6 +204,8 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
     Object? status = null,
     Object? models = null,
     Object? errorMessage = null,
+    Object? curruntPage = null,
+    Object? maxPage = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -211,6 +220,14 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      curruntPage: null == curruntPage
+          ? _value.curruntPage
+          : curruntPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxPage: null == maxPage
+          ? _value.maxPage
+          : maxPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -222,7 +239,12 @@ abstract class _$$_NewsStateCopyWith<$Res> implements $NewsStateCopyWith<$Res> {
       __$$_NewsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FormzStatus status, List<NewsModel> models, String errorMessage});
+  $Res call(
+      {FormzStatus status,
+      List<NewsModel> models,
+      String errorMessage,
+      int curruntPage,
+      int maxPage});
 }
 
 /// @nodoc
@@ -239,6 +261,8 @@ class __$$_NewsStateCopyWithImpl<$Res>
     Object? status = null,
     Object? models = null,
     Object? errorMessage = null,
+    Object? curruntPage = null,
+    Object? maxPage = null,
   }) {
     return _then(_$_NewsState(
       status: null == status
@@ -253,6 +277,14 @@ class __$$_NewsStateCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      curruntPage: null == curruntPage
+          ? _value.curruntPage
+          : curruntPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxPage: null == maxPage
+          ? _value.maxPage
+          : maxPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -263,7 +295,9 @@ class _$_NewsState implements _NewsState {
   const _$_NewsState(
       {this.status = FormzStatus.pure,
       final List<NewsModel> models = const [],
-      this.errorMessage = ''})
+      this.errorMessage = '',
+      this.curruntPage = 1,
+      this.maxPage = 1})
       : _models = models;
 
   @override
@@ -281,10 +315,16 @@ class _$_NewsState implements _NewsState {
   @override
   @JsonKey()
   final String errorMessage;
+  @override
+  @JsonKey()
+  final int curruntPage;
+  @override
+  @JsonKey()
+  final int maxPage;
 
   @override
   String toString() {
-    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage)';
+    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage)';
   }
 
   @override
@@ -295,12 +335,20 @@ class _$_NewsState implements _NewsState {
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._models, _models) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.curruntPage, curruntPage) ||
+                other.curruntPage == curruntPage) &&
+            (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_models), errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_models),
+      errorMessage,
+      curruntPage,
+      maxPage);
 
   @JsonKey(ignore: true)
   @override
@@ -313,7 +361,9 @@ abstract class _NewsState implements NewsState {
   const factory _NewsState(
       {final FormzStatus status,
       final List<NewsModel> models,
-      final String errorMessage}) = _$_NewsState;
+      final String errorMessage,
+      final int curruntPage,
+      final int maxPage}) = _$_NewsState;
 
   @override
   FormzStatus get status;
@@ -321,6 +371,10 @@ abstract class _NewsState implements NewsState {
   List<NewsModel> get models;
   @override
   String get errorMessage;
+  @override
+  int get curruntPage;
+  @override
+  int get maxPage;
   @override
   @JsonKey(ignore: true)
   _$$_NewsStateCopyWith<_$_NewsState> get copyWith =>
