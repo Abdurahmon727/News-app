@@ -74,6 +74,8 @@ class WPreviewNews extends StatelessWidget {
                 Text(
                   model.excerpt ?? '',
                   style: const TextStyle(color: white),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
