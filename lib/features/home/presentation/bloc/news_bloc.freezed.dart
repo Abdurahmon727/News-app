@@ -19,32 +19,38 @@ mixin _$NewsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getNews,
+    required TResult Function(int index) changeTopic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNews,
+    TResult? Function(int index)? changeTopic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNews,
+    TResult Function(int index)? changeTopic,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNews value) getNews,
+    required TResult Function(_ChangeTopic value) changeTopic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_ChangeTopic value)? changeTopic,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNews value)? getNews,
+    TResult Function(_ChangeTopic value)? changeTopic,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,6 +111,7 @@ class _$_GetNews implements _GetNews {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getNews,
+    required TResult Function(int index) changeTopic,
   }) {
     return getNews();
   }
@@ -113,6 +120,7 @@ class _$_GetNews implements _GetNews {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNews,
+    TResult? Function(int index)? changeTopic,
   }) {
     return getNews?.call();
   }
@@ -121,6 +129,7 @@ class _$_GetNews implements _GetNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNews,
+    TResult Function(int index)? changeTopic,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -133,6 +142,7 @@ class _$_GetNews implements _GetNews {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNews value) getNews,
+    required TResult Function(_ChangeTopic value) changeTopic,
   }) {
     return getNews(this);
   }
@@ -141,6 +151,7 @@ class _$_GetNews implements _GetNews {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_ChangeTopic value)? changeTopic,
   }) {
     return getNews?.call(this);
   }
@@ -149,6 +160,7 @@ class _$_GetNews implements _GetNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNews value)? getNews,
+    TResult Function(_ChangeTopic value)? changeTopic,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -163,12 +175,146 @@ abstract class _GetNews implements NewsEvent {
 }
 
 /// @nodoc
+abstract class _$$_ChangeTopicCopyWith<$Res> {
+  factory _$$_ChangeTopicCopyWith(
+          _$_ChangeTopic value, $Res Function(_$_ChangeTopic) then) =
+      __$$_ChangeTopicCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$_ChangeTopicCopyWithImpl<$Res>
+    extends _$NewsEventCopyWithImpl<$Res, _$_ChangeTopic>
+    implements _$$_ChangeTopicCopyWith<$Res> {
+  __$$_ChangeTopicCopyWithImpl(
+      _$_ChangeTopic _value, $Res Function(_$_ChangeTopic) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$_ChangeTopic(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeTopic implements _ChangeTopic {
+  const _$_ChangeTopic(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'NewsEvent.changeTopic(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeTopic &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChangeTopicCopyWith<_$_ChangeTopic> get copyWith =>
+      __$$_ChangeTopicCopyWithImpl<_$_ChangeTopic>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getNews,
+    required TResult Function(int index) changeTopic,
+  }) {
+    return changeTopic(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getNews,
+    TResult? Function(int index)? changeTopic,
+  }) {
+    return changeTopic?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getNews,
+    TResult Function(int index)? changeTopic,
+    required TResult orElse(),
+  }) {
+    if (changeTopic != null) {
+      return changeTopic(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetNews value) getNews,
+    required TResult Function(_ChangeTopic value) changeTopic,
+  }) {
+    return changeTopic(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_ChangeTopic value)? changeTopic,
+  }) {
+    return changeTopic?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetNews value)? getNews,
+    TResult Function(_ChangeTopic value)? changeTopic,
+    required TResult orElse(),
+  }) {
+    if (changeTopic != null) {
+      return changeTopic(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeTopic implements NewsEvent {
+  const factory _ChangeTopic(final int index) = _$_ChangeTopic;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$_ChangeTopicCopyWith<_$_ChangeTopic> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$NewsState {
   FormzStatus get status => throw _privateConstructorUsedError;
   List<NewsModel> get models => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   int get curruntPage => throw _privateConstructorUsedError;
   int get maxPage => throw _privateConstructorUsedError;
+  int get tabIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsStateCopyWith<NewsState> get copyWith =>
@@ -185,7 +331,8 @@ abstract class $NewsStateCopyWith<$Res> {
       List<NewsModel> models,
       String errorMessage,
       int curruntPage,
-      int maxPage});
+      int maxPage,
+      int tabIndex});
 }
 
 /// @nodoc
@@ -206,6 +353,7 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
     Object? errorMessage = null,
     Object? curruntPage = null,
     Object? maxPage = null,
+    Object? tabIndex = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -228,6 +376,10 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
               as int,
+      tabIndex: null == tabIndex
+          ? _value.tabIndex
+          : tabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -244,7 +396,8 @@ abstract class _$$_NewsStateCopyWith<$Res> implements $NewsStateCopyWith<$Res> {
       List<NewsModel> models,
       String errorMessage,
       int curruntPage,
-      int maxPage});
+      int maxPage,
+      int tabIndex});
 }
 
 /// @nodoc
@@ -263,6 +416,7 @@ class __$$_NewsStateCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? curruntPage = null,
     Object? maxPage = null,
+    Object? tabIndex = null,
   }) {
     return _then(_$_NewsState(
       status: null == status
@@ -285,6 +439,10 @@ class __$$_NewsStateCopyWithImpl<$Res>
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
               as int,
+      tabIndex: null == tabIndex
+          ? _value.tabIndex
+          : tabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -297,7 +455,8 @@ class _$_NewsState implements _NewsState {
       final List<NewsModel> models = const [],
       this.errorMessage = '',
       this.curruntPage = 1,
-      this.maxPage = 1})
+      this.maxPage = 1,
+      this.tabIndex = 0})
       : _models = models;
 
   @override
@@ -321,10 +480,13 @@ class _$_NewsState implements _NewsState {
   @override
   @JsonKey()
   final int maxPage;
+  @override
+  @JsonKey()
+  final int tabIndex;
 
   @override
   String toString() {
-    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage)';
+    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, tabIndex: $tabIndex)';
   }
 
   @override
@@ -338,7 +500,9 @@ class _$_NewsState implements _NewsState {
                 other.errorMessage == errorMessage) &&
             (identical(other.curruntPage, curruntPage) ||
                 other.curruntPage == curruntPage) &&
-            (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
+            (identical(other.maxPage, maxPage) || other.maxPage == maxPage) &&
+            (identical(other.tabIndex, tabIndex) ||
+                other.tabIndex == tabIndex));
   }
 
   @override
@@ -348,7 +512,8 @@ class _$_NewsState implements _NewsState {
       const DeepCollectionEquality().hash(_models),
       errorMessage,
       curruntPage,
-      maxPage);
+      maxPage,
+      tabIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -363,7 +528,8 @@ abstract class _NewsState implements NewsState {
       final List<NewsModel> models,
       final String errorMessage,
       final int curruntPage,
-      final int maxPage}) = _$_NewsState;
+      final int maxPage,
+      final int tabIndex}) = _$_NewsState;
 
   @override
   FormzStatus get status;
@@ -375,6 +541,8 @@ abstract class _NewsState implements NewsState {
   int get curruntPage;
   @override
   int get maxPage;
+  @override
+  int get tabIndex;
   @override
   @JsonKey(ignore: true)
   _$$_NewsStateCopyWith<_$_NewsState> get copyWith =>

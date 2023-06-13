@@ -18,7 +18,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
       final repository = NewsRepositoryImpl(
           page: isLoadingNextPage ? state.curruntPage + 1 : 1);
-      final result = await repository.getNews();
+      final result = await repository.getNews(state.tabIndex);
       result.either((failure) {
         emit(
           state.copyWith(
@@ -33,6 +33,11 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           maxPage: data.$2,
         ));
       });
+    });
+
+    on<_ChangeTopic>((event, emit) {
+      emit(state.copyWith(tabIndex: event.index));
+      add(const _GetNews());
     });
   }
 }

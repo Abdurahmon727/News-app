@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class WInteractiveViewer extends StatefulWidget {
@@ -57,12 +58,13 @@ class _WInteractiveViewerState extends State<WInteractiveViewer>
         resetAnimation();
       },
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Image.network(
-          widget.imageUrl,
-          fit: BoxFit.fitWidth,
-        ),
-      ),
+          borderRadius: BorderRadius.circular(15),
+          child: CachedNetworkImage(
+            fadeInDuration: const Duration(milliseconds: 300),
+            errorWidget: (context, url, error) => const SizedBox(),
+            imageUrl: widget.imageUrl,
+            fit: BoxFit.fitWidth,
+          )),
     );
   }
 }

@@ -13,10 +13,11 @@ class NewsRepositoryImpl implements NewsRepository {
   final _networkInfo = const NetworkInfoImpl();
 
   @override
-  Future<Either<Failure, (List<NewsModel>, int)>> getNews() async {
+  Future<Either<Failure, (List<NewsModel>, int)>> getNews(
+      int topicIndex) async {
     if (await _networkInfo.connected) {
       try {
-        final result = await NewsRemoteDataSourceImpl(page).getNews();
+        final result = await NewsRemoteDataSourceImpl(page).getNews(topicIndex);
         return Right((result.$1, result.$2));
       } on ServerException {
         rethrow;

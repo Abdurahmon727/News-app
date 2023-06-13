@@ -8,5 +8,6 @@ class NewsState with _$NewsState {
     @Default('') String errorMessage,
     @Default(1) int curruntPage,
     @Default(1) int maxPage,
+    @Default(0) int tabIndex,
   }) = _NewsState;
 }
