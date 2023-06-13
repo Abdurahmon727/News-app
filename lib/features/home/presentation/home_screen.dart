@@ -1,7 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/models/home_tabbars.dart';
+import '../../../core/models/home_tabbars.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/models/formz/formz_status.dart';
@@ -103,8 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else if (state.status ==
                           FormzStatus.submissionInProgress) {
-                        return const Center(
-                            child: CircularProgressIndicator.adaptive());
+                        return const Center(child: CircularProgressIndicator());
                       } else {
                         return Center(
                           child: Text(

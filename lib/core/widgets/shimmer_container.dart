@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/app_functions.dart';
 
 import 'package:shimmer/shimmer.dart';
 
@@ -18,8 +19,8 @@ class ShimmerContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: white,
-      highlightColor: Colors.grey.shade300,
+      baseColor: AppFunctions.randomColor(0),
+      highlightColor: white,
       child: Container(
         width: width,
         height: height,

@@ -17,33 +17,37 @@ class _InsideNewsPageState extends State<InsideNewsPage> {
     return Scaffold(
       backgroundColor: AppFunctions.randomColor(widget.model.title.length),
       body: SafeArea(
-        child: Padding(
+        child: ListView(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconButton(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.navigate_before)),
-              Text(widget.model.title),
+            ),
+            Text(
+              widget.model.title,
+              style: const TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+            if (widget.model.author.isNotEmpty)
               Align(
                 alignment: Alignment.topRight,
                 child: Text(
                   'By ${widget.model.author}',
-                  textAlign: TextAlign.end,
                 ),
               ),
-              Text(widget.model.excerpt ?? ''),
-              if (widget.model.media != null)
-                WInteractiveViewer(
-                  borderRadius: BorderRadius.circular(15),
-                  imageUrl: widget.model.media!,
-                ),
-              Text(widget.model.summery ?? ''),
-            ],
-          ),
+            Text(widget.model.excerpt ?? ''),
+            if (widget.model.media != null)
+              WInteractiveViewer(
+                borderRadius: BorderRadius.circular(15),
+                imageUrl: widget.model.media!,
+              ),
+            Text(widget.model.summary ?? ''),
+          ],
         ),
       ),
     );

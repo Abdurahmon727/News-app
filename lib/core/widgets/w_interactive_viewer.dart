@@ -63,7 +63,7 @@ class _WInteractiveViewerState extends State<WInteractiveViewer>
             fadeInDuration: const Duration(milliseconds: 300),
             errorWidget: (context, url, error) => const SizedBox(),
             imageUrl: widget.imageUrl,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.contain,
           )),
     );
   }

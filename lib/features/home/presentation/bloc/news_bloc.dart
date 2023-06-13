@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:news_app/core/error/failure.dart';
-import 'package:news_app/core/models/formz/formz_status.dart';
-import 'package:news_app/features/home/data/repo/news_repo.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/models/formz/formz_status.dart';
+import '../../data/repo/news_repo.dart';
 
 import '../../data/models/news.dart';
 

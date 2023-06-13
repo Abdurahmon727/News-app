@@ -4,14 +4,14 @@ class NewsModel {
   final String? publishedDate;
   final String? excerpt;
   final String? media;
-  final String? summery;
+  final String? summary;
   NewsModel({
     required this.title,
     required this.author,
     required this.publishedDate,
     required this.excerpt,
     required this.media,
-    required this.summery,
+    required this.summary,
   });
 
   Map<String, dynamic> toMap() {
@@ -21,7 +21,7 @@ class NewsModel {
       'publishedDate': publishedDate,
       'excerpt': excerpt,
       'media': media,
-      'summery': summery,
+      'summary': summary,
     };
   }
 
@@ -32,7 +32,7 @@ class NewsModel {
       publishedDate: map['publishedDate'] as String?,
       excerpt: map['excerpt'] as String?,
       media: map['media'] as String?,
-      summery: map['summery'] as String?,
+      summary: map['summary'] as String?,
     );
   }
 }
