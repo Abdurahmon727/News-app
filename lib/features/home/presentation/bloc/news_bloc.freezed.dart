@@ -314,7 +314,10 @@ mixin _$NewsState {
   String get errorMessage => throw _privateConstructorUsedError;
   int get curruntPage => throw _privateConstructorUsedError;
   int get maxPage => throw _privateConstructorUsedError;
-  int get tabIndex => throw _privateConstructorUsedError;
+  int get topicIndex => throw _privateConstructorUsedError;
+  Calendar get calendar => throw _privateConstructorUsedError;
+  List<String> get sources => throw _privateConstructorUsedError;
+  List<String> get languages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsStateCopyWith<NewsState> get copyWith =>
@@ -332,7 +335,10 @@ abstract class $NewsStateCopyWith<$Res> {
       String errorMessage,
       int curruntPage,
       int maxPage,
-      int tabIndex});
+      int topicIndex,
+      Calendar calendar,
+      List<String> sources,
+      List<String> languages});
 }
 
 /// @nodoc
@@ -353,7 +359,10 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
     Object? errorMessage = null,
     Object? curruntPage = null,
     Object? maxPage = null,
-    Object? tabIndex = null,
+    Object? topicIndex = null,
+    Object? calendar = null,
+    Object? sources = null,
+    Object? languages = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -376,10 +385,22 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
               as int,
-      tabIndex: null == tabIndex
-          ? _value.tabIndex
-          : tabIndex // ignore: cast_nullable_to_non_nullable
+      topicIndex: null == topicIndex
+          ? _value.topicIndex
+          : topicIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      calendar: null == calendar
+          ? _value.calendar
+          : calendar // ignore: cast_nullable_to_non_nullable
+              as Calendar,
+      sources: null == sources
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      languages: null == languages
+          ? _value.languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -397,7 +418,10 @@ abstract class _$$_NewsStateCopyWith<$Res> implements $NewsStateCopyWith<$Res> {
       String errorMessage,
       int curruntPage,
       int maxPage,
-      int tabIndex});
+      int topicIndex,
+      Calendar calendar,
+      List<String> sources,
+      List<String> languages});
 }
 
 /// @nodoc
@@ -416,7 +440,10 @@ class __$$_NewsStateCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? curruntPage = null,
     Object? maxPage = null,
-    Object? tabIndex = null,
+    Object? topicIndex = null,
+    Object? calendar = null,
+    Object? sources = null,
+    Object? languages = null,
   }) {
     return _then(_$_NewsState(
       status: null == status
@@ -439,10 +466,22 @@ class __$$_NewsStateCopyWithImpl<$Res>
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
               as int,
-      tabIndex: null == tabIndex
-          ? _value.tabIndex
-          : tabIndex // ignore: cast_nullable_to_non_nullable
+      topicIndex: null == topicIndex
+          ? _value.topicIndex
+          : topicIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      calendar: null == calendar
+          ? _value.calendar
+          : calendar // ignore: cast_nullable_to_non_nullable
+              as Calendar,
+      sources: null == sources
+          ? _value._sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      languages: null == languages
+          ? _value._languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -456,8 +495,13 @@ class _$_NewsState implements _NewsState {
       this.errorMessage = '',
       this.curruntPage = 1,
       this.maxPage = 1,
-      this.tabIndex = 0})
-      : _models = models;
+      this.topicIndex = 0,
+      this.calendar = Calendar.none,
+      final List<String> sources = const [],
+      final List<String> languages = const []})
+      : _models = models,
+        _sources = sources,
+        _languages = languages;
 
   @override
   @JsonKey()
@@ -482,11 +526,31 @@ class _$_NewsState implements _NewsState {
   final int maxPage;
   @override
   @JsonKey()
-  final int tabIndex;
+  final int topicIndex;
+  @override
+  @JsonKey()
+  final Calendar calendar;
+  final List<String> _sources;
+  @override
+  @JsonKey()
+  List<String> get sources {
+    if (_sources is EqualUnmodifiableListView) return _sources;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sources);
+  }
+
+  final List<String> _languages;
+  @override
+  @JsonKey()
+  List<String> get languages {
+    if (_languages is EqualUnmodifiableListView) return _languages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_languages);
+  }
 
   @override
   String toString() {
-    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, tabIndex: $tabIndex)';
+    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages)';
   }
 
   @override
@@ -501,8 +565,13 @@ class _$_NewsState implements _NewsState {
             (identical(other.curruntPage, curruntPage) ||
                 other.curruntPage == curruntPage) &&
             (identical(other.maxPage, maxPage) || other.maxPage == maxPage) &&
-            (identical(other.tabIndex, tabIndex) ||
-                other.tabIndex == tabIndex));
+            (identical(other.topicIndex, topicIndex) ||
+                other.topicIndex == topicIndex) &&
+            (identical(other.calendar, calendar) ||
+                other.calendar == calendar) &&
+            const DeepCollectionEquality().equals(other._sources, _sources) &&
+            const DeepCollectionEquality()
+                .equals(other._languages, _languages));
   }
 
   @override
@@ -513,7 +582,10 @@ class _$_NewsState implements _NewsState {
       errorMessage,
       curruntPage,
       maxPage,
-      tabIndex);
+      topicIndex,
+      calendar,
+      const DeepCollectionEquality().hash(_sources),
+      const DeepCollectionEquality().hash(_languages));
 
   @JsonKey(ignore: true)
   @override
@@ -529,7 +601,10 @@ abstract class _NewsState implements NewsState {
       final String errorMessage,
       final int curruntPage,
       final int maxPage,
-      final int tabIndex}) = _$_NewsState;
+      final int topicIndex,
+      final Calendar calendar,
+      final List<String> sources,
+      final List<String> languages}) = _$_NewsState;
 
   @override
   FormzStatus get status;
@@ -542,7 +617,13 @@ abstract class _NewsState implements NewsState {
   @override
   int get maxPage;
   @override
-  int get tabIndex;
+  int get topicIndex;
+  @override
+  Calendar get calendar;
+  @override
+  List<String> get sources;
+  @override
+  List<String> get languages;
   @override
   @JsonKey(ignore: true)
   _$$_NewsStateCopyWith<_$_NewsState> get copyWith =>

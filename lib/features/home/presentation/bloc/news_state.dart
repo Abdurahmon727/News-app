@@ -8,6 +8,9 @@ class NewsState with _$NewsState {
     @Default('') String errorMessage,
     @Default(1) int curruntPage,
     @Default(1) int maxPage,
-    @Default(0) int tabIndex,
+    @Default(0) int topicIndex,
+    @Default(Calendar.none) Calendar calendar,
+    @Default([]) List<String> sources,
+    @Default([]) List<String> languages,
   }) = _NewsState;
 }

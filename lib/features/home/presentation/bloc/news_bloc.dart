@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../core/error/failure.dart';
 import '../../../../core/models/formz/formz_status.dart';
+import '../../../../core/models/home_datas.dart';
+import '../../data/models/news.dart';
 import '../../data/repo/news_repo.dart';
 
-import '../../data/models/news.dart';
-
+part 'news_bloc.freezed.dart';
 part 'news_event.dart';
 part 'news_state.dart';
-part 'news_bloc.freezed.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc() : super(const _NewsState()) {
@@ -18,7 +19,11 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
       final repository = NewsRepositoryImpl(
           page: isLoadingNextPage ? state.curruntPage + 1 : 1);
-      final result = await repository.getNews(state.tabIndex);
+      final result = await repository.getNews(
+          languages: state.languages,
+          calendar: state.calendar,
+          resources: state.sources,
+          topicIndex: state.topicIndex);
       result.either((failure) {
         emit(
           state.copyWith(
@@ -36,7 +41,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     });
 
     on<_ChangeTopic>((event, emit) {
-      emit(state.copyWith(tabIndex: event.index));
+      emit(state.copyWith(topicIndex: event.index));
       add(const _GetNews());
     });
   }

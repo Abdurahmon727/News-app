@@ -1,14 +1,12 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/models/home_tabbars.dart';
+import '../../../core/models/home_datas.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/models/formz/formz_status.dart';
 import 'bloc/news_bloc.dart';
 import 'widgets/preview_news.dart';
-
-enum Calendar { hour, day, day7, day30 }
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final controller = AppinioSwiperController();
-  // var currentCalendar = Calendar.hour;
 
   @override
   Widget build(BuildContext context) {
@@ -51,47 +48,223 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     IconButton(
                       onPressed: () {
+                        Calendar calendar =
+                            context.read<NewsBloc>().state.calendar;
+                        List<String> languages =
+                            context.read<NewsBloc>().state.languages;
+                        List<String> sources =
+                            context.read<NewsBloc>().state.sources;
                         showDialog(
                           context: context,
-                          builder: (_) {
-                            return const AlertDialog(
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SingleChoice(),
-                                  //           const Text('News\' which are published at'),
-                                  //           SegmentedButton<Calendar>(
-                                  //               emptySelectionAllowed: true,
-                                  //               showSelectedIcon: true,
-                                  //               segments: const <ButtonSegment<Calendar>>[
-                                  //                 ButtonSegment<Calendar>(
-                                  //                   value: Calendar.hour,
-                                  //                   label: Text('an hour'),
-                                  //                 ),
-                                  //                 ButtonSegment<Calendar>(
-                                  //                   value: Calendar.day,
-                                  //                   label: Text('a day'),
-                                  //                 ),
-                                  //                 ButtonSegment<Calendar>(
-                                  //                   value: Calendar.day7,
-                                  //                   label: Text('7 days'),
-                                  //                 ),
-                                  //                 ButtonSegment<Calendar>(
-                                  //                   value: Calendar.day30,
-                                  //                   label: Text('30 days'),
-                                  //                 ),
-                                  //               ],
-                                  //               selected: <Calendar>{currentCalendar},
-                                  //               onSelectionChanged:
-                                  //                   (Set<Calendar> newSelection) {
-                                  //                 setState(() {
-                                  //                   currentCalendar = newSelection.first;
-                                  //                 });
-                                  //                 print(currentCalendar);
-                                  // }),
+                          builder: (context) {
+                            return StatefulBuilder(
+                                builder: (context, setState) {
+                              return AlertDialog(
+                                actions: [
+                                  ElevatedButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text(
+                                        'Cancel',
+                                        style: TextStyle(color: Colors.grey),
+                                      )),
+                                  ElevatedButton(
+                                      onPressed: () {},
+                                      child: const Text('Apply')),
                                 ],
-                              ),
-                            );
+                                content: ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    const Text('News in period of last:'),
+                                    Wrap(
+                                      spacing: 10,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              calendar = Calendar.hour;
+                                            });
+                                          },
+                                          child: Chip(
+                                            label: const Text('an hour'),
+                                            avatar: (calendar == Calendar.hour)
+                                                ? const Icon(Icons.check_circle)
+                                                : null,
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              calendar = Calendar.day;
+                                            });
+                                          },
+                                          child: Chip(
+                                            label: const Text('24 hours'),
+                                            avatar: (calendar == Calendar.day)
+                                                ? const Icon(Icons.check_circle)
+                                                : null,
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              calendar = Calendar.day7;
+                                            });
+                                          },
+                                          child: Chip(
+                                              label: const Text('7 days'),
+                                              avatar:
+                                                  (calendar == Calendar.day7)
+                                                      ? const Icon(
+                                                          Icons.check_circle)
+                                                      : null),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              calendar = Calendar.day30;
+                                            });
+                                          },
+                                          child: Chip(
+                                              label: const Text('30 days'),
+                                              avatar:
+                                                  (calendar == Calendar.day30)
+                                                      ? const Icon(
+                                                          Icons.check_circle)
+                                                      : null),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              calendar = Calendar.none;
+                                            });
+                                          },
+                                          child: Chip(
+                                              label: const Text('any'),
+                                              avatar:
+                                                  (calendar == Calendar.none)
+                                                      ? const Icon(
+                                                          Icons.check_circle)
+                                                      : null),
+                                        ),
+                                      ],
+                                    ),
+                                    const Text('News in languages:'),
+                                    Wrap(
+                                      spacing: 10,
+                                      children: allLanguages
+                                          .map(
+                                            (lang) => GestureDetector(
+                                              onTap: () {
+                                                if (languages.contains(lang)) {
+                                                  languages.remove(lang);
+                                                } else {
+                                                  languages += [lang];
+                                                }
+                                                setState(() {});
+                                              },
+                                              child: Chip(
+                                                label: Text(lang),
+                                                avatar:
+                                                    (languages.contains(lang))
+                                                        ? const Icon(
+                                                            Icons.check_circle)
+                                                        : null,
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ),
+                                    const Text('Show News from sources:'),
+                                    Wrap(
+                                      spacing: 10,
+                                      children: allSources
+                                          .map(
+                                            (element) => GestureDetector(
+                                              onTap: () {
+                                                if (sources.contains(element)) {
+                                                  sources.remove(element);
+                                                } else {
+                                                  sources += [element];
+                                                }
+                                                setState(() {});
+                                              },
+                                              child: Chip(
+                                                label: Text(element),
+                                                avatar:
+                                                    (sources.contains(element))
+                                                        ? const Icon(
+                                                            Icons.check_circle)
+                                                        : null,
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                      // children: [
+                                      //   GestureDetector(
+                                      //     onTap: () {
+                                      //       if (languages.contains('element')) {
+                                      //         languages.remove('element');
+                                      //       } else {
+                                      //         languages.add('element');
+                                      //       }
+
+                                      //       setState(() {});
+                                      //     },
+                                      //     child: Chip(
+                                      //       label: const Text('an hour'),
+                                      //       avatar: (languages
+                                      //               .contains('element'))
+                                      //           ? const Icon(Icons.check_circle)
+                                      //           : null,
+                                      //     ),
+                                      //   ),
+                                      //   GestureDetector(
+                                      //     onTap: () {
+                                      //       setState(() {
+                                      //         calendar = Calendar.day;
+                                      //       });
+                                      //     },
+                                      //     child: Chip(
+                                      //       label: const Text('24 hours'),
+                                      //       avatar: (calendar == Calendar.day)
+                                      //           ? const Icon(Icons.check_circle)
+                                      //           : null,
+                                      //     ),
+                                      //   ),
+                                      //   GestureDetector(
+                                      //     onTap: () {
+                                      //       setState(() {
+                                      //         calendar = Calendar.day7;
+                                      //       });
+                                      //     },
+                                      //     child: Chip(
+                                      //         label: const Text('7 days'),
+                                      //         avatar:
+                                      //             (calendar == Calendar.day7)
+                                      //                 ? const Icon(
+                                      //                     Icons.check_circle)
+                                      //                 : null),
+                                      //   ),
+                                      //   GestureDetector(
+                                      //     onTap: () {
+                                      //       setState(() {
+                                      //         calendar = Calendar.day30;
+                                      //       });
+                                      //     },
+                                      //     child: Chip(
+                                      //         label: const Text('30 days'),
+                                      //         avatar:
+                                      //             (calendar == Calendar.day30)
+                                      //                 ? const Icon(
+                                      //                     Icons.check_circle)
+                                      //                 : null),
+                                      //   ),
+                                      // ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
                           },
                         );
                       },
@@ -107,8 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(left: 16),
                 child: TabBar(
                     onTap: (value) {
-                      if (value != context.read<NewsBloc>().state.tabIndex) {
-                        print(value);
+                      if (value != context.read<NewsBloc>().state.topicIndex) {
                         context
                             .read<NewsBloc>()
                             .add(NewsEvent.changeTopic(value));
@@ -177,50 +349,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SingleChoice extends StatefulWidget {
-  const SingleChoice({super.key});
-
-  @override
-  State<SingleChoice> createState() => _SingleChoiceState();
-}
-
-class _SingleChoiceState extends State<SingleChoice> {
-  Calendar calendarView = Calendar.day;
-
-  @override
-  Widget build(BuildContext context) {
-    return SegmentedButton<Calendar>(
-      segments: const <ButtonSegment<Calendar>>[
-        ButtonSegment<Calendar>(
-          value: Calendar.hour,
-          label: Text('an hour'),
-        ),
-        ButtonSegment<Calendar>(
-          value: Calendar.day,
-          label: Text('24 hours'),
-        ),
-        ButtonSegment<Calendar>(
-          value: Calendar.day7,
-          label: Text('7 days'),
-        ),
-        ButtonSegment<Calendar>(
-          value: Calendar.day30,
-          label: Text('30 days'),
-        ),
-      ],
-      selected: <Calendar>{calendarView},
-      onSelectionChanged: (Set<Calendar> newSelection) {
-        setState(() {
-          // By default there is only a single segment that can be
-          // selected at one time, so its value is always the first
-          // item in the selected set.
-          calendarView = newSelection.first;
-        });
-      },
     );
   }
 }

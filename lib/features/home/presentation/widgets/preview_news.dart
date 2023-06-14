@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../assets/colors.dart';
 import '../../../../core/app_functions.dart';
 import '../../data/models/news.dart';
@@ -59,7 +60,10 @@ class WPreviewNews extends StatelessWidget {
               children: [
                 Text(
                   model.title,
-                  style: const TextStyle(fontSize: 24, color: white),
+                  style: const TextStyle(
+                      fontSize: 24, color: white, fontWeight: FontWeight.w600),
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 5),
                 Text(

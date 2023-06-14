@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:news_app/core/data/service_locator.dart';
-import 'package:news_app/features/home/presentation/home_screen.dart';
+import 'core/data/service_locator.dart';
+import 'features/home/presentation/home_screen.dart';
 
 import 'features/home/presentation/bloc/news_bloc.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Outfit',
         useMaterial3: true,
       ),
-      theme: ThemeData(
+      theme: ThemeData.dark().copyWith(
         segmentedButtonTheme:
             const SegmentedButtonThemeData(selectedIcon: Icon(Icons.ac_unit)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
