@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:news_app/core/data/service_locator.dart';
 import 'package:news_app/features/home/presentation/home_screen.dart';
+
+import 'features/home/presentation/bloc/news_bloc.dart';
 
 void main() {
   setupLocator();
@@ -22,10 +25,15 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       theme: ThemeData(
+        segmentedButtonTheme:
+            const SegmentedButtonThemeData(selectedIcon: Icon(Icons.ac_unit)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: BlocProvider(
+        create: (context) => NewsBloc()..add(const NewsEvent.getNews()),
+        child: const HomeScreen(),
+      ),
     );
   }
 }
