@@ -20,7 +20,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   final int page;
   NewsRemoteDataSourceImpl(this.page) {
     _dio.options.headers['x-api-key'] =
-        'oxmi9uleZM8UX5zwUlihg58QS1C-uzc5lCvXEj2089I';
+        'OKlNLGTHIc3SYcabVkMuD5i-ESSLXlN7bq0VnqiyW6w';
   }
   final _dio = Dio();
   @override
@@ -35,9 +35,13 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
     final time = AppFunctions.calendarToApiCall(calendar);
 
     final response = await _dio.get(
-        'https://api.newscatcherapi.com/v2/latest_headlines$lang$sources$time&topic=${homeTopics[topicIndex]}&page=$page');
+        'https://api.newscatcherapi.com/v2/latest_headlines?page=$page$lang$sources$time&topic=${homeTopics[topicIndex]}');
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
-      final data = response.data['articles'] as List;
+      final data = response.data['articles'] as List?;
+      if (data == null) {
+        throw ServerException(
+            statusMessage: 'No News found for this category', statusCode: 404);
+      }
       final models = data.map((map) => NewsModel.fromMap(map)).toList();
       return (models, response.data["page_size"] as int);
     } else {

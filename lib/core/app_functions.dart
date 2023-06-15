@@ -24,8 +24,8 @@ abstract class AppFunctions {
   }
 
   static String languagesToApiCall(List<String> langs) {
-    if (langs.isEmpty) return '?lang=en';
-    String result = '?lang=';
+    if (langs.isEmpty) return '';
+    String result = '&lang=';
     for (int i = 0; i < langs.length; i++) {
       if (i != langs.length - 1) {
         result = '$result${langs[i]},';

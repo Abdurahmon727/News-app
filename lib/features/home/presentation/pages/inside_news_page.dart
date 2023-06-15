@@ -16,39 +16,40 @@ class _InsideNewsPageState extends State<InsideNewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppFunctions.randomColor(widget.model.title.length),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.navigate_before)),
-            ),
-            Text(
-              widget.model.title,
-              style: const TextStyle(fontSize: 20),
-              textAlign: TextAlign.center,
-            ),
-            if (widget.model.author.isNotEmpty)
-              Align(
-                alignment: Alignment.topRight,
-                child: Text(
-                  'By ${widget.model.author}',
-                ),
-              ),
-            Text(widget.model.excerpt ?? ''),
-            if (widget.model.media != null)
-              WInteractiveViewer(
-                borderRadius: BorderRadius.circular(15),
-                imageUrl: widget.model.media!,
-              ),
-            Text(widget.model.summary ?? ''),
-          ],
+      body: ListView(
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 16,
         ),
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.navigate_before)),
+          ),
+          Text(
+            widget.model.title,
+            style: const TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+          if (widget.model.author.isNotEmpty)
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(
+                'By ${widget.model.author}',
+              ),
+            ),
+          Text(widget.model.excerpt ?? ''),
+          if (widget.model.media != null)
+            WInteractiveViewer(
+              borderRadius: BorderRadius.circular(15),
+              imageUrl: widget.model.media!,
+            ),
+          Text(widget.model.summary ?? ''),
+        ],
       ),
     );
   }

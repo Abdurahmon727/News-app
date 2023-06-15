@@ -10,6 +10,13 @@ final allSources = [
   'theguardian.com',
   'newstimes.com',
   'abc4.com',
+  'kun.uz',
+  'uzdaily.uz',
+  'uza.uz',
 ];
 
-final allLanguages = ['en', 'ru', 'uz', 'bg'];
+final allLanguages = [
+  'en',
+  'ru',
+  'mk',
+];

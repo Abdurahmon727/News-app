@@ -48,17 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Calendar calendar =
-                            context.read<NewsBloc>().state.calendar;
-                        List<String> languages =
-                            context.read<NewsBloc>().state.languages;
-                        List<String> sources =
-                            context.read<NewsBloc>().state.sources;
                         showDialog(
                           context: context,
-                          builder: (context) {
-                            return StatefulBuilder(
-                                builder: (context, setState) {
+                          builder: (_) {
+                            var calendar =
+                                context.read<NewsBloc>().state.calendar;
+                            var languages = List<String>.from(
+                                context.read<NewsBloc>().state.languages);
+                            var sources = List<String>.from(
+                                context.read<NewsBloc>().state.sources);
+                            return StatefulBuilder(builder: (_, setState) {
                               return AlertDialog(
                                 actions: [
                                   ElevatedButton(
@@ -68,7 +67,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: TextStyle(color: Colors.grey),
                                       )),
                                   ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.read<NewsBloc>().add(
+                                            NewsEvent.applyFilter(
+                                                calendar: calendar,
+                                                languages: languages,
+                                                sources: sources));
+                                        Navigator.pop(context);
+                                      },
                                       child: const Text('Apply')),
                                 ],
                                 content: ListView(
@@ -80,9 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            setState(() {
+                                            if (calendar != Calendar.hour) {
                                               calendar = Calendar.hour;
-                                            });
+                                            } else {
+                                              calendar = Calendar.none;
+                                            }
+                                            setState(() {});
                                           },
                                           child: Chip(
                                             label: const Text('an hour'),
@@ -93,9 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            setState(() {
+                                            if (calendar != Calendar.day) {
                                               calendar = Calendar.day;
-                                            });
+                                            } else {
+                                              calendar = Calendar.none;
+                                            }
+                                            setState(() {});
                                           },
                                           child: Chip(
                                             label: const Text('24 hours'),
@@ -106,9 +118,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            setState(() {
+                                            if (calendar != Calendar.day7) {
                                               calendar = Calendar.day7;
-                                            });
+                                            } else {
+                                              calendar = Calendar.none;
+                                            }
+                                            setState(() {});
                                           },
                                           child: Chip(
                                               label: const Text('7 days'),
@@ -120,9 +135,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            setState(() {
+                                            if (calendar != Calendar.day30) {
                                               calendar = Calendar.day30;
-                                            });
+                                            } else {
+                                              calendar = Calendar.none;
+                                            }
+                                            setState(() {});
                                           },
                                           child: Chip(
                                               label: const Text('30 days'),
@@ -132,23 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           Icons.check_circle)
                                                       : null),
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              calendar = Calendar.none;
-                                            });
-                                          },
-                                          child: Chip(
-                                              label: const Text('any'),
-                                              avatar:
-                                                  (calendar == Calendar.none)
-                                                      ? const Icon(
-                                                          Icons.check_circle)
-                                                      : null),
-                                        ),
                                       ],
                                     ),
-                                    const Text('News in languages:'),
+                                    const Text('News in languages only:'),
                                     Wrap(
                                       spacing: 10,
                                       children: allLanguages
@@ -156,14 +160,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                             (lang) => GestureDetector(
                                               onTap: () {
                                                 if (languages.contains(lang)) {
-                                                  languages.remove(lang);
+                                                  languages.removeWhere(
+                                                      (element) =>
+                                                          element == lang);
                                                 } else {
                                                   languages += [lang];
                                                 }
                                                 setState(() {});
                                               },
                                               child: Chip(
-                                                label: Text(lang),
+                                                label: Text((lang == 'mk')
+                                                    ? 'krill'
+                                                    : lang),
                                                 avatar:
                                                     (languages.contains(lang))
                                                         ? const Icon(
@@ -199,67 +207,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                           )
                                           .toList(),
-                                      // children: [
-                                      //   GestureDetector(
-                                      //     onTap: () {
-                                      //       if (languages.contains('element')) {
-                                      //         languages.remove('element');
-                                      //       } else {
-                                      //         languages.add('element');
-                                      //       }
-
-                                      //       setState(() {});
-                                      //     },
-                                      //     child: Chip(
-                                      //       label: const Text('an hour'),
-                                      //       avatar: (languages
-                                      //               .contains('element'))
-                                      //           ? const Icon(Icons.check_circle)
-                                      //           : null,
-                                      //     ),
-                                      //   ),
-                                      //   GestureDetector(
-                                      //     onTap: () {
-                                      //       setState(() {
-                                      //         calendar = Calendar.day;
-                                      //       });
-                                      //     },
-                                      //     child: Chip(
-                                      //       label: const Text('24 hours'),
-                                      //       avatar: (calendar == Calendar.day)
-                                      //           ? const Icon(Icons.check_circle)
-                                      //           : null,
-                                      //     ),
-                                      //   ),
-                                      //   GestureDetector(
-                                      //     onTap: () {
-                                      //       setState(() {
-                                      //         calendar = Calendar.day7;
-                                      //       });
-                                      //     },
-                                      //     child: Chip(
-                                      //         label: const Text('7 days'),
-                                      //         avatar:
-                                      //             (calendar == Calendar.day7)
-                                      //                 ? const Icon(
-                                      //                     Icons.check_circle)
-                                      //                 : null),
-                                      //   ),
-                                      //   GestureDetector(
-                                      //     onTap: () {
-                                      //       setState(() {
-                                      //         calendar = Calendar.day30;
-                                      //       });
-                                      //     },
-                                      //     child: Chip(
-                                      //         label: const Text('30 days'),
-                                      //         avatar:
-                                      //             (calendar == Calendar.day30)
-                                      //                 ? const Icon(
-                                      //                     Icons.check_circle)
-                                      //                 : null),
-                                      //   ),
-                                      // ],
                                     ),
                                   ],
                                 ),

@@ -27,11 +27,11 @@ class NewsRepositoryImpl implements NewsRepository {
             resources: resources,
             topicIndex: topicIndex);
         return Right((result.$1, result.$2));
-      } on ServerException {
-        rethrow;
-      } catch (e) {
+      } on ServerException catch (e) {
         return Left(ServerFailure(
-            errorMessage: 'Something went wrong', statusCode: 500));
+            errorMessage: e.statusMessage, statusCode: e.statusCode));
+      } catch (e) {
+        return Left(ServerFailure(errorMessage: e.toString(), statusCode: 500));
       }
     } else {
       return Left(ServerFailure(errorMessage: 'No Internet'));

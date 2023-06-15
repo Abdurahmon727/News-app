@@ -78,7 +78,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Outfit-Regular.ttf
         - asset: assets/fonts/Outfit-Bold.ttf
-          style: italic
+          
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

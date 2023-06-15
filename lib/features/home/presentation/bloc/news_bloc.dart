@@ -44,5 +44,13 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(state.copyWith(topicIndex: event.index));
       add(const _GetNews());
     });
+
+    on<_ApplyFilter>((event, emit) {
+      emit(state.copyWith(
+          calendar: event.calendar,
+          languages: event.languages,
+          sources: event.sources));
+      add(const _GetNews());
+    });
   }
 }

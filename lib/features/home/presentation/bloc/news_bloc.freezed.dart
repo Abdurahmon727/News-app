@@ -20,18 +20,27 @@ mixin _$NewsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getNews,
     required TResult Function(int index) changeTopic,
+    required TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)
+        applyFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNews,
     TResult? Function(int index)? changeTopic,
+    TResult? Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNews,
     TResult Function(int index)? changeTopic,
+    TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +48,21 @@ mixin _$NewsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
+    required TResult Function(_ApplyFilter value) applyFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
+    TResult? Function(_ApplyFilter value)? applyFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
+    TResult Function(_ApplyFilter value)? applyFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +124,9 @@ class _$_GetNews implements _GetNews {
   TResult when<TResult extends Object?>({
     required TResult Function() getNews,
     required TResult Function(int index) changeTopic,
+    required TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)
+        applyFilter,
   }) {
     return getNews();
   }
@@ -121,6 +136,9 @@ class _$_GetNews implements _GetNews {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNews,
     TResult? Function(int index)? changeTopic,
+    TResult? Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
   }) {
     return getNews?.call();
   }
@@ -130,6 +148,9 @@ class _$_GetNews implements _GetNews {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNews,
     TResult Function(int index)? changeTopic,
+    TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -143,6 +164,7 @@ class _$_GetNews implements _GetNews {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
+    required TResult Function(_ApplyFilter value) applyFilter,
   }) {
     return getNews(this);
   }
@@ -152,6 +174,7 @@ class _$_GetNews implements _GetNews {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
+    TResult? Function(_ApplyFilter value)? applyFilter,
   }) {
     return getNews?.call(this);
   }
@@ -161,6 +184,7 @@ class _$_GetNews implements _GetNews {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
+    TResult Function(_ApplyFilter value)? applyFilter,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -240,6 +264,9 @@ class _$_ChangeTopic implements _ChangeTopic {
   TResult when<TResult extends Object?>({
     required TResult Function() getNews,
     required TResult Function(int index) changeTopic,
+    required TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)
+        applyFilter,
   }) {
     return changeTopic(index);
   }
@@ -249,6 +276,9 @@ class _$_ChangeTopic implements _ChangeTopic {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNews,
     TResult? Function(int index)? changeTopic,
+    TResult? Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
   }) {
     return changeTopic?.call(index);
   }
@@ -258,6 +288,9 @@ class _$_ChangeTopic implements _ChangeTopic {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNews,
     TResult Function(int index)? changeTopic,
+    TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
     required TResult orElse(),
   }) {
     if (changeTopic != null) {
@@ -271,6 +304,7 @@ class _$_ChangeTopic implements _ChangeTopic {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
+    required TResult Function(_ApplyFilter value) applyFilter,
   }) {
     return changeTopic(this);
   }
@@ -280,6 +314,7 @@ class _$_ChangeTopic implements _ChangeTopic {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
+    TResult? Function(_ApplyFilter value)? applyFilter,
   }) {
     return changeTopic?.call(this);
   }
@@ -289,6 +324,7 @@ class _$_ChangeTopic implements _ChangeTopic {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
+    TResult Function(_ApplyFilter value)? applyFilter,
     required TResult orElse(),
   }) {
     if (changeTopic != null) {
@@ -304,6 +340,194 @@ abstract class _ChangeTopic implements NewsEvent {
   int get index;
   @JsonKey(ignore: true)
   _$$_ChangeTopicCopyWith<_$_ChangeTopic> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ApplyFilterCopyWith<$Res> {
+  factory _$$_ApplyFilterCopyWith(
+          _$_ApplyFilter value, $Res Function(_$_ApplyFilter) then) =
+      __$$_ApplyFilterCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Calendar calendar, List<String> languages, List<String> sources});
+}
+
+/// @nodoc
+class __$$_ApplyFilterCopyWithImpl<$Res>
+    extends _$NewsEventCopyWithImpl<$Res, _$_ApplyFilter>
+    implements _$$_ApplyFilterCopyWith<$Res> {
+  __$$_ApplyFilterCopyWithImpl(
+      _$_ApplyFilter _value, $Res Function(_$_ApplyFilter) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? calendar = null,
+    Object? languages = null,
+    Object? sources = null,
+  }) {
+    return _then(_$_ApplyFilter(
+      calendar: null == calendar
+          ? _value.calendar
+          : calendar // ignore: cast_nullable_to_non_nullable
+              as Calendar,
+      languages: null == languages
+          ? _value._languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      sources: null == sources
+          ? _value._sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ApplyFilter implements _ApplyFilter {
+  const _$_ApplyFilter(
+      {required this.calendar,
+      required final List<String> languages,
+      required final List<String> sources})
+      : _languages = languages,
+        _sources = sources;
+
+  @override
+  final Calendar calendar;
+  final List<String> _languages;
+  @override
+  List<String> get languages {
+    if (_languages is EqualUnmodifiableListView) return _languages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_languages);
+  }
+
+  final List<String> _sources;
+  @override
+  List<String> get sources {
+    if (_sources is EqualUnmodifiableListView) return _sources;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sources);
+  }
+
+  @override
+  String toString() {
+    return 'NewsEvent.applyFilter(calendar: $calendar, languages: $languages, sources: $sources)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ApplyFilter &&
+            (identical(other.calendar, calendar) ||
+                other.calendar == calendar) &&
+            const DeepCollectionEquality()
+                .equals(other._languages, _languages) &&
+            const DeepCollectionEquality().equals(other._sources, _sources));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      calendar,
+      const DeepCollectionEquality().hash(_languages),
+      const DeepCollectionEquality().hash(_sources));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ApplyFilterCopyWith<_$_ApplyFilter> get copyWith =>
+      __$$_ApplyFilterCopyWithImpl<_$_ApplyFilter>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getNews,
+    required TResult Function(int index) changeTopic,
+    required TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)
+        applyFilter,
+  }) {
+    return applyFilter(calendar, languages, sources);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getNews,
+    TResult? Function(int index)? changeTopic,
+    TResult? Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
+  }) {
+    return applyFilter?.call(calendar, languages, sources);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getNews,
+    TResult Function(int index)? changeTopic,
+    TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
+    required TResult orElse(),
+  }) {
+    if (applyFilter != null) {
+      return applyFilter(calendar, languages, sources);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetNews value) getNews,
+    required TResult Function(_ChangeTopic value) changeTopic,
+    required TResult Function(_ApplyFilter value) applyFilter,
+  }) {
+    return applyFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_ChangeTopic value)? changeTopic,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+  }) {
+    return applyFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetNews value)? getNews,
+    TResult Function(_ChangeTopic value)? changeTopic,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    required TResult orElse(),
+  }) {
+    if (applyFilter != null) {
+      return applyFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApplyFilter implements NewsEvent {
+  const factory _ApplyFilter(
+      {required final Calendar calendar,
+      required final List<String> languages,
+      required final List<String> sources}) = _$_ApplyFilter;
+
+  Calendar get calendar;
+  List<String> get languages;
+  List<String> get sources;
+  @JsonKey(ignore: true)
+  _$$_ApplyFilterCopyWith<_$_ApplyFilter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
