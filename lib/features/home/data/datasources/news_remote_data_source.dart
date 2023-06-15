@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/core/app_functions.dart';
-
 import '../../../../core/error/exeptions.dart';
 import '../../../../core/models/home_datas.dart';
 import '../models/news.dart';
@@ -33,7 +32,8 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
     final sources = AppFunctions.sourcesToApiCall(resources);
     final lang = AppFunctions.languagesToApiCall(langauges);
     final time = AppFunctions.calendarToApiCall(calendar);
-
+    // await StorageRepository.putList('lang', langauges);
+    // await StorageRepository.putList('sources', resources);
     final response = await _dio.get(
         'https://api.newscatcherapi.com/v2/latest_headlines?page=$page$lang$sources$time&topic=${homeTopics[topicIndex]}');
     if (response.statusCode! >= 200 && response.statusCode! < 300) {

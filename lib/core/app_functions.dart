@@ -7,10 +7,14 @@ final backgroundColors = [miskyRose, lemonChiffan, aliceBlue];
 
 abstract class AppFunctions {
   static Color randomColor(int number) {
-    if (number.isEven) {
+    final result = number ~/ backgroundColors.length;
+
+    if (result.isEven) {
       return backgroundColors[0];
+    } else if (result == 1) {
+      return backgroundColors[1];
     }
-    return backgroundColors[1];
+    return backgroundColors[2];
   }
 
   static String calendarToApiCall(Calendar calendar) {

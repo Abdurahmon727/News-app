@@ -18,5 +18,4 @@ final allSources = [
 final allLanguages = [
   'en',
   'ru',
-  'mk',
 ];

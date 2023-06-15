@@ -28,7 +28,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         emit(
           state.copyWith(
             status: FormzStatus.submissionFailure,
-            errorMessage: (failure as ServerFailure).errorMessage,
+            errorMessage:
+                '${(failure as ServerFailure).errorMessage} ${(failure).statusCode}',
           ),
         );
       }, (data) {

@@ -169,9 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 setState(() {});
                                               },
                                               child: Chip(
-                                                label: Text((lang == 'mk')
-                                                    ? 'krill'
-                                                    : lang),
+                                                label: Text(lang),
                                                 avatar:
                                                     (languages.contains(lang))
                                                         ? const Icon(

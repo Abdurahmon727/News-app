@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/data/service_locator.dart';
+import 'core/data/storage_repository.dart';
 import 'features/home/presentation/home_screen.dart';
 
 import 'features/home/presentation/bloc/news_bloc.dart';
 
-void main() {
-  setupLocator();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await StorageRepository.getInstance();
 
+  setupLocator();
   runApp(const MyApp());
 }
 
