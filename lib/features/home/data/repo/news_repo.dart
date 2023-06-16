@@ -4,7 +4,7 @@ import '../../../../core/error/exeptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../domain/repo/news_repo.dart';
-import '../datasources/news_remote_data_source.dart';
+import '../datasources/remote_data_source.dart';
 import '../models/news.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
@@ -29,13 +29,13 @@ class NewsRepositoryImpl implements NewsRepository {
         return Right((result.$1, result.$2));
       } on ServerException catch (e) {
         return Left(ServerFailure(
-            errorMessage: e.statusMessage, statusCode: e.statusCode));
+            errorMessage: e.statusMessage, statusCode: e.statusCode.round()));
       } catch (e) {
-        return Left(ServerFailure(
+        return Left(const ServerFailure(
             errorMessage: 'Something went wrong ', statusCode: 500));
       }
     } else {
-      return Left(ServerFailure(errorMessage: 'No Internet'));
+      return Left(const ServerFailure(errorMessage: 'No Internet'));
     }
   }
 }

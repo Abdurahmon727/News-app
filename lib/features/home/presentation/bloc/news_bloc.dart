@@ -34,6 +34,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         );
       }, (data) {
         emit(state.copyWith(
+          currentIndex: 0,
           status: FormzStatus.submissionSuccess,
           models: data.$1,
           maxPage: data.$2,
