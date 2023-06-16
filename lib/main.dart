@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/data/service_locator.dart';
 import 'core/data/storage_repository.dart';
-import 'features/home/presentation/home_screen.dart';
-
 import 'features/home/presentation/bloc/news_bloc.dart';
+import 'features/home/presentation/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

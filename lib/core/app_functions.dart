@@ -3,7 +3,7 @@ import 'package:news_app/core/models/home_datas.dart';
 
 import '../assets/colors.dart';
 
-final backgroundColors = [miskyRose, lemonChiffan, aliceBlue];
+final backgroundColors = [miskyRose, lemonChiffan, aliceBlue, purple];
 
 abstract class AppFunctions {
   static Color randomColor(int number) {
@@ -13,8 +13,10 @@ abstract class AppFunctions {
       return backgroundColors[0];
     } else if (result == 1) {
       return backgroundColors[1];
+    } else if (result == 2) {
+      return backgroundColors[2];
     }
-    return backgroundColors[2];
+    return backgroundColors[3];
   }
 
   static String calendarToApiCall(Calendar calendar) {

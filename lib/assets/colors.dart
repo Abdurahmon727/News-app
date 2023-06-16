@@ -9,3 +9,4 @@ const lemonChiffan = Color(0XFFFFF7C5);
 const aliceBlue = Color(0XFFE0F1FF);
 const white = Color(0XFFFFFFFF);
 const black = Color(0xFF000000);
+const purple = Color(0xFFEBE5FE);

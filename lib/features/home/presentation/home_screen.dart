@@ -1,5 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
+import '../../saved_news/presentation/saved_news_page.dart';
+import '../../search/presenation/search_page.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/models/home_datas.dart';
@@ -21,8 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     pages = [
       HomePage(controller: controller),
-      SizedBox(),
-      SizedBox(),
+      SearchPage(),
+      SavedNewsPage(),
     ];
     super.initState();
   }
@@ -56,10 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 IconButton.filled(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith((_) {
-                    if (indexPage == 0) return white;
-                    return darkGrey;
-                  })),
+                    backgroundColor: MaterialStateProperty.resolveWith((_) {
+                      if (indexPage == 0) return white;
+                      return darkGrey;
+                    }),
+                  ),
                   onPressed: () {
                     if (indexPage != 0) {
                       setState(() {
