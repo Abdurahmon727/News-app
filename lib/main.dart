@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       theme: ThemeData.dark().copyWith(
-        segmentedButtonTheme:
-            const SegmentedButtonThemeData(selectedIcon: Icon(Icons.ac_unit)),
+        // segmentedButtonTheme:
+        //     const SegmentedButtonThemeData(selectedIcon: Icon(Icons.ac_unit)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
