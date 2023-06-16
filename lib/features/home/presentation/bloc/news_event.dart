@@ -9,4 +9,5 @@ class NewsEvent with _$NewsEvent {
     required List<String> languages,
     required List<String> sources,
   }) = _ApplyFilter;
+  const factory NewsEvent.changeCurrentIndex(int value) = _ChangeCurrentIndex;
 }

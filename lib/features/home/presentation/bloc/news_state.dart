@@ -12,5 +12,6 @@ class NewsState with _$NewsState {
     @Default(Calendar.none) Calendar calendar,
     @Default([]) List<String> sources,
     @Default([]) List<String> languages,
+    @Default(0) int currentIndex,
   }) = _NewsState;
 }

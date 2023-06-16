@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../assets/colors.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
+import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
 
@@ -228,7 +229,8 @@ class HomePage extends StatelessWidget {
             if (state.status == FormzStatus.submissionSuccess) {
               final data = state.models;
               return Expanded(
-                child: AppinioSwiper(
+                child: WAppinioSwiper(
+                  currentIndex: context.read<NewsBloc>().state.currentIndex,
                   unlimitedUnswipe: true,
                   onEnd: () {
                     context.read<NewsBloc>().add(const NewsEvent.getNews());

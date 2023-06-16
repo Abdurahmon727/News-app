@@ -16,6 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     controller = AppinioSwiperController();
+    controller.addListener(() {
+      print(controller.state!.index);
+    });
     pages = [
       HomePage(controller: controller),
       SizedBox(),

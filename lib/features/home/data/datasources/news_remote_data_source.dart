@@ -19,7 +19,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   final int page;
   NewsRemoteDataSourceImpl(this.page) {
     _dio.options.headers['x-api-key'] =
-        'OKlNLGTHIc3SYcabVkMuD5i-ESSLXlN7bq0VnqiyW6w';
+        'gsZA09iN8Cpg6Y07nSFQjYNp17Nx1HA2zUgBdiyO7qw';
   }
   final _dio = Dio();
   @override

@@ -23,6 +23,7 @@ mixin _$NewsEvent {
     required TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)
         applyFilter,
+    required TResult Function(int value) changeCurrentIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$NewsEvent {
     TResult? Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult? Function(int value)? changeCurrentIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$NewsEvent {
     TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult Function(int value)? changeCurrentIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +52,7 @@ mixin _$NewsEvent {
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
     required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +60,7 @@ mixin _$NewsEvent {
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
     TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$NewsEvent {
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
     TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,6 +133,7 @@ class _$_GetNews implements _GetNews {
     required TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)
         applyFilter,
+    required TResult Function(int value) changeCurrentIndex,
   }) {
     return getNews();
   }
@@ -139,6 +146,7 @@ class _$_GetNews implements _GetNews {
     TResult? Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult? Function(int value)? changeCurrentIndex,
   }) {
     return getNews?.call();
   }
@@ -151,6 +159,7 @@ class _$_GetNews implements _GetNews {
     TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult Function(int value)? changeCurrentIndex,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -165,6 +174,7 @@ class _$_GetNews implements _GetNews {
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
     required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
   }) {
     return getNews(this);
   }
@@ -175,6 +185,7 @@ class _$_GetNews implements _GetNews {
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
     TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
   }) {
     return getNews?.call(this);
   }
@@ -185,6 +196,7 @@ class _$_GetNews implements _GetNews {
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
     TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -267,6 +279,7 @@ class _$_ChangeTopic implements _ChangeTopic {
     required TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)
         applyFilter,
+    required TResult Function(int value) changeCurrentIndex,
   }) {
     return changeTopic(index);
   }
@@ -279,6 +292,7 @@ class _$_ChangeTopic implements _ChangeTopic {
     TResult? Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult? Function(int value)? changeCurrentIndex,
   }) {
     return changeTopic?.call(index);
   }
@@ -291,6 +305,7 @@ class _$_ChangeTopic implements _ChangeTopic {
     TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult Function(int value)? changeCurrentIndex,
     required TResult orElse(),
   }) {
     if (changeTopic != null) {
@@ -305,6 +320,7 @@ class _$_ChangeTopic implements _ChangeTopic {
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
     required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
   }) {
     return changeTopic(this);
   }
@@ -315,6 +331,7 @@ class _$_ChangeTopic implements _ChangeTopic {
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
     TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
   }) {
     return changeTopic?.call(this);
   }
@@ -325,6 +342,7 @@ class _$_ChangeTopic implements _ChangeTopic {
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
     TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     required TResult orElse(),
   }) {
     if (changeTopic != null) {
@@ -450,6 +468,7 @@ class _$_ApplyFilter implements _ApplyFilter {
     required TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)
         applyFilter,
+    required TResult Function(int value) changeCurrentIndex,
   }) {
     return applyFilter(calendar, languages, sources);
   }
@@ -462,6 +481,7 @@ class _$_ApplyFilter implements _ApplyFilter {
     TResult? Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult? Function(int value)? changeCurrentIndex,
   }) {
     return applyFilter?.call(calendar, languages, sources);
   }
@@ -474,6 +494,7 @@ class _$_ApplyFilter implements _ApplyFilter {
     TResult Function(
             Calendar calendar, List<String> languages, List<String> sources)?
         applyFilter,
+    TResult Function(int value)? changeCurrentIndex,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -488,6 +509,7 @@ class _$_ApplyFilter implements _ApplyFilter {
     required TResult Function(_GetNews value) getNews,
     required TResult Function(_ChangeTopic value) changeTopic,
     required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
   }) {
     return applyFilter(this);
   }
@@ -498,6 +520,7 @@ class _$_ApplyFilter implements _ApplyFilter {
     TResult? Function(_GetNews value)? getNews,
     TResult? Function(_ChangeTopic value)? changeTopic,
     TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
   }) {
     return applyFilter?.call(this);
   }
@@ -508,6 +531,7 @@ class _$_ApplyFilter implements _ApplyFilter {
     TResult Function(_GetNews value)? getNews,
     TResult Function(_ChangeTopic value)? changeTopic,
     TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -532,6 +556,158 @@ abstract class _ApplyFilter implements NewsEvent {
 }
 
 /// @nodoc
+abstract class _$$_ChangeCurrentIndexCopyWith<$Res> {
+  factory _$$_ChangeCurrentIndexCopyWith(_$_ChangeCurrentIndex value,
+          $Res Function(_$_ChangeCurrentIndex) then) =
+      __$$_ChangeCurrentIndexCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int value});
+}
+
+/// @nodoc
+class __$$_ChangeCurrentIndexCopyWithImpl<$Res>
+    extends _$NewsEventCopyWithImpl<$Res, _$_ChangeCurrentIndex>
+    implements _$$_ChangeCurrentIndexCopyWith<$Res> {
+  __$$_ChangeCurrentIndexCopyWithImpl(
+      _$_ChangeCurrentIndex _value, $Res Function(_$_ChangeCurrentIndex) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_ChangeCurrentIndex(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeCurrentIndex implements _ChangeCurrentIndex {
+  const _$_ChangeCurrentIndex(this.value);
+
+  @override
+  final int value;
+
+  @override
+  String toString() {
+    return 'NewsEvent.changeCurrentIndex(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeCurrentIndex &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChangeCurrentIndexCopyWith<_$_ChangeCurrentIndex> get copyWith =>
+      __$$_ChangeCurrentIndexCopyWithImpl<_$_ChangeCurrentIndex>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getNews,
+    required TResult Function(int index) changeTopic,
+    required TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)
+        applyFilter,
+    required TResult Function(int value) changeCurrentIndex,
+  }) {
+    return changeCurrentIndex(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getNews,
+    TResult? Function(int index)? changeTopic,
+    TResult? Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
+    TResult? Function(int value)? changeCurrentIndex,
+  }) {
+    return changeCurrentIndex?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getNews,
+    TResult Function(int index)? changeTopic,
+    TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
+    TResult Function(int value)? changeCurrentIndex,
+    required TResult orElse(),
+  }) {
+    if (changeCurrentIndex != null) {
+      return changeCurrentIndex(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetNews value) getNews,
+    required TResult Function(_ChangeTopic value) changeTopic,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
+  }) {
+    return changeCurrentIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_ChangeTopic value)? changeTopic,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
+  }) {
+    return changeCurrentIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetNews value)? getNews,
+    TResult Function(_ChangeTopic value)? changeTopic,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
+    required TResult orElse(),
+  }) {
+    if (changeCurrentIndex != null) {
+      return changeCurrentIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeCurrentIndex implements NewsEvent {
+  const factory _ChangeCurrentIndex(final int value) = _$_ChangeCurrentIndex;
+
+  int get value;
+  @JsonKey(ignore: true)
+  _$$_ChangeCurrentIndexCopyWith<_$_ChangeCurrentIndex> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$NewsState {
   FormzStatus get status => throw _privateConstructorUsedError;
   List<NewsModel> get models => throw _privateConstructorUsedError;
@@ -542,6 +718,7 @@ mixin _$NewsState {
   Calendar get calendar => throw _privateConstructorUsedError;
   List<String> get sources => throw _privateConstructorUsedError;
   List<String> get languages => throw _privateConstructorUsedError;
+  int get currentIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewsStateCopyWith<NewsState> get copyWith =>
@@ -562,7 +739,8 @@ abstract class $NewsStateCopyWith<$Res> {
       int topicIndex,
       Calendar calendar,
       List<String> sources,
-      List<String> languages});
+      List<String> languages,
+      int currentIndex});
 }
 
 /// @nodoc
@@ -587,6 +765,7 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
     Object? calendar = null,
     Object? sources = null,
     Object? languages = null,
+    Object? currentIndex = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -625,6 +804,10 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      currentIndex: null == currentIndex
+          ? _value.currentIndex
+          : currentIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -645,7 +828,8 @@ abstract class _$$_NewsStateCopyWith<$Res> implements $NewsStateCopyWith<$Res> {
       int topicIndex,
       Calendar calendar,
       List<String> sources,
-      List<String> languages});
+      List<String> languages,
+      int currentIndex});
 }
 
 /// @nodoc
@@ -668,6 +852,7 @@ class __$$_NewsStateCopyWithImpl<$Res>
     Object? calendar = null,
     Object? sources = null,
     Object? languages = null,
+    Object? currentIndex = null,
   }) {
     return _then(_$_NewsState(
       status: null == status
@@ -706,6 +891,10 @@ class __$$_NewsStateCopyWithImpl<$Res>
           ? _value._languages
           : languages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      currentIndex: null == currentIndex
+          ? _value.currentIndex
+          : currentIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -722,7 +911,8 @@ class _$_NewsState implements _NewsState {
       this.topicIndex = 0,
       this.calendar = Calendar.none,
       final List<String> sources = const [],
-      final List<String> languages = const []})
+      final List<String> languages = const [],
+      this.currentIndex = 0})
       : _models = models,
         _sources = sources,
         _languages = languages;
@@ -773,8 +963,12 @@ class _$_NewsState implements _NewsState {
   }
 
   @override
+  @JsonKey()
+  final int currentIndex;
+
+  @override
   String toString() {
-    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages)';
+    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages, currentIndex: $currentIndex)';
   }
 
   @override
@@ -795,7 +989,9 @@ class _$_NewsState implements _NewsState {
                 other.calendar == calendar) &&
             const DeepCollectionEquality().equals(other._sources, _sources) &&
             const DeepCollectionEquality()
-                .equals(other._languages, _languages));
+                .equals(other._languages, _languages) &&
+            (identical(other.currentIndex, currentIndex) ||
+                other.currentIndex == currentIndex));
   }
 
   @override
@@ -809,7 +1005,8 @@ class _$_NewsState implements _NewsState {
       topicIndex,
       calendar,
       const DeepCollectionEquality().hash(_sources),
-      const DeepCollectionEquality().hash(_languages));
+      const DeepCollectionEquality().hash(_languages),
+      currentIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -828,7 +1025,8 @@ abstract class _NewsState implements NewsState {
       final int topicIndex,
       final Calendar calendar,
       final List<String> sources,
-      final List<String> languages}) = _$_NewsState;
+      final List<String> languages,
+      final int currentIndex}) = _$_NewsState;
 
   @override
   FormzStatus get status;
@@ -848,6 +1046,8 @@ abstract class _NewsState implements NewsState {
   List<String> get sources;
   @override
   List<String> get languages;
+  @override
+  int get currentIndex;
   @override
   @JsonKey(ignore: true)
   _$$_NewsStateCopyWith<_$_NewsState> get copyWith =>

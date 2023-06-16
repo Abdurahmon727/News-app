@@ -31,7 +31,8 @@ class NewsRepositoryImpl implements NewsRepository {
         return Left(ServerFailure(
             errorMessage: e.statusMessage, statusCode: e.statusCode));
       } catch (e) {
-        return Left(ServerFailure(errorMessage: e.toString(), statusCode: 500));
+        return Left(ServerFailure(
+            errorMessage: 'Something went wrong ', statusCode: 500));
       }
     } else {
       return Left(ServerFailure(errorMessage: 'No Internet'));

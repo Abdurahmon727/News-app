@@ -53,5 +53,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           sources: event.sources));
       add(const _GetNews());
     });
+
+    on<_ChangeCurrentIndex>(
+        (event, emit) => emit(state.copyWith(currentIndex: event.value)));
   }
 }
