@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/core/models/home_datas.dart';
 
 import '../assets/colors.dart';
+import 'models/home_datas.dart';
 
 final backgroundColors = [miskyRose, lemonChiffan, aliceBlue, purple];
 

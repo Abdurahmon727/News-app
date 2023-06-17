@@ -19,7 +19,7 @@ class DioConnectivityRequestRetrier {
         if (connectivityResult == InternetConnectionStatus.connected) {
           streamSubscription.cancel();
           responseCompleter.complete(
-            getIt<DioSettings>().dio.request(
+            sl<DioSettings>().dio.request(
                   requestOptions.path,
                   cancelToken: requestOptions.cancelToken,
                   data: requestOptions.data,

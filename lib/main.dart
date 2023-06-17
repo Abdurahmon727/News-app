@@ -8,9 +8,9 @@ import 'features/home/presentation/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   await StorageRepository.getInstance();
 
-  setupLocator();
   runApp(const MyApp());
 }
 
@@ -27,8 +27,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       theme: ThemeData.dark().copyWith(
-        // segmentedButtonTheme:
-        //     const SegmentedButtonThemeData(selectedIcon: Icon(Icons.ac_unit)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),

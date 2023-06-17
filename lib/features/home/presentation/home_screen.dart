@@ -18,13 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     controller = AppinioSwiperController();
-    controller.addListener(() {
-      print(controller.state!.index);
-    });
+
     pages = [
       HomePage(controller: controller),
-      SearchPage(),
-      SavedNewsPage(),
+      const SearchPage(),
+      const SavedNewsPage(),
     ];
     super.initState();
   }
@@ -50,13 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: Container(
-            height: 50,
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
                 color: black, borderRadius: BorderRadius.circular(30)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton.filled(
+                  iconSize: 35,
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith((_) {
                       if (indexPage == 0) return white;
@@ -75,7 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: indexPage == 0 ? black : white,
                   ),
                 ),
+                const SizedBox(width: 8),
                 IconButton.filled(
+                  iconSize: 35,
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith((_) {
                     if (indexPage == 1) return white;
@@ -93,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: indexPage == 1 ? black : white,
                   ),
                 ),
+                const SizedBox(width: 8),
                 IconButton.filled(
+                  iconSize: 35,
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith((_) {
                     if (indexPage == 2) return white;
@@ -114,12 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          // floatingActionButton: FloatingActionButton(
-          //   child: const Icon(Icons.history),
-          //   onPressed: () {
-          //     controller.unswipe();
-          //   },
-          // ),
         ),
       ),
     );

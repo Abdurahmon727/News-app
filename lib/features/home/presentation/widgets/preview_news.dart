@@ -8,84 +8,110 @@ import '../../data/models/news.dart';
 import '../pages/inside_news_page.dart';
 
 class WPreviewNews extends StatelessWidget {
-  const WPreviewNews({super.key, required this.model});
+  WPreviewNews({super.key, required this.model}) {
+    newsColor = AppFunctions.randomColor(model.title.length);
+  }
   final NewsModel model;
+  late final Color newsColor;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => InsideNewsPage(model: model),
-            ));
-      },
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppFunctions.randomColor(model.title.length),
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => InsideNewsPage(model: model),
+                ));
+          },
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: newsColor,
+                  ),
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: CachedNetworkImage(
+                    fadeInDuration: const Duration(milliseconds: 300),
+                    errorWidget: (context, url, error) => const SizedBox(),
+                    imageUrl: model.media ?? '',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-              height: double.infinity,
-              width: double.infinity,
-              child: CachedNetworkImage(
-                fadeInDuration: const Duration(milliseconds: 300),
-                errorWidget: (context, url, error) => const SizedBox(),
-                imageUrl: model.media ?? '',
-                fit: BoxFit.cover,
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Colors.transparent, black],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.1, 1],
+                  ),
+                  borderRadius: BorderRadius.circular(30),
+                ),
               ),
-            ),
-          ),
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Colors.transparent, black],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.1, 1],
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 10, bottom: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      model.title,
+                      style: const TextStyle(
+                          fontSize: 24,
+                          color: white,
+                          fontWeight: FontWeight.w600),
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      model.publishedDate ?? '',
+                      style: const TextStyle(color: white),
+                    ),
+                    Text(
+                      model.author,
+                      style: const TextStyle(color: white),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      model.excerpt ?? '',
+                      style: const TextStyle(color: white),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-              borderRadius: BorderRadius.circular(30),
-            ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  model.title,
-                  style: const TextStyle(
-                      fontSize: 24, color: white, fontWeight: FontWeight.w600),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  model.publishedDate ?? '',
-                  style: const TextStyle(color: white),
-                ),
-                Text(
-                  model.author,
-                  style: const TextStyle(color: white),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  model.excerpt ?? '',
-                  style: const TextStyle(color: white),
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+                onPressed: () {
+                  //TODO
+                },
+                icon: Icon(Icons.bookmark_outline_rounded)),
+            IconButton(
+                onPressed: () {
+                  //TODO:
+                },
+                icon: Icon(Icons.share))
+          ],
+        )
+      ],
     );
   }
 }

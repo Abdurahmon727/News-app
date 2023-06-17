@@ -1,4 +1,9 @@
+import 'package:objectbox/objectbox.dart';
+
+@Entity()
 class NewsModel {
+  @Id()
+  int id = 0;
   final String title;
   final String author;
   final String? publishedDate;
