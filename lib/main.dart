@@ -6,6 +6,7 @@ import 'core/data/storage_repository.dart';
 import 'features/home/presentation/bloc/news_bloc.dart';
 import 'features/home/presentation/home_screen.dart';
 
+late var objectBox;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();

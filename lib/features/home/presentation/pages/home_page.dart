@@ -6,6 +6,7 @@ import '../../../../assets/colors.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
 import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
 
@@ -247,37 +248,43 @@ class HomePage extends StatelessWidget {
                 Text('Finance'),
               ]),
         ),
-        BlocBuilder<NewsBloc, NewsState>(
-          buildWhen: (previous, current) => previous.status != current.status,
+        BlocBuilder<SavedNewsBloc, SavedNewsState>(
+          buildWhen: (previous, current) => previous.models != current.models,
           builder: (context, state) {
-            if (state.status == FormzStatus.submissionSuccess) {
-              final data = state.models;
-              return Expanded(
-                child: WAppinioSwiper(
-                  currentIndex: context.read<NewsBloc>().state.currentIndex,
-                  unlimitedUnswipe: true,
-                  onEnd: () {
-                    context.read<NewsBloc>().add(const NewsEvent.getNews());
-                  },
-                  duration: const Duration(milliseconds: 300),
-                  controller: controller,
-                  padding: const EdgeInsets.all(20),
-                  cardsBuilder: (context, index) {
-                    return WPreviewNews(model: data[index]);
-                  },
-                  cardsCount: data.length,
-                ),
-              );
-            } else if (state.status == FormzStatus.submissionInProgress) {
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              return Center(
-                child: Text(
-                  state.errorMessage,
-                  style: const TextStyle(color: white),
-                ),
-              );
-            }
+            return BlocBuilder<NewsBloc, NewsState>(
+              buildWhen: (previous, current) =>
+                  (previous.status != current.status),
+              builder: (context, state) {
+                if (state.status == FormzStatus.submissionSuccess) {
+                  final data = state.models;
+                  return Expanded(
+                    child: WAppinioSwiper(
+                      currentIndex: context.read<NewsBloc>().state.currentIndex,
+                      unlimitedUnswipe: true,
+                      onEnd: () {
+                        context.read<NewsBloc>().add(const NewsEvent.getNews());
+                      },
+                      duration: const Duration(milliseconds: 300),
+                      controller: controller,
+                      padding: const EdgeInsets.all(20),
+                      cardsBuilder: (context, index) {
+                        return WPreviewNews(model: data[index]);
+                      },
+                      cardsCount: data.length,
+                    ),
+                  );
+                } else if (state.status == FormzStatus.submissionInProgress) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                  return Center(
+                    child: Text(
+                      state.errorMessage,
+                      style: const TextStyle(color: white),
+                    ),
+                  );
+                }
+              },
+            );
           },
         ),
         const SizedBox(height: 60),

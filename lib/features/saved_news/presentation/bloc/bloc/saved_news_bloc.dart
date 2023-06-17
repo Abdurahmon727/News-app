@@ -16,18 +16,16 @@ class SavedNewsBloc extends Bloc<SavedNewsEvent, SavedNewsState> {
       emit(state.copyWith(models: result));
     });
 
-    on<_AddOneNews>((event, emit) {
-      final newModels = List<NewsModel>.from([event.model] + state.models);
-      emit(state.copyWith(models: newModels));
-      sl<ObjectBoxSingleton>().putNews(newModels);
-    });
-
-    on<_RemoveOneNews>((event, emit) {
+    on<_AddOrRemove>((event, emit) {
       final isContains = state.models.contains(event.model);
       if (isContains) {
         var newModels = List<NewsModel>.from(state.models);
         newModels.remove(event.model);
+        emit(state.copyWith(models: newModels, currentPage: 0));
+      } else {
+        final newModels = List<NewsModel>.from([event.model] + state.models);
         emit(state.copyWith(models: newModels));
+        sl<ObjectBoxSingleton>().putNews(newModels);
       }
     });
 

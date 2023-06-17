@@ -19,24 +19,21 @@ mixin _$SavedNewsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getNewsFromStorage,
-    required TResult Function(NewsModel model) addOneNews,
-    required TResult Function(NewsModel model) removeOneNews,
+    required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNewsFromStorage,
-    TResult? Function(NewsModel model)? addOneNews,
-    TResult? Function(NewsModel model)? removeOneNews,
+    TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNewsFromStorage,
-    TResult Function(NewsModel model)? addOneNews,
-    TResult Function(NewsModel model)? removeOneNews,
+    TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
     required TResult orElse(),
   }) =>
@@ -44,24 +41,21 @@ mixin _$SavedNewsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
-    required TResult Function(_AddOneNews value) addOneNews,
-    required TResult Function(_RemoveOneNews value) removeOneNews,
+    required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult? Function(_AddOneNews value)? addOneNews,
-    TResult? Function(_RemoveOneNews value)? removeOneNews,
+    TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult Function(_AddOneNews value)? addOneNews,
-    TResult Function(_RemoveOneNews value)? removeOneNews,
+    TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
     required TResult orElse(),
   }) =>
@@ -125,8 +119,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getNewsFromStorage,
-    required TResult Function(NewsModel model) addOneNews,
-    required TResult Function(NewsModel model) removeOneNews,
+    required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
   }) {
     return getNewsFromStorage();
@@ -136,8 +129,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNewsFromStorage,
-    TResult? Function(NewsModel model)? addOneNews,
-    TResult? Function(NewsModel model)? removeOneNews,
+    TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
   }) {
     return getNewsFromStorage?.call();
@@ -147,8 +139,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNewsFromStorage,
-    TResult Function(NewsModel model)? addOneNews,
-    TResult Function(NewsModel model)? removeOneNews,
+    TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
     required TResult orElse(),
   }) {
@@ -162,8 +153,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
-    required TResult Function(_AddOneNews value) addOneNews,
-    required TResult Function(_RemoveOneNews value) removeOneNews,
+    required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
   }) {
     return getNewsFromStorage(this);
@@ -173,8 +163,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult? Function(_AddOneNews value)? addOneNews,
-    TResult? Function(_RemoveOneNews value)? removeOneNews,
+    TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
   }) {
     return getNewsFromStorage?.call(this);
@@ -184,8 +173,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult Function(_AddOneNews value)? addOneNews,
-    TResult Function(_RemoveOneNews value)? removeOneNews,
+    TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
     required TResult orElse(),
   }) {
@@ -201,20 +189,20 @@ abstract class _GetNewsFromStorage implements SavedNewsEvent {
 }
 
 /// @nodoc
-abstract class _$$_AddOneNewsCopyWith<$Res> {
-  factory _$$_AddOneNewsCopyWith(
-          _$_AddOneNews value, $Res Function(_$_AddOneNews) then) =
-      __$$_AddOneNewsCopyWithImpl<$Res>;
+abstract class _$$_AddOrRemoveCopyWith<$Res> {
+  factory _$$_AddOrRemoveCopyWith(
+          _$_AddOrRemove value, $Res Function(_$_AddOrRemove) then) =
+      __$$_AddOrRemoveCopyWithImpl<$Res>;
   @useResult
   $Res call({NewsModel model});
 }
 
 /// @nodoc
-class __$$_AddOneNewsCopyWithImpl<$Res>
-    extends _$SavedNewsEventCopyWithImpl<$Res, _$_AddOneNews>
-    implements _$$_AddOneNewsCopyWith<$Res> {
-  __$$_AddOneNewsCopyWithImpl(
-      _$_AddOneNews _value, $Res Function(_$_AddOneNews) _then)
+class __$$_AddOrRemoveCopyWithImpl<$Res>
+    extends _$SavedNewsEventCopyWithImpl<$Res, _$_AddOrRemove>
+    implements _$$_AddOrRemoveCopyWith<$Res> {
+  __$$_AddOrRemoveCopyWithImpl(
+      _$_AddOrRemove _value, $Res Function(_$_AddOrRemove) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -222,7 +210,7 @@ class __$$_AddOneNewsCopyWithImpl<$Res>
   $Res call({
     Object? model = null,
   }) {
-    return _then(_$_AddOneNews(
+    return _then(_$_AddOrRemove(
       null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
@@ -233,22 +221,22 @@ class __$$_AddOneNewsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddOneNews implements _AddOneNews {
-  const _$_AddOneNews(this.model);
+class _$_AddOrRemove implements _AddOrRemove {
+  const _$_AddOrRemove(this.model);
 
   @override
   final NewsModel model;
 
   @override
   String toString() {
-    return 'SavedNewsEvent.addOneNews(model: $model)';
+    return 'SavedNewsEvent.addOrRemove(model: $model)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddOneNews &&
+            other is _$_AddOrRemove &&
             (identical(other.model, model) || other.model == model));
   }
 
@@ -258,42 +246,39 @@ class _$_AddOneNews implements _AddOneNews {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddOneNewsCopyWith<_$_AddOneNews> get copyWith =>
-      __$$_AddOneNewsCopyWithImpl<_$_AddOneNews>(this, _$identity);
+  _$$_AddOrRemoveCopyWith<_$_AddOrRemove> get copyWith =>
+      __$$_AddOrRemoveCopyWithImpl<_$_AddOrRemove>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getNewsFromStorage,
-    required TResult Function(NewsModel model) addOneNews,
-    required TResult Function(NewsModel model) removeOneNews,
+    required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
   }) {
-    return addOneNews(model);
+    return addOrRemove(model);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNewsFromStorage,
-    TResult? Function(NewsModel model)? addOneNews,
-    TResult? Function(NewsModel model)? removeOneNews,
+    TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
   }) {
-    return addOneNews?.call(model);
+    return addOrRemove?.call(model);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNewsFromStorage,
-    TResult Function(NewsModel model)? addOneNews,
-    TResult Function(NewsModel model)? removeOneNews,
+    TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
     required TResult orElse(),
   }) {
-    if (addOneNews != null) {
-      return addOneNews(model);
+    if (addOrRemove != null) {
+      return addOrRemove(model);
     }
     return orElse();
   }
@@ -302,191 +287,43 @@ class _$_AddOneNews implements _AddOneNews {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
-    required TResult Function(_AddOneNews value) addOneNews,
-    required TResult Function(_RemoveOneNews value) removeOneNews,
+    required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
   }) {
-    return addOneNews(this);
+    return addOrRemove(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult? Function(_AddOneNews value)? addOneNews,
-    TResult? Function(_RemoveOneNews value)? removeOneNews,
+    TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
   }) {
-    return addOneNews?.call(this);
+    return addOrRemove?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult Function(_AddOneNews value)? addOneNews,
-    TResult Function(_RemoveOneNews value)? removeOneNews,
+    TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
     required TResult orElse(),
   }) {
-    if (addOneNews != null) {
-      return addOneNews(this);
+    if (addOrRemove != null) {
+      return addOrRemove(this);
     }
     return orElse();
   }
 }
 
-abstract class _AddOneNews implements SavedNewsEvent {
-  const factory _AddOneNews(final NewsModel model) = _$_AddOneNews;
+abstract class _AddOrRemove implements SavedNewsEvent {
+  const factory _AddOrRemove(final NewsModel model) = _$_AddOrRemove;
 
   NewsModel get model;
   @JsonKey(ignore: true)
-  _$$_AddOneNewsCopyWith<_$_AddOneNews> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_RemoveOneNewsCopyWith<$Res> {
-  factory _$$_RemoveOneNewsCopyWith(
-          _$_RemoveOneNews value, $Res Function(_$_RemoveOneNews) then) =
-      __$$_RemoveOneNewsCopyWithImpl<$Res>;
-  @useResult
-  $Res call({NewsModel model});
-}
-
-/// @nodoc
-class __$$_RemoveOneNewsCopyWithImpl<$Res>
-    extends _$SavedNewsEventCopyWithImpl<$Res, _$_RemoveOneNews>
-    implements _$$_RemoveOneNewsCopyWith<$Res> {
-  __$$_RemoveOneNewsCopyWithImpl(
-      _$_RemoveOneNews _value, $Res Function(_$_RemoveOneNews) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? model = null,
-  }) {
-    return _then(_$_RemoveOneNews(
-      null == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as NewsModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_RemoveOneNews implements _RemoveOneNews {
-  const _$_RemoveOneNews(this.model);
-
-  @override
-  final NewsModel model;
-
-  @override
-  String toString() {
-    return 'SavedNewsEvent.removeOneNews(model: $model)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RemoveOneNews &&
-            (identical(other.model, model) || other.model == model));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, model);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RemoveOneNewsCopyWith<_$_RemoveOneNews> get copyWith =>
-      __$$_RemoveOneNewsCopyWithImpl<_$_RemoveOneNews>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getNewsFromStorage,
-    required TResult Function(NewsModel model) addOneNews,
-    required TResult Function(NewsModel model) removeOneNews,
-    required TResult Function() clear,
-  }) {
-    return removeOneNews(model);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getNewsFromStorage,
-    TResult? Function(NewsModel model)? addOneNews,
-    TResult? Function(NewsModel model)? removeOneNews,
-    TResult? Function()? clear,
-  }) {
-    return removeOneNews?.call(model);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getNewsFromStorage,
-    TResult Function(NewsModel model)? addOneNews,
-    TResult Function(NewsModel model)? removeOneNews,
-    TResult Function()? clear,
-    required TResult orElse(),
-  }) {
-    if (removeOneNews != null) {
-      return removeOneNews(model);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
-    required TResult Function(_AddOneNews value) addOneNews,
-    required TResult Function(_RemoveOneNews value) removeOneNews,
-    required TResult Function(_Clear value) clear,
-  }) {
-    return removeOneNews(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult? Function(_AddOneNews value)? addOneNews,
-    TResult? Function(_RemoveOneNews value)? removeOneNews,
-    TResult? Function(_Clear value)? clear,
-  }) {
-    return removeOneNews?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult Function(_AddOneNews value)? addOneNews,
-    TResult Function(_RemoveOneNews value)? removeOneNews,
-    TResult Function(_Clear value)? clear,
-    required TResult orElse(),
-  }) {
-    if (removeOneNews != null) {
-      return removeOneNews(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RemoveOneNews implements SavedNewsEvent {
-  const factory _RemoveOneNews(final NewsModel model) = _$_RemoveOneNews;
-
-  NewsModel get model;
-  @JsonKey(ignore: true)
-  _$$_RemoveOneNewsCopyWith<_$_RemoveOneNews> get copyWith =>
+  _$$_AddOrRemoveCopyWith<_$_AddOrRemove> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -527,8 +364,7 @@ class _$_Clear implements _Clear {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getNewsFromStorage,
-    required TResult Function(NewsModel model) addOneNews,
-    required TResult Function(NewsModel model) removeOneNews,
+    required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
   }) {
     return clear();
@@ -538,8 +374,7 @@ class _$_Clear implements _Clear {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getNewsFromStorage,
-    TResult? Function(NewsModel model)? addOneNews,
-    TResult? Function(NewsModel model)? removeOneNews,
+    TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
   }) {
     return clear?.call();
@@ -549,8 +384,7 @@ class _$_Clear implements _Clear {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getNewsFromStorage,
-    TResult Function(NewsModel model)? addOneNews,
-    TResult Function(NewsModel model)? removeOneNews,
+    TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
     required TResult orElse(),
   }) {
@@ -564,8 +398,7 @@ class _$_Clear implements _Clear {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
-    required TResult Function(_AddOneNews value) addOneNews,
-    required TResult Function(_RemoveOneNews value) removeOneNews,
+    required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
   }) {
     return clear(this);
@@ -575,8 +408,7 @@ class _$_Clear implements _Clear {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult? Function(_AddOneNews value)? addOneNews,
-    TResult? Function(_RemoveOneNews value)? removeOneNews,
+    TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
   }) {
     return clear?.call(this);
@@ -586,8 +418,7 @@ class _$_Clear implements _Clear {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
-    TResult Function(_AddOneNews value)? addOneNews,
-    TResult Function(_RemoveOneNews value)? removeOneNews,
+    TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
     required TResult orElse(),
   }) {
@@ -605,6 +436,7 @@ abstract class _Clear implements SavedNewsEvent {
 /// @nodoc
 mixin _$SavedNewsState {
   List<NewsModel> get models => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SavedNewsStateCopyWith<SavedNewsState> get copyWith =>
@@ -617,7 +449,7 @@ abstract class $SavedNewsStateCopyWith<$Res> {
           SavedNewsState value, $Res Function(SavedNewsState) then) =
       _$SavedNewsStateCopyWithImpl<$Res, SavedNewsState>;
   @useResult
-  $Res call({List<NewsModel> models});
+  $Res call({List<NewsModel> models, int currentPage});
 }
 
 /// @nodoc
@@ -634,12 +466,17 @@ class _$SavedNewsStateCopyWithImpl<$Res, $Val extends SavedNewsState>
   @override
   $Res call({
     Object? models = null,
+    Object? currentPage = null,
   }) {
     return _then(_value.copyWith(
       models: null == models
           ? _value.models
           : models // ignore: cast_nullable_to_non_nullable
               as List<NewsModel>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -652,7 +489,7 @@ abstract class _$$_SavedNewsStateCopyWith<$Res>
       __$$_SavedNewsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<NewsModel> models});
+  $Res call({List<NewsModel> models, int currentPage});
 }
 
 /// @nodoc
@@ -667,12 +504,17 @@ class __$$_SavedNewsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? models = null,
+    Object? currentPage = null,
   }) {
     return _then(_$_SavedNewsState(
       models: null == models
           ? _value._models
           : models // ignore: cast_nullable_to_non_nullable
               as List<NewsModel>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -680,7 +522,8 @@ class __$$_SavedNewsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SavedNewsState implements _SavedNewsState {
-  const _$_SavedNewsState({final List<NewsModel> models = const []})
+  const _$_SavedNewsState(
+      {final List<NewsModel> models = const [], this.currentPage = 0})
       : _models = models;
 
   final List<NewsModel> _models;
@@ -693,8 +536,12 @@ class _$_SavedNewsState implements _SavedNewsState {
   }
 
   @override
+  @JsonKey()
+  final int currentPage;
+
+  @override
   String toString() {
-    return 'SavedNewsState(models: $models)';
+    return 'SavedNewsState(models: $models, currentPage: $currentPage)';
   }
 
   @override
@@ -702,12 +549,14 @@ class _$_SavedNewsState implements _SavedNewsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SavedNewsState &&
-            const DeepCollectionEquality().equals(other._models, _models));
+            const DeepCollectionEquality().equals(other._models, _models) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_models));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_models), currentPage);
 
   @JsonKey(ignore: true)
   @override
@@ -717,11 +566,14 @@ class _$_SavedNewsState implements _SavedNewsState {
 }
 
 abstract class _SavedNewsState implements SavedNewsState {
-  const factory _SavedNewsState({final List<NewsModel> models}) =
-      _$_SavedNewsState;
+  const factory _SavedNewsState(
+      {final List<NewsModel> models,
+      final int currentPage}) = _$_SavedNewsState;
 
   @override
   List<NewsModel> get models;
+  @override
+  int get currentPage;
   @override
   @JsonKey(ignore: true)
   _$$_SavedNewsStateCopyWith<_$_SavedNewsState> get copyWith =>

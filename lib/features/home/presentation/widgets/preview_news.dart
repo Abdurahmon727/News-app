@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/app_functions.dart';
+import '../../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
 import '../../data/models/news.dart';
 import '../pages/inside_news_page.dart';
 
@@ -101,14 +103,21 @@ class WPreviewNews extends StatelessWidget {
           children: [
             IconButton(
                 onPressed: () {
-                  //TODO
+                  context
+                      .read<SavedNewsBloc>()
+                      .add(SavedNewsEvent.addOrRemove(model));
                 },
-                icon: Icon(Icons.bookmark_outline_rounded)),
+                icon: context.read<SavedNewsBloc>().state.models.contains(model)
+                    ? const Icon(
+                        Icons.bookmark,
+                        color: white,
+                      )
+                    : const Icon(Icons.bookmark_outline_rounded, color: white)),
             IconButton(
                 onPressed: () {
                   //TODO:
                 },
-                icon: Icon(Icons.share))
+                icon: const Icon(Icons.share, color: white))
           ],
         )
       ],
