@@ -6,4 +6,6 @@ class SavedNewsEvent with _$SavedNewsEvent {
 
   const factory SavedNewsEvent.addOrRemove(NewsModel model) = _AddOrRemove;
   const factory SavedNewsEvent.clear() = _Clear;
+  const factory SavedNewsEvent.changeCurrentPage(int newPageIndex) =
+      _ChangeCurrentPage;
 }

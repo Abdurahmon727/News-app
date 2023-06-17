@@ -3,9 +3,8 @@ import 'dart:math';
 
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../features/home/presentation/bloc/news_bloc.dart';
+import '../../../features/home/presentation/bloc/page_save.dart';
 
 class WAppinioSwiper extends StatefulWidget {
   /// widget builder for creating cards
@@ -13,6 +12,8 @@ class WAppinioSwiper extends StatefulWidget {
 
   ///cards count
   final int cardsCount;
+
+  final CurrentPageSavable pageSavableBloc;
 
   /// current card number
   final int? currentIndex;
@@ -86,6 +87,7 @@ class WAppinioSwiper extends StatefulWidget {
     this.unswipe,
     this.direction = AppinioSwiperDirection.right,
     this.currentIndex,
+    required this.pageSavableBloc,
   })  : assert(maxAngle >= 0 && maxAngle <= 360),
         assert(threshold >= 1 && threshold <= 100),
         assert(direction != AppinioSwiperDirection.none),
@@ -98,7 +100,7 @@ class WAppinioSwiper extends StatefulWidget {
 class _WAppinioSwiperState extends State<WAppinioSwiper>
     with SingleTickerProviderStateMixin {
   void changeBlocValue(int index) {
-    context.read<NewsBloc>().add(NewsEvent.changeCurrentIndex(index));
+    widget.pageSavableBloc.saveCurruntPage(index);
   }
 
   double _left = 0;

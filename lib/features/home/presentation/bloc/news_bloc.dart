@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:news_app/features/home/presentation/bloc/page_save.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/models/formz/formz_status.dart';
@@ -11,7 +12,8 @@ part 'news_bloc.freezed.dart';
 part 'news_event.dart';
 part 'news_state.dart';
 
-class NewsBloc extends Bloc<NewsEvent, NewsState> {
+class NewsBloc extends Bloc<NewsEvent, NewsState>
+    implements CurrentPageSavable {
   NewsBloc() : super(const _NewsState()) {
     on<_GetNews>((event, emit) async {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
@@ -57,5 +59,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
     on<_ChangeCurrentIndex>(
         (event, emit) => emit(state.copyWith(currentIndex: event.value)));
+  }
+
+  @override
+  void saveCurruntPage(int newPageIndex) {
+    add(_ChangeCurrentIndex(newPageIndex));
   }
 }

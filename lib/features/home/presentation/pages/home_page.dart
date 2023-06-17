@@ -271,6 +271,7 @@ class HomePage extends StatelessWidget {
                         return WPreviewNews(model: data[index]);
                       },
                       cardsCount: data.length,
+                      pageSavableBloc: context.read<NewsBloc>(),
                     ),
                   );
                 } else if (state.status == FormzStatus.submissionInProgress) {

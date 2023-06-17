@@ -21,6 +21,7 @@ mixin _$SavedNewsEvent {
     required TResult Function() getNewsFromStorage,
     required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
+    required TResult Function(int newPageIndex) changeCurrentPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$SavedNewsEvent {
     TResult? Function()? getNewsFromStorage,
     TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
+    TResult? Function(int newPageIndex)? changeCurrentPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$SavedNewsEvent {
     TResult Function()? getNewsFromStorage,
     TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
+    TResult Function(int newPageIndex)? changeCurrentPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$SavedNewsEvent {
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
     required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
+    required TResult Function(_ChangeCurrentPage value) changeCurrentPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$SavedNewsEvent {
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
+    TResult? Function(_ChangeCurrentPage value)? changeCurrentPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$SavedNewsEvent {
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
+    TResult Function(_ChangeCurrentPage value)? changeCurrentPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +127,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
     required TResult Function() getNewsFromStorage,
     required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
+    required TResult Function(int newPageIndex) changeCurrentPage,
   }) {
     return getNewsFromStorage();
   }
@@ -131,6 +138,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
     TResult? Function()? getNewsFromStorage,
     TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
+    TResult? Function(int newPageIndex)? changeCurrentPage,
   }) {
     return getNewsFromStorage?.call();
   }
@@ -141,6 +149,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
     TResult Function()? getNewsFromStorage,
     TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
+    TResult Function(int newPageIndex)? changeCurrentPage,
     required TResult orElse(),
   }) {
     if (getNewsFromStorage != null) {
@@ -155,6 +164,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
     required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
+    required TResult Function(_ChangeCurrentPage value) changeCurrentPage,
   }) {
     return getNewsFromStorage(this);
   }
@@ -165,6 +175,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
+    TResult? Function(_ChangeCurrentPage value)? changeCurrentPage,
   }) {
     return getNewsFromStorage?.call(this);
   }
@@ -175,6 +186,7 @@ class _$_GetNewsFromStorage implements _GetNewsFromStorage {
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
+    TResult Function(_ChangeCurrentPage value)? changeCurrentPage,
     required TResult orElse(),
   }) {
     if (getNewsFromStorage != null) {
@@ -255,6 +267,7 @@ class _$_AddOrRemove implements _AddOrRemove {
     required TResult Function() getNewsFromStorage,
     required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
+    required TResult Function(int newPageIndex) changeCurrentPage,
   }) {
     return addOrRemove(model);
   }
@@ -265,6 +278,7 @@ class _$_AddOrRemove implements _AddOrRemove {
     TResult? Function()? getNewsFromStorage,
     TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
+    TResult? Function(int newPageIndex)? changeCurrentPage,
   }) {
     return addOrRemove?.call(model);
   }
@@ -275,6 +289,7 @@ class _$_AddOrRemove implements _AddOrRemove {
     TResult Function()? getNewsFromStorage,
     TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
+    TResult Function(int newPageIndex)? changeCurrentPage,
     required TResult orElse(),
   }) {
     if (addOrRemove != null) {
@@ -289,6 +304,7 @@ class _$_AddOrRemove implements _AddOrRemove {
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
     required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
+    required TResult Function(_ChangeCurrentPage value) changeCurrentPage,
   }) {
     return addOrRemove(this);
   }
@@ -299,6 +315,7 @@ class _$_AddOrRemove implements _AddOrRemove {
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
+    TResult? Function(_ChangeCurrentPage value)? changeCurrentPage,
   }) {
     return addOrRemove?.call(this);
   }
@@ -309,6 +326,7 @@ class _$_AddOrRemove implements _AddOrRemove {
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
+    TResult Function(_ChangeCurrentPage value)? changeCurrentPage,
     required TResult orElse(),
   }) {
     if (addOrRemove != null) {
@@ -366,6 +384,7 @@ class _$_Clear implements _Clear {
     required TResult Function() getNewsFromStorage,
     required TResult Function(NewsModel model) addOrRemove,
     required TResult Function() clear,
+    required TResult Function(int newPageIndex) changeCurrentPage,
   }) {
     return clear();
   }
@@ -376,6 +395,7 @@ class _$_Clear implements _Clear {
     TResult? Function()? getNewsFromStorage,
     TResult? Function(NewsModel model)? addOrRemove,
     TResult? Function()? clear,
+    TResult? Function(int newPageIndex)? changeCurrentPage,
   }) {
     return clear?.call();
   }
@@ -386,6 +406,7 @@ class _$_Clear implements _Clear {
     TResult Function()? getNewsFromStorage,
     TResult Function(NewsModel model)? addOrRemove,
     TResult Function()? clear,
+    TResult Function(int newPageIndex)? changeCurrentPage,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -400,6 +421,7 @@ class _$_Clear implements _Clear {
     required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
     required TResult Function(_AddOrRemove value) addOrRemove,
     required TResult Function(_Clear value) clear,
+    required TResult Function(_ChangeCurrentPage value) changeCurrentPage,
   }) {
     return clear(this);
   }
@@ -410,6 +432,7 @@ class _$_Clear implements _Clear {
     TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult? Function(_AddOrRemove value)? addOrRemove,
     TResult? Function(_Clear value)? clear,
+    TResult? Function(_ChangeCurrentPage value)? changeCurrentPage,
   }) {
     return clear?.call(this);
   }
@@ -420,6 +443,7 @@ class _$_Clear implements _Clear {
     TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
     TResult Function(_AddOrRemove value)? addOrRemove,
     TResult Function(_Clear value)? clear,
+    TResult Function(_ChangeCurrentPage value)? changeCurrentPage,
     required TResult orElse(),
   }) {
     if (clear != null) {
@@ -431,6 +455,154 @@ class _$_Clear implements _Clear {
 
 abstract class _Clear implements SavedNewsEvent {
   const factory _Clear() = _$_Clear;
+}
+
+/// @nodoc
+abstract class _$$_ChangeCurrentPageCopyWith<$Res> {
+  factory _$$_ChangeCurrentPageCopyWith(_$_ChangeCurrentPage value,
+          $Res Function(_$_ChangeCurrentPage) then) =
+      __$$_ChangeCurrentPageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int newPageIndex});
+}
+
+/// @nodoc
+class __$$_ChangeCurrentPageCopyWithImpl<$Res>
+    extends _$SavedNewsEventCopyWithImpl<$Res, _$_ChangeCurrentPage>
+    implements _$$_ChangeCurrentPageCopyWith<$Res> {
+  __$$_ChangeCurrentPageCopyWithImpl(
+      _$_ChangeCurrentPage _value, $Res Function(_$_ChangeCurrentPage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPageIndex = null,
+  }) {
+    return _then(_$_ChangeCurrentPage(
+      null == newPageIndex
+          ? _value.newPageIndex
+          : newPageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeCurrentPage implements _ChangeCurrentPage {
+  const _$_ChangeCurrentPage(this.newPageIndex);
+
+  @override
+  final int newPageIndex;
+
+  @override
+  String toString() {
+    return 'SavedNewsEvent.changeCurrentPage(newPageIndex: $newPageIndex)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeCurrentPage &&
+            (identical(other.newPageIndex, newPageIndex) ||
+                other.newPageIndex == newPageIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPageIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChangeCurrentPageCopyWith<_$_ChangeCurrentPage> get copyWith =>
+      __$$_ChangeCurrentPageCopyWithImpl<_$_ChangeCurrentPage>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getNewsFromStorage,
+    required TResult Function(NewsModel model) addOrRemove,
+    required TResult Function() clear,
+    required TResult Function(int newPageIndex) changeCurrentPage,
+  }) {
+    return changeCurrentPage(newPageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getNewsFromStorage,
+    TResult? Function(NewsModel model)? addOrRemove,
+    TResult? Function()? clear,
+    TResult? Function(int newPageIndex)? changeCurrentPage,
+  }) {
+    return changeCurrentPage?.call(newPageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getNewsFromStorage,
+    TResult Function(NewsModel model)? addOrRemove,
+    TResult Function()? clear,
+    TResult Function(int newPageIndex)? changeCurrentPage,
+    required TResult orElse(),
+  }) {
+    if (changeCurrentPage != null) {
+      return changeCurrentPage(newPageIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetNewsFromStorage value) getNewsFromStorage,
+    required TResult Function(_AddOrRemove value) addOrRemove,
+    required TResult Function(_Clear value) clear,
+    required TResult Function(_ChangeCurrentPage value) changeCurrentPage,
+  }) {
+    return changeCurrentPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetNewsFromStorage value)? getNewsFromStorage,
+    TResult? Function(_AddOrRemove value)? addOrRemove,
+    TResult? Function(_Clear value)? clear,
+    TResult? Function(_ChangeCurrentPage value)? changeCurrentPage,
+  }) {
+    return changeCurrentPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetNewsFromStorage value)? getNewsFromStorage,
+    TResult Function(_AddOrRemove value)? addOrRemove,
+    TResult Function(_Clear value)? clear,
+    TResult Function(_ChangeCurrentPage value)? changeCurrentPage,
+    required TResult orElse(),
+  }) {
+    if (changeCurrentPage != null) {
+      return changeCurrentPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeCurrentPage implements SavedNewsEvent {
+  const factory _ChangeCurrentPage(final int newPageIndex) =
+      _$_ChangeCurrentPage;
+
+  int get newPageIndex;
+  @JsonKey(ignore: true)
+  _$$_ChangeCurrentPageCopyWith<_$_ChangeCurrentPage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

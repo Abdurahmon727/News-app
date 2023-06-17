@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/widgets/appino_swiper/appino_swiper.dart';
-import 'package:news_app/features/home/presentation/widgets/preview_news.dart';
+import '../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../home/presentation/widgets/preview_news.dart';
 
 import '../../../assets/colors.dart';
 import 'bloc/bloc/saved_news_bloc.dart';
@@ -31,9 +31,12 @@ class SavedNewsPage extends StatelessWidget {
                 if (state.models.isNotEmpty) {
                   return Expanded(
                     child: WAppinioSwiper(
-                        cardsBuilder: (context, index) =>
-                            WPreviewNews(model: state.models[index]),
-                        cardsCount: state.models.length),
+                      currentIndex: state.currentPage,
+                      cardsBuilder: (context, index) =>
+                          WPreviewNews(model: state.models[index]),
+                      cardsCount: state.models.length,
+                      pageSavableBloc: context.read<SavedNewsBloc>(),
+                    ),
                   );
                 }
                 return const Center(
