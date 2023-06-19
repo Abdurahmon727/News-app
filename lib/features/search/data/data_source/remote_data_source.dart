@@ -8,6 +8,11 @@ abstract class SearchRemoteDataSource {
 }
 
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
+  SearchRemoteDataSourceImpl() {
+    _dio.options.headers['x-api-key'] =
+        'ibiwLZubYfHnAZs60GpaBUnlQLvpzo8PIOjU_AzTbhY';
+  }
+
   final _dio = Dio();
   @override
   Future<List<NewsModel>> getSearchResult(String query) async {

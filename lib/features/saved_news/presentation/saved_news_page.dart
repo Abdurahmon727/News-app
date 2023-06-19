@@ -1,9 +1,10 @@
+import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../assets/colors.dart';
 import '../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../../home/presentation/widgets/preview_news.dart';
-import 'package:appinio_swiper/appinio_swiper.dart';
-import '../../../assets/colors.dart';
 import 'bloc/bloc/saved_news_bloc.dart';
 
 class SavedNewsPage extends StatelessWidget {
@@ -39,10 +40,13 @@ class SavedNewsPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             BlocBuilder<SavedNewsBloc, SavedNewsState>(
+              buildWhen: (previous, current) =>
+                  previous.models.length != current.models.length,
               builder: (context, state) {
                 if (state.models.isNotEmpty) {
                   return Expanded(
                     child: WAppinioSwiper(
+                      unlimitedUnswipe: true,
                       controller: swiperController,
                       currentIndex: state.currentPage,
                       cardsBuilder: (context, index) =>
@@ -53,10 +57,11 @@ class SavedNewsPage extends StatelessWidget {
                   );
                 }
                 return const Center(
-                    child: Text(
-                  'No saved news found',
-                  style: TextStyle(color: white, fontSize: 16),
-                ));
+                  child: Text(
+                    'No saved news found',
+                    style: TextStyle(color: white, fontSize: 16),
+                  ),
+                );
               },
             )
           ],
