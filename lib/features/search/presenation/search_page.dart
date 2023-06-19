@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/assets/colors.dart';
+import 'package:news_app/core/models/formz/formz_status.dart';
+
+import 'bloc/search_bloc.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -46,6 +50,19 @@ class SearchPage extends StatelessWidget {
                     icon: const Icon(Icons.search))
               ],
             ),
+            BlocBuilder<SearchBloc, SearchState>(
+              builder: (context, state) {
+                if (state.status == FormzStatus.pure) {
+                  return const SizedBox();
+                } else if (state.status == FormzStatus.submissionInProgress) {
+                  return const SizedBox();
+                } else if (state.status == FormzStatus.submissionSuccess) {
+                  return const SizedBox();
+                } else {
+                  return Center(child: Text(state.errorMessage));
+                }
+              },
+            )
           ],
         ),
       ),

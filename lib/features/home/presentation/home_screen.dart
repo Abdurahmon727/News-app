@@ -1,6 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/features/search/presenation/bloc/search_bloc.dart';
 import '../../../core/data/service_locator.dart';
 import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
 import '../../saved_news/presentation/saved_news_page.dart';
@@ -27,7 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
         value: sl<SavedNewsBloc>(),
         child: HomePage(controller: homeSwipeController),
       ),
-      const SearchPage(),
+      BlocProvider.value(
+        value: sl<SearchBloc>(),
+        child: const SearchPage(),
+      ),
       BlocProvider.value(
         value: sl<SavedNewsBloc>()
           ..add(const SavedNewsEvent.getNewsFromStorage()),

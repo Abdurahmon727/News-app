@@ -15,8 +15,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
     implements CurrentPageSavable {
   SearchBloc() : super(const _SearchState()) {
     on<_Search>((event, emit) async {
-      final SearchRepository _repo = SearchRepositoryImpl();
-      final result = await _repo.getSearchResults(event.query);
+      final SearchRepository repo = SearchRepositoryImpl();
+      final result = await repo.getSearchResults(event.query);
       result.either((error) {
         emit(state.copyWith(
           status: FormzStatus.submissionFailure,
