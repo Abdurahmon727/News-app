@@ -28,9 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
         value: sl<SavedNewsBloc>(),
         child: HomePage(controller: homeSwipeController),
       ),
-      BlocProvider.value(
-        value: sl<SearchBloc>(),
-        child: const SearchPage(),
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => sl<SearchBloc>(),
+          ),
+          BlocProvider.value(
+            value: sl<SavedNewsBloc>(),
+          ),
+        ],
+        child: SearchPage(
+          searchController: TextEditingController(),
+        ),
       ),
       BlocProvider.value(
         value: sl<SavedNewsBloc>()

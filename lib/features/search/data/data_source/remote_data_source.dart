@@ -17,7 +17,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   @override
   Future<List<NewsModel>> getSearchResult(String query) async {
     final response =
-        await _dio.get('https://api.newscatcherapi.com/v2/search?1q=$query');
+        await _dio.get('https://api.newscatcherapi.com/v2/search?q=$query');
 
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
       final data = response.data['articles'] as List?;
