@@ -20,18 +20,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    controller = AppinioSwiperController();
-
+    homeSwipeController = AppinioSwiperController();
+    savedNewsSwipeController = AppinioSwiperController();
     pages = [
       BlocProvider.value(
         value: sl<SavedNewsBloc>(),
-        child: HomePage(controller: controller),
+        child: HomePage(controller: homeSwipeController),
       ),
       const SearchPage(),
       BlocProvider.value(
         value: sl<SavedNewsBloc>()
           ..add(const SavedNewsEvent.getNewsFromStorage()),
-        child: const SavedNewsPage(),
+        child: SavedNewsPage(swiperController: savedNewsSwipeController),
       ),
     ];
     super.initState();
@@ -39,7 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int indexPage = 0;
   late final List pages;
-  late final AppinioSwiperController controller;
+  late final AppinioSwiperController savedNewsSwipeController;
+  late final AppinioSwiperController homeSwipeController;
 
   @override
   Widget build(BuildContext context) {

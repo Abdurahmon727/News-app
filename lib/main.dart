@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'News app',
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(
-        fontFamily: 'Outfit',
+        fontFamily: 'Roboto',
         useMaterial3: true,
       ),
       theme: ThemeData.dark().copyWith(

@@ -21,9 +21,9 @@ class ObjectBoxSingleton {
     return ObjectBoxSingleton._create(store, newsBox);
   }
 
-  void putNews(List<NewsModel> models) {
-    newsBox.putMany(models);
-  }
+  void putNews(NewsModel models) => newsBox.put(models);
+
+  void deleteNews(int id) => newsBox.remove(id);
 
   List<NewsModel> getAllNews() => newsBox.getAll();
 

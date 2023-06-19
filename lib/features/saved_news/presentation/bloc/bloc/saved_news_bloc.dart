@@ -22,12 +22,13 @@ class SavedNewsBloc extends Bloc<SavedNewsEvent, SavedNewsState>
       final isContains = state.models.contains(event.model);
       if (isContains) {
         var newModels = List<NewsModel>.from(state.models);
-        newModels.remove(event.model);
+        newModels.removeWhere((element) => element.title == event.model.title);
+        sl<ObjectBoxSingleton>().deleteNews(event.model.id);
         emit(state.copyWith(models: newModels, currentPage: 0));
       } else {
         final newModels = List<NewsModel>.from([event.model] + state.models);
+        sl<ObjectBoxSingleton>().putNews(event.model);
         emit(state.copyWith(models: newModels, currentPage: 0));
-        sl<ObjectBoxSingleton>().putNews(newModels);
       }
     });
 
