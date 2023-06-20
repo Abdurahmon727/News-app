@@ -26,7 +26,7 @@ class SavedNewsBloc extends Bloc<SavedNewsEvent, SavedNewsState>
         sl<ObjectBoxSingleton>().deleteNews(event.model.id);
         emit(state.copyWith(models: newModels, currentPage: 0));
       } else {
-        final newModels = List<NewsModel>.from([event.model] + state.models);
+        final newModels = List<NewsModel>.from(state.models + [event.model]);
         sl<ObjectBoxSingleton>().putNews(event.model);
         emit(state.copyWith(models: newModels, currentPage: 0));
       }

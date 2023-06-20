@@ -39,17 +39,19 @@ class SavedNewsPage extends StatelessWidget {
               ),
             ),
             BlocBuilder<SavedNewsBloc, SavedNewsState>(
-              buildWhen: (previous, current) =>
-                  previous.models.length != current.models.length,
               builder: (context, state) {
+                print('built');
                 if (state.models.isNotEmpty) {
                   return Expanded(
+                    // height: 450,
+                    // width: double.maxFinite,
                     child: WAppinioSwiper(
+                      loop: true,
                       unlimitedUnswipe: true,
                       controller: swiperController,
                       currentIndex: state.currentPage,
-                      cardsBuilder: (context, index) =>
-                          WPreviewNews(model: state.models[index]),
+                      cardsBuilder: (context, index) => WPreviewNews(
+                          model: state.models[state.models.length - index - 1]),
                       cardsCount: state.models.length,
                       pageSavableBloc: context.read<SavedNewsBloc>(),
                     ),
