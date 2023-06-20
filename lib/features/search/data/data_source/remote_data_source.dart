@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:news_app/assets/constants.dart';
 import 'package:news_app/core/error/exeptions.dart';
 
 import '../../../home/data/models/news.dart';
@@ -9,8 +10,7 @@ abstract class SearchRemoteDataSource {
 
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   SearchRemoteDataSourceImpl() {
-    _dio.options.headers['x-api-key'] =
-        'GkfnWhEp_jpk7869thwyDlj7PFK-2kfEeU27SxqltRE';
+    _dio.options.headers['x-api-key'] = apiKey;
   }
 
   final _dio = Dio();

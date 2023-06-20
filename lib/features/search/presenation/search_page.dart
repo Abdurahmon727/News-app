@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/assets/colors.dart';
-import 'package:news_app/core/models/formz/formz_status.dart';
-import 'package:news_app/core/widgets/appino_swiper/appino_swiper.dart';
-import 'package:news_app/features/home/presentation/widgets/preview_news.dart';
+import '../../../assets/colors.dart';
+import '../../../core/models/formz/formz_status.dart';
+import '../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../home/presentation/widgets/preview_news.dart';
 
 import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
@@ -27,13 +27,9 @@ class SearchPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
-                      onChanged: (value) {},
-                      onSubmitted: (value) {
-                        context
-                            .read<SearchBloc>()
-                            .add(SearchEvent.search(value));
-                        //TODO:
-                      },
+                      onSubmitted: (value) => context
+                          .read<SearchBloc>()
+                          .add(SearchEvent.search(value)),
                       style: const TextStyle(color: white, fontSize: 18),
                       decoration: const InputDecoration(
                           fillColor: darkGrey,
@@ -56,7 +52,9 @@ class SearchPage extends StatelessWidget {
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.resolveWith(
                               (_) => darkGrey)),
-                      onPressed: () {},
+                      onPressed: () => context
+                          .read<SearchBloc>()
+                          .add(SearchEvent.search(searchController.text)),
                       icon: const Icon(Icons.search))
                 ],
               ),
@@ -83,10 +81,11 @@ class SearchPage extends StatelessWidget {
                       );
                     } else {
                       return Center(
-                          child: Text(
-                        state.errorMessage,
-                        style: const TextStyle(color: white),
-                      ));
+                        child: Text(
+                          state.errorMessage,
+                          style: const TextStyle(color: white),
+                        ),
+                      );
                     }
                   },
                 );
