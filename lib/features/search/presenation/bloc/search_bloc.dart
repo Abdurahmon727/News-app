@@ -18,15 +18,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       final SearchRepository repo = SearchRepositoryImpl();
       final result = await repo.getSearchResults(event.query);
-      result.either( (error) {
+      result.either((error) {
         emit(state.copyWith(
           status: FormzStatus.submissionFailure,
           errorMessage: error.errorMessage,
+          currentCardIndex: 0,
         ));
       }, (data) {
         emit(state.copyWith(
           status: FormzStatus.submissionSuccess,
           resultModels: data,
+          currentCardIndex: 0,
         ));
       });
     });

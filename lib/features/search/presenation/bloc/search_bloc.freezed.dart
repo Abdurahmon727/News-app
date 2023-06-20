@@ -348,8 +348,6 @@ mixin _$SearchState {
   FormzStatus get status => throw _privateConstructorUsedError;
   List<NewsModel> get resultModels => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  int get currentPage => throw _privateConstructorUsedError;
-  int get maxPage => throw _privateConstructorUsedError;
   int get currentCardIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -367,8 +365,6 @@ abstract class $SearchStateCopyWith<$Res> {
       {FormzStatus status,
       List<NewsModel> resultModels,
       String errorMessage,
-      int currentPage,
-      int maxPage,
       int currentCardIndex});
 }
 
@@ -388,8 +384,6 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? status = null,
     Object? resultModels = null,
     Object? errorMessage = null,
-    Object? currentPage = null,
-    Object? maxPage = null,
     Object? currentCardIndex = null,
   }) {
     return _then(_value.copyWith(
@@ -405,14 +399,6 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      currentPage: null == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxPage: null == maxPage
-          ? _value.maxPage
-          : maxPage // ignore: cast_nullable_to_non_nullable
-              as int,
       currentCardIndex: null == currentCardIndex
           ? _value.currentCardIndex
           : currentCardIndex // ignore: cast_nullable_to_non_nullable
@@ -433,8 +419,6 @@ abstract class _$$_SearchStateCopyWith<$Res>
       {FormzStatus status,
       List<NewsModel> resultModels,
       String errorMessage,
-      int currentPage,
-      int maxPage,
       int currentCardIndex});
 }
 
@@ -452,8 +436,6 @@ class __$$_SearchStateCopyWithImpl<$Res>
     Object? status = null,
     Object? resultModels = null,
     Object? errorMessage = null,
-    Object? currentPage = null,
-    Object? maxPage = null,
     Object? currentCardIndex = null,
   }) {
     return _then(_$_SearchState(
@@ -469,14 +451,6 @@ class __$$_SearchStateCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      currentPage: null == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxPage: null == maxPage
-          ? _value.maxPage
-          : maxPage // ignore: cast_nullable_to_non_nullable
-              as int,
       currentCardIndex: null == currentCardIndex
           ? _value.currentCardIndex
           : currentCardIndex // ignore: cast_nullable_to_non_nullable
@@ -492,8 +466,6 @@ class _$_SearchState implements _SearchState {
       {this.status = FormzStatus.pure,
       final List<NewsModel> resultModels = const [],
       this.errorMessage = '',
-      this.currentPage = 1,
-      this.maxPage = 1,
       this.currentCardIndex = 0})
       : _resultModels = resultModels;
 
@@ -514,17 +486,11 @@ class _$_SearchState implements _SearchState {
   final String errorMessage;
   @override
   @JsonKey()
-  final int currentPage;
-  @override
-  @JsonKey()
-  final int maxPage;
-  @override
-  @JsonKey()
   final int currentCardIndex;
 
   @override
   String toString() {
-    return 'SearchState(status: $status, resultModels: $resultModels, errorMessage: $errorMessage, currentPage: $currentPage, maxPage: $maxPage, currentCardIndex: $currentCardIndex)';
+    return 'SearchState(status: $status, resultModels: $resultModels, errorMessage: $errorMessage, currentCardIndex: $currentCardIndex)';
   }
 
   @override
@@ -537,9 +503,6 @@ class _$_SearchState implements _SearchState {
                 .equals(other._resultModels, _resultModels) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage) &&
-            (identical(other.maxPage, maxPage) || other.maxPage == maxPage) &&
             (identical(other.currentCardIndex, currentCardIndex) ||
                 other.currentCardIndex == currentCardIndex));
   }
@@ -550,8 +513,6 @@ class _$_SearchState implements _SearchState {
       status,
       const DeepCollectionEquality().hash(_resultModels),
       errorMessage,
-      currentPage,
-      maxPage,
       currentCardIndex);
 
   @JsonKey(ignore: true)
@@ -566,8 +527,6 @@ abstract class _SearchState implements SearchState {
       {final FormzStatus status,
       final List<NewsModel> resultModels,
       final String errorMessage,
-      final int currentPage,
-      final int maxPage,
       final int currentCardIndex}) = _$_SearchState;
 
   @override
@@ -576,10 +535,6 @@ abstract class _SearchState implements SearchState {
   List<NewsModel> get resultModels;
   @override
   String get errorMessage;
-  @override
-  int get currentPage;
-  @override
-  int get maxPage;
   @override
   int get currentCardIndex;
   @override

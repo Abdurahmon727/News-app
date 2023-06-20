@@ -21,11 +21,13 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
 
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
       final data = response.data['articles'] as List?;
+
       if (data == null) {
         throw ServerException(
             statusMessage: 'No News found for this category', statusCode: 404);
       }
       final models = data.map((map) => NewsModel.fromMap(map)).toList();
+
       return models;
     } else {
       throw ServerException(

@@ -38,7 +38,6 @@ class SavedNewsPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
             BlocBuilder<SavedNewsBloc, SavedNewsState>(
               buildWhen: (previous, current) =>
                   previous.models.length != current.models.length,

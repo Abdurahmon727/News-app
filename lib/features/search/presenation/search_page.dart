@@ -27,9 +27,10 @@ class SearchPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
-                      onSubmitted: (value) => context
+                      controller: searchController,
+                      onSubmitted: (_) => context
                           .read<SearchBloc>()
-                          .add(SearchEvent.search(value)),
+                          .add(SearchEvent.search(searchController.text)),
                       style: const TextStyle(color: white, fontSize: 18),
                       decoration: const InputDecoration(
                           fillColor: darkGrey,
@@ -67,7 +68,7 @@ class SearchPage extends StatelessWidget {
                       return const SizedBox();
                     } else if (state.status ==
                         FormzStatus.submissionInProgress) {
-                      return const CircularProgressIndicator();
+                      return const Center(child: CircularProgressIndicator());
                     } else if (state.status == FormzStatus.submissionSuccess) {
                       return Expanded(
                         child: WAppinioSwiper(

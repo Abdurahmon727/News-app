@@ -6,8 +6,6 @@ class SearchState with _$SearchState {
     @Default(FormzStatus.pure) FormzStatus status,
     @Default([]) List<NewsModel> resultModels,
     @Default('') String errorMessage,
-    @Default(1) int currentPage,
-    @Default(1) int maxPage,
     @Default(0) int currentCardIndex,
   }) = _SearchState;
 }

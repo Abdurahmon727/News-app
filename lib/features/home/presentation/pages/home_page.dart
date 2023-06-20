@@ -277,10 +277,20 @@ class HomePage extends StatelessWidget {
                 } else if (state.status == FormzStatus.submissionInProgress) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
-                  return Center(
-                    child: Text(
-                      state.errorMessage,
-                      style: const TextStyle(color: white),
+                  return RefreshIndicator(
+                    onRefresh: () async =>
+                        context.read<NewsBloc>().add(const NewsEvent.getNews()),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height - 173,
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          state.errorMessage,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: white),
+                        ),
+                      ),
                     ),
                   );
                 }
