@@ -40,7 +40,6 @@ class SavedNewsPage extends StatelessWidget {
             ),
             BlocBuilder<SavedNewsBloc, SavedNewsState>(
               builder: (context, state) {
-                print('built');
                 if (state.models.isNotEmpty) {
                   return Expanded(
                     // height: 450,

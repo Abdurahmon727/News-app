@@ -23,7 +23,7 @@ class NewsModel {
     return <String, dynamic>{
       'title': title,
       'author': author,
-      'publishedDate': publishedDate,
+      'published_date': publishedDate,
       'excerpt': excerpt,
       'media': media,
       'summary': summary,
@@ -34,7 +34,7 @@ class NewsModel {
     return NewsModel(
       title: map['title'] as String,
       author: map['author'] as String,
-      publishedDate: map['publishedDate'] as String?,
+      publishedDate: map['published_date'] as String?,
       excerpt: map['excerpt'] as String?,
       media: map['media'] as String?,
       summary: map['summary'] as String?,

@@ -54,4 +54,31 @@ abstract class AppFunctions {
     }
     return result;
   }
+
+  static String dateToPeriod(String? date) {
+    if (date == null) return '';
+    final fullDate = DateTime(int.parse(date.substring(0, 4)),
+        int.parse(date.substring(5, 7)), int.parse(date.substring(8, 10)));
+
+    final difference = DateTime.now().difference(fullDate).inDays;
+    if (difference == 0) {
+      return 'Today';
+    } else if (difference == 1) {
+      return 'Yesterday';
+    } else if (difference <= 6) {
+      return '$difference days ago';
+    } else if (difference <= 13) {
+      return 'a week ago';
+    } else if (difference <= 27) {
+      return '${difference ~/ 7} weeks ago';
+    } else if (difference <= 60) {
+      return 'a month ago';
+    } else if (difference <= 359) {
+      return '${difference ~/ 30} months ago';
+    } else if (difference <= 729) {
+      return 'a year ago';
+    } else {
+      return '${difference ~/ 365} years ago';
+    }
+  }
 }

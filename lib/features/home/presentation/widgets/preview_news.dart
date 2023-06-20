@@ -78,7 +78,7 @@ class WPreviewNews extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      model.publishedDate ?? '',
+                      AppFunctions.dateToPeriod(model.publishedDate),
                       style: const TextStyle(color: white),
                     ),
                     Text(
