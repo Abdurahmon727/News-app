@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:news_app/core/data/either.dart';
-import 'package:news_app/core/data/network_info.dart';
-import 'package:news_app/core/error/exeptions.dart';
-
-import 'package:news_app/core/error/failure.dart';
-
-import 'package:news_app/features/home/data/models/news.dart';
-
+import '../../../../core/data/either.dart';
+import '../../../../core/data/network_info.dart';
+import '../../../../core/error/failure.dart';
+import '../../../home/data/models/news.dart';
 import '../../domain/repository/search_repo.dart';
 import '../data_source/remote_data_source.dart';
 

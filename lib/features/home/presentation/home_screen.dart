@@ -1,14 +1,14 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/features/search/presenation/bloc/search_bloc.dart';
-import '../../../core/data/service_locator.dart';
-import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
-import '../../saved_news/presentation/saved_news_page.dart';
-import '../../search/presenation/search_page.dart';
 
 import '../../../assets/colors.dart';
+import '../../../core/data/service_locator.dart';
 import '../../../core/models/home_datas.dart';
+import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
+import '../../saved_news/presentation/saved_news_page.dart';
+import '../../search/presenation/bloc/search_bloc.dart';
+import '../../search/presenation/search_page.dart';
 import 'pages/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     homeSwipeController = AppinioSwiperController();
     savedNewsSwipeController = AppinioSwiperController();
+    searchController = TextEditingController();
     pages = [
       BlocProvider.value(
         value: sl<SavedNewsBloc>(),
@@ -30,15 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (_) => sl<SearchBloc>(),
+          BlocProvider.value(
+            value: sl<SearchBloc>(),
           ),
           BlocProvider.value(
             value: sl<SavedNewsBloc>(),
           ),
         ],
         child: SearchPage(
-          searchController: TextEditingController(),
+          searchController: searchController,
         ),
       ),
       BlocProvider.value(
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late final List pages;
   late final AppinioSwiperController savedNewsSwipeController;
   late final AppinioSwiperController homeSwipeController;
+  late final TextEditingController searchController;
 
   @override
   Widget build(BuildContext context) {

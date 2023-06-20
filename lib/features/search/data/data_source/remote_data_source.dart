@@ -10,7 +10,7 @@ abstract class SearchRemoteDataSource {
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   SearchRemoteDataSourceImpl() {
     _dio.options.headers['x-api-key'] =
-        'ibiwLZubYfHnAZs60GpaBUnlQLvpzo8PIOjU_AzTbhY';
+        'GkfnWhEp_jpk7869thwyDlj7PFK-2kfEeU27SxqltRE';
   }
 
   final _dio = Dio();

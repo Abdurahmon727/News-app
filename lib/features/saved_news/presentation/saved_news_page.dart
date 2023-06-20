@@ -16,7 +16,7 @@ class SavedNewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 50),
+        padding: const EdgeInsets.only(top: 10, bottom: 60),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

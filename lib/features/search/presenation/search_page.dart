@@ -5,6 +5,7 @@ import 'package:news_app/core/models/formz/formz_status.dart';
 import 'package:news_app/core/widgets/appino_swiper/appino_swiper.dart';
 import 'package:news_app/features/home/presentation/widgets/preview_news.dart';
 
+import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
 
 class SearchPage extends StatelessWidget {
@@ -16,13 +17,13 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       return SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 50, left: 16, right: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Row(
                 children: [
                   Expanded(
                     child: TextField(
@@ -59,34 +60,40 @@ class SearchPage extends StatelessWidget {
                       icon: const Icon(Icons.search))
                 ],
               ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (context, state) {
-                  if (state.status == FormzStatus.pure) {
-                    return const SizedBox();
-                  } else if (state.status == FormzStatus.submissionInProgress) {
-                    return const CircularProgressIndicator();
-                  } else if (state.status == FormzStatus.submissionSuccess) {
-                    return Expanded(
-                      child: WAppinioSwiper(
-                        currentIndex: state.currentCardIndex,
-                        unlimitedUnswipe: true,
-                        cardsBuilder: (context, index) =>
-                            WPreviewNews(model: state.resultModels[index]),
-                        cardsCount: state.resultModels.length,
-                        pageSavableBloc: context.read<SearchBloc>(),
-                      ),
-                    );
-                  } else {
-                    return Center(
-                        child: Text(
-                      state.errorMessage,
-                      style: const TextStyle(color: white),
-                    ));
-                  }
-                },
-              )
-            ],
-          ),
+            ),
+            BlocBuilder<SavedNewsBloc, SavedNewsState>(
+              builder: (context, state) {
+                return BlocBuilder<SearchBloc, SearchState>(
+                  builder: (context, state) {
+                    if (state.status == FormzStatus.pure) {
+                      return const SizedBox();
+                    } else if (state.status ==
+                        FormzStatus.submissionInProgress) {
+                      return const CircularProgressIndicator();
+                    } else if (state.status == FormzStatus.submissionSuccess) {
+                      return Expanded(
+                        child: WAppinioSwiper(
+                          currentIndex: state.currentCardIndex,
+                          unlimitedUnswipe: true,
+                          cardsBuilder: (context, index) =>
+                              WPreviewNews(model: state.resultModels[index]),
+                          cardsCount: state.resultModels.length,
+                          pageSavableBloc: context.read<SearchBloc>(),
+                        ),
+                      );
+                    } else {
+                      return Center(
+                          child: Text(
+                        state.errorMessage,
+                        style: const TextStyle(color: white),
+                      ));
+                    }
+                  },
+                );
+              },
+            ),
+            const SizedBox(height: 60),
+          ],
         ),
       );
     });
