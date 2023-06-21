@@ -6,7 +6,7 @@ import '../../../../assets/colors.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
-import '../../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
+import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
 

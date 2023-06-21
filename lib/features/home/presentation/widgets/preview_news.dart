@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/app_functions.dart';
-import '../../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
+import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../../data/models/news.dart';
 import '../pages/inside_news_page.dart';
 

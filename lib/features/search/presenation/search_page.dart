@@ -5,7 +5,7 @@ import '../../../core/models/formz/formz_status.dart';
 import '../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../../home/presentation/widgets/preview_news.dart';
 
-import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
+import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
 
 class SearchPage extends StatelessWidget {

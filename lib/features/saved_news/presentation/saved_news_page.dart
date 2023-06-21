@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../assets/colors.dart';
 import '../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../../home/presentation/widgets/preview_news.dart';
-import 'bloc/bloc/saved_news_bloc.dart';
+import 'bloc/saved_news_bloc.dart';
 
 class SavedNewsPage extends StatelessWidget {
   const SavedNewsPage({super.key, required this.swiperController});
@@ -23,7 +23,6 @@ class SavedNewsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     'Saved News',
@@ -32,9 +31,20 @@ class SavedNewsPage extends StatelessWidget {
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ),
+                  const Spacer(),
                   IconButton(
-                      onPressed: () => swiperController.unswipe(),
-                      icon: const Icon(Icons.replay_rounded, color: white))
+                    onPressed: () => swiperController.unswipe(),
+                    icon: const Icon(Icons.replay_rounded, color: white),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      //TODO
+                    },
+                    icon: const Icon(
+                      Icons.more_vert,
+                      color: white,
+                    ),
+                  ),
                 ],
               ),
             ),

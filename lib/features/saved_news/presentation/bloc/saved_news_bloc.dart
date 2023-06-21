@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/data/service_locator.dart';
-import '../../../../home/data/models/news.dart';
-import '../../../../home/data/models/objectbox_singleton.dart';
-import '../../../../home/presentation/bloc/page_save.dart';
+import '../../../home/data/models/news.dart';
+import '../../../home/data/models/objectbox_singleton.dart';
+import '../../../home/presentation/bloc/page_save.dart';
 
 part 'saved_news_bloc.freezed.dart';
 part 'saved_news_event.dart';
