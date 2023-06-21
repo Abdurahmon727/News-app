@@ -1,15 +1,38 @@
-import 'package:news_app/core/data/either.dart';
+import '../../../../core/app_functions.dart';
 
-import '../../../../core/error/failure.dart';
+import '../../../../core/data/storage_repository.dart';
+
+import '../../../../core/models/home_datas.dart';
 
 abstract class NewsLocalDataSource {
-  Future<Either<CacheFailure, void>> saveBlocProperties({required});
+  Future<void> saveBlocProperties({
+    required Calendar calendar,
+    required List<String> sources,
+    required List<String> languages,
+  });
+
+  (Calendar, List<String>, List<String>) getBlocProperties();
 }
 
 class NewsLocalDataSourceImpl implements NewsLocalDataSource {
   @override
-  Future<Either<CacheFailure, void>> saveBlocProperties({required}) {
-    // TODO: implement saveBlocProperties
-    throw UnimplementedError();
+  Future<void> saveBlocProperties({
+    required Calendar calendar,
+    required List<String> sources,
+    required List<String> languages,
+  }) async {
+    await StorageRepository.putInt(
+        'calendar', AppFunctions.calendarToInt(calendar));
+    await StorageRepository.putList('sources', sources);
+    await StorageRepository.putList('languages', languages);
+  }
+
+  @override
+  (Calendar, List<String>, List<String>) getBlocProperties() {
+    final calendar =
+        AppFunctions.intToCalendar(StorageRepository.getInt('calendar'));
+    final languages = StorageRepository.getList('languages');
+    final sources = StorageRepository.getList('sources');
+    return (calendar, languages, sources);
   }
 }

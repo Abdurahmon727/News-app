@@ -24,6 +24,17 @@ class StorageRepository {
     return _preferences!.setString(key, value);
   }
 
+  static Future<bool>? putInt(String key, int value) {
+    if (_preferences == null) return null;
+    return _preferences!.setInt(key, value);
+  }
+
+  static int getInt(String key, {int defValue = 0}) {
+    if (_preferences == null) return defValue;
+
+    return _preferences!.getInt(key) ?? defValue;
+  }
+
   static String getTemporaryToken() => '';
 
   static Future<bool>? putList(String key, List<String> value) {

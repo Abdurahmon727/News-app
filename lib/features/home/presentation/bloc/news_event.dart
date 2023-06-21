@@ -10,4 +10,5 @@ class NewsEvent with _$NewsEvent {
     required List<String> sources,
   }) = _ApplyFilter;
   const factory NewsEvent.changeCurrentIndex(int value) = _ChangeCurrentIndex;
+  const factory NewsEvent.init() = _Init;
 }

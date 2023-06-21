@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:news_app/features/home/data/datasources/local_data_source.dart';
 import 'package:news_app/features/home/presentation/bloc/page_save.dart';
 
 import '../../../../core/error/failure.dart';
@@ -15,6 +16,13 @@ part 'news_state.dart';
 class NewsBloc extends Bloc<NewsEvent, NewsState>
     implements CurrentPageSavable {
   NewsBloc() : super(const _NewsState()) {
+    on<_Init>((event, emit) {
+      final _localDataSource = NewsLocalDataSourceImpl();
+      final data = _localDataSource.getBlocProperties();
+      emit(state.copyWith(
+          calendar: data.$1, languages: data.$2, sources: data.$3));
+    });
+
     on<_GetNews>((event, emit) async {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       final isLoadingNextPage = state.maxPage > state.curruntPage;

@@ -22,7 +22,7 @@ class SearchPage extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 5),
               child: Row(
                 children: [
                   Expanded(
@@ -50,13 +50,14 @@ class SearchPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   IconButton.filled(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith(
-                              (_) => darkGrey)),
-                      onPressed: () => context
-                          .read<SearchBloc>()
-                          .add(SearchEvent.search(searchController.text)),
-                      icon: const Icon(Icons.search))
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith((_) => darkGrey)),
+                    onPressed: () => context
+                        .read<SearchBloc>()
+                        .add(SearchEvent.search(searchController.text)),
+                    icon: const Icon(Icons.search),
+                  ),
                 ],
               ),
             ),
@@ -81,10 +82,21 @@ class SearchPage extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return Center(
-                        child: Text(
-                          state.errorMessage,
-                          style: const TextStyle(color: white),
+                      return RefreshIndicator(
+                        onRefresh: () async => context
+                            .read<SearchBloc>()
+                            .add(SearchEvent.search(searchController.text)),
+                        child: SingleChildScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height - 173,
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              state.errorMessage,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(color: white),
+                            ),
+                          ),
                         ),
                       );
                     }

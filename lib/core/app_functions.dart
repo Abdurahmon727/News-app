@@ -81,4 +81,33 @@ abstract class AppFunctions {
       return '${difference ~/ 365} years ago';
     }
   }
+
+  static int calendarToInt(Calendar calendar) {
+    if (calendar == Calendar.hour) {
+      return 1;
+    }
+    if (calendar == Calendar.day) {
+      return 2;
+    } else if (calendar == Calendar.day7) {
+      return 3;
+    } else if (calendar == Calendar.day30) {
+      return 4;
+    } else {
+      return 0;
+    }
+  }
+
+  static Calendar intToCalendar(int num) {
+    if (num == 1) {
+      return Calendar.hour;
+    } else if (num == 2) {
+      return Calendar.day;
+    } else if (num == 3) {
+      return Calendar.day7;
+    } else if (num == 4) {
+      return Calendar.day30;
+    } else {
+      return Calendar.none;
+    }
+  }
 }

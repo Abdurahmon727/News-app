@@ -4,6 +4,7 @@ import '../../../../core/error/exeptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../domain/repo/news_repo.dart';
+import '../datasources/local_data_source.dart';
 import '../datasources/remote_data_source.dart';
 import '../models/news.dart';
 
@@ -11,6 +12,7 @@ class NewsRepositoryImpl implements NewsRepository {
   NewsRepositoryImpl({required this.page});
   final int page;
   final _networkInfo = const NetworkInfoImpl();
+  final _localDataSource = NewsLocalDataSourceImpl();
 
   @override
   Future<Either<Failure, (List<NewsModel>, int)>> getNews({
@@ -19,6 +21,8 @@ class NewsRepositoryImpl implements NewsRepository {
     required List<String> languages,
     required Calendar calendar,
   }) async {
+    await _localDataSource.saveBlocProperties(
+        calendar: calendar, languages: languages, sources: resources);
     if (await _networkInfo.connected) {
       try {
         final result = await NewsRemoteDataSourceImpl(page).getNews(
@@ -26,6 +30,7 @@ class NewsRepositoryImpl implements NewsRepository {
             calendar: calendar,
             resources: resources,
             topicIndex: topicIndex);
+
         return Right((result.$1, result.$2));
       } on ServerException catch (e) {
         return Left(ServerFailure(

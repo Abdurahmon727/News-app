@@ -9,6 +9,7 @@ import '../../saved_news/presentation/bloc/bloc/saved_news_bloc.dart';
 import '../../saved_news/presentation/saved_news_page.dart';
 import '../../search/presenation/bloc/search_bloc.dart';
 import '../../search/presenation/search_page.dart';
+import 'bloc/news_bloc.dart';
 import 'pages/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,8 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
     savedNewsSwipeController = AppinioSwiperController();
     searchController = TextEditingController();
     pages = [
-      BlocProvider.value(
-        value: sl<SavedNewsBloc>(),
+      MultiBlocProvider(
+        providers: [
+          BlocProvider.value(
+            value: sl<SavedNewsBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => NewsBloc()
+              ..add(const NewsEvent.init())
+              ..add(const NewsEvent.getNews()),
+          ),
+        ],
         child: HomePage(controller: homeSwipeController),
       ),
       MultiBlocProvider(

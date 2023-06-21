@@ -244,7 +244,7 @@ class HomePage extends StatelessWidget {
               tabs: const [
                 Text('Trending'),
                 Text('Health'),
-                Text('Sports'),
+                Text('Sport'),
                 Text('Finance'),
               ]),
         ),
