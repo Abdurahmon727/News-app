@@ -43,6 +43,6 @@ class SavedNewsBloc extends Bloc<SavedNewsEvent, SavedNewsState>
 
   @override
   void saveCurruntPage(int newPageIndex) {
-    add(_ChangeCurrentPage(newPageIndex));
+    add(SavedNewsEvent.changeCurrentPage(newPageIndex));
   }
 }

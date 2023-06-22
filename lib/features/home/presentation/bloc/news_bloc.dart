@@ -70,6 +70,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
 
   @override
   void saveCurruntPage(int newPageIndex) {
-    add(_ChangeCurrentIndex(newPageIndex));
+    add(NewsEvent.changeCurrentIndex(newPageIndex));
   }
 }

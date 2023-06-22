@@ -40,6 +40,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
 
   @override
   void saveCurruntPage(int newPageIndex) {
-    add(_ChangeCurrentPageIndex(newPageIndex));
+    add(SearchEvent.changeCurrentCardPage(newPageIndex));
   }
 }
