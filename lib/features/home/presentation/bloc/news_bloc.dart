@@ -17,14 +17,15 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     implements CurrentPageSavable {
   NewsBloc() : super(const _NewsState()) {
     on<_Init>((event, emit) {
-      final _localDataSource = NewsLocalDataSourceImpl();
-      final data = _localDataSource.getBlocProperties();
-      final topics = _localDataSource.getTopics();
+      final localDataSource = NewsLocalDataSourceImpl();
+      final data = localDataSource.getBlocProperties();
+      final topics = localDataSource.getTopics();
       emit(state.copyWith(
-          topics: topics,
-          calendar: data.$1,
-          languages: data.$2,
-          sources: data.$3));
+        topics: topics,
+        calendar: data.$1,
+        languages: data.$2,
+        sources: data.$3,
+      ));
     });
 
     on<_GetNews>((event, emit) async {

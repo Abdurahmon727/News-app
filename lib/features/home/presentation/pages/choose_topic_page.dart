@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/features/home/presentation/home_screen.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/data/extensions.dart';
 import '../../../../core/models/home_datas.dart';
-
 import '../../../../core/widgets/w_scale.dart';
-
 import '../bloc/news_bloc.dart';
+import '../home_screen.dart';
 
 class ChooseTopicPage extends StatefulWidget {
   const ChooseTopicPage({super.key});
@@ -87,8 +85,9 @@ class _ChooseTopicPageState extends State<ChooseTopicPage> {
                           height: 50,
                           width: double.maxFinite,
                           decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(30)),
+                            color: white,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                           child: Text(
                             allTopics[index].inCaps,
                             style: const TextStyle(
@@ -121,7 +120,9 @@ class _ChooseTopicPageState extends State<ChooseTopicPage> {
               height: 60,
               width: double.maxFinite,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: black),
+                borderRadius: BorderRadius.circular(30),
+                color: black,
+              ),
               child: Text(
                 (topics.length > 3) ? 'Submit' : 'Minimum 4',
                 style: TextStyle(

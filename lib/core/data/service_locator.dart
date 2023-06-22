@@ -14,7 +14,7 @@ Future<void> setupLocator() async {
   sl.registerLazySingleton<NetworkInfo>(() => const NetworkInfoImpl());
   sl.registerLazySingleton(() => SavedNewsBloc());
   sl.registerLazySingleton(() => SearchBloc());
-  sl.registerLazySingleton(() => NewsBloc()..add(const NewsEvent.init()));
+  sl.registerLazySingleton(() => NewsBloc());
 
   //objectbox
   final objectbox = await ObjectBoxSingleton.create();
