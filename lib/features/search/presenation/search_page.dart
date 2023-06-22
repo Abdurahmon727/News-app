@@ -64,6 +64,9 @@ class SearchPage extends StatelessWidget {
             BlocBuilder<SavedNewsBloc, SavedNewsState>(
               builder: (context, state) {
                 return BlocBuilder<SearchBloc, SearchState>(
+                  buildWhen: (previous, current) =>
+                      previous.status != current.status ||
+                      previous.currentPage != current.currentPage,
                   builder: (context, state) {
                     if (state.status == FormzStatus.pure) {
                       return const SizedBox();
@@ -71,18 +74,26 @@ class SearchPage extends StatelessWidget {
                         FormzStatus.submissionInProgress) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (state.status == FormzStatus.submissionSuccess) {
-                      return Expanded(
-                        child: WAppinioSwiper(
-                          onEnd: () => context
-                              .read<SearchBloc>()
-                              .add(SearchEvent.search(searchController.text)),
-                          currentIndex: state.currentCardIndex,
-                          unlimitedUnswipe: true,
-                          cardsBuilder: (context, index) =>
-                              WPreviewNews(model: state.resultModels[index]),
-                          cardsCount: state.resultModels.length,
-                          pageSavableBloc: context.read<SearchBloc>(),
-                        ),
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('${state.currentPage}/${state.maxPage}',
+                              style: const TextStyle(color: white)),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height - 167,
+                            width: double.maxFinite,
+                            child: WAppinioSwiper(
+                              onEnd: () => context.read<SearchBloc>().add(
+                                  SearchEvent.search(searchController.text)),
+                              currentIndex: state.currentCardIndex,
+                              unlimitedUnswipe: true,
+                              cardsBuilder: (context, index) => WPreviewNews(
+                                  model: state.resultModels[index]),
+                              cardsCount: state.resultModels.length,
+                              pageSavableBloc: context.read<SearchBloc>(),
+                            ),
+                          ),
+                        ],
                       );
                     } else {
                       return RefreshIndicator(
