@@ -20,6 +20,7 @@ class NewsRepositoryImpl implements NewsRepository {
     required List<String> resources,
     required List<String> languages,
     required Calendar calendar,
+    required List<String> topics,
   }) async {
     await _localDataSource.saveBlocProperties(
         calendar: calendar, languages: languages, sources: resources);
@@ -29,7 +30,8 @@ class NewsRepositoryImpl implements NewsRepository {
             langauges: languages,
             calendar: calendar,
             resources: resources,
-            topicIndex: topicIndex);
+            topicIndex: topicIndex,
+            topics: topics);
 
         return Right((result.$1, result.$2));
       } on ServerException catch (e) {

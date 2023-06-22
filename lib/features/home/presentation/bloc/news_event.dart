@@ -11,4 +11,5 @@ class NewsEvent with _$NewsEvent {
   }) = _ApplyFilter;
   const factory NewsEvent.changeCurrentIndex(int value) = _ChangeCurrentIndex;
   const factory NewsEvent.init() = _Init;
+  const factory NewsEvent.changeTopics(List<String> topics) = _ChangeTopics;
 }

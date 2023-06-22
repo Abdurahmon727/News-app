@@ -1,4 +1,21 @@
-final homeTopics = ['news', 'beauty', 'sport', 'finance'];
+final allTopics = [
+  'news',
+  'sport',
+  'tech',
+  'world',
+  'finance',
+  'politics',
+  'business',
+  'economics',
+  'entertainment',
+  'beauty',
+  'travel',
+  'music',
+  'food',
+  'science',
+  'gaming',
+  'energy',
+];
 
 enum Calendar { none, hour, day, day7, day30 }
 

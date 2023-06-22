@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: DefaultTabController(
         initialIndex: 0,
-        length: homeTopics.length,
+        length: allTopics.length,
         child: Scaffold(
           backgroundColor: black,
           body: Stack(

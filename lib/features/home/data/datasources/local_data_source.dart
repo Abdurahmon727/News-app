@@ -1,7 +1,5 @@
 import '../../../../core/app_functions.dart';
-
 import '../../../../core/data/storage_repository.dart';
-
 import '../../../../core/models/home_datas.dart';
 
 abstract class NewsLocalDataSource {
@@ -10,6 +8,8 @@ abstract class NewsLocalDataSource {
     required List<String> sources,
     required List<String> languages,
   });
+  Future<void> saveTopics(List<String> topics);
+  List<String> getTopics();
 
   (Calendar, List<String>, List<String>) getBlocProperties();
 }
@@ -34,5 +34,15 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource {
     final languages = StorageRepository.getList('languages');
     final sources = StorageRepository.getList('sources');
     return (calendar, languages, sources);
+  }
+
+  @override
+  List<String> getTopics() {
+    return StorageRepository.getList('topics');
+  }
+
+  @override
+  Future<void> saveTopics(List<String> topics) async {
+    await StorageRepository.putList('topics', topics);
   }
 }

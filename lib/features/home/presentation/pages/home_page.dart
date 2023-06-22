@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../assets/colors.dart';
+import '../../../../core/data/extensions.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
@@ -222,32 +223,29 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: TabBar(
-              onTap: (value) {
-                if (value != context.read<NewsBloc>().state.topicIndex) {
-                  context.read<NewsBloc>().add(NewsEvent.changeTopic(value));
-                }
-              },
-              dividerColor: Colors.transparent,
-              indicator: const BoxDecoration(),
-              labelColor: white,
-              unselectedLabelStyle: const TextStyle(fontSize: 16),
-              isScrollable: true,
-              labelStyle: const TextStyle(
-                color: white,
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-              labelPadding: const EdgeInsets.all(8),
-              tabs: const [
-                Text('Trending'),
-                Text('Health'),
-                Text('Sport'),
-                Text('Finance'),
-              ]),
-        ),
+        TabBar(
+            onTap: (value) {
+              if (value != context.read<NewsBloc>().state.topicIndex) {
+                context.read<NewsBloc>().add(NewsEvent.changeTopic(value));
+              }
+            },
+            dividerColor: Colors.transparent,
+            indicator: const BoxDecoration(),
+            labelColor: white,
+            unselectedLabelStyle: const TextStyle(fontSize: 16),
+            isScrollable: true,
+            labelStyle: const TextStyle(
+              color: white,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+            labelPadding: const EdgeInsets.all(8),
+            tabs: context
+                .read<NewsBloc>()
+                .state
+                .topics
+                .map((e) => Text(e.inCaps))
+                .toList()),
         BlocBuilder<SavedNewsBloc, SavedNewsState>(
           buildWhen: (previous, current) => previous.models != current.models,
           builder: (context, state) {

@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:news_app/features/home/data/datasources/local_data_source.dart';
-import 'package:news_app/features/home/presentation/bloc/page_save.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
+import '../../data/datasources/local_data_source.dart';
 import '../../data/models/news.dart';
 import '../../data/repo/news_repo.dart';
+import 'page_save.dart';
 
 part 'news_bloc.freezed.dart';
 part 'news_event.dart';
@@ -19,8 +19,12 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     on<_Init>((event, emit) {
       final _localDataSource = NewsLocalDataSourceImpl();
       final data = _localDataSource.getBlocProperties();
+      final topics = _localDataSource.getTopics();
       emit(state.copyWith(
-          calendar: data.$1, languages: data.$2, sources: data.$3));
+          topics: topics,
+          calendar: data.$1,
+          languages: data.$2,
+          sources: data.$3));
     });
 
     on<_GetNews>((event, emit) async {
@@ -33,6 +37,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
           languages: state.languages,
           calendar: state.calendar,
           resources: state.sources,
+          topics: state.topics,
           topicIndex: state.topicIndex);
       result.either((failure) {
         emit(
@@ -62,6 +67,11 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
           languages: event.languages,
           sources: event.sources));
       add(const _GetNews());
+    });
+
+    on<_ChangeTopics>((event, emit) async {
+      emit(state.copyWith(topics: event.topics));
+      await NewsLocalDataSourceImpl().saveTopics(event.topics);
     });
 
     on<_ChangeCurrentIndex>(
