@@ -255,6 +255,10 @@ class HomePage extends StatelessWidget {
               buildWhen: (previous, current) =>
                   (previous.status != current.status),
               builder: (context, state) {
+                if (state.status == FormzStatus.pure) {
+                  context.read<NewsBloc>().add(const NewsEvent.getNews());
+                  return const SizedBox();
+                }
                 if (state.status == FormzStatus.submissionSuccess) {
                   final data = state.models;
                   return Expanded(

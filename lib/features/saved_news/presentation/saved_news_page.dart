@@ -13,7 +13,7 @@ class SavedNewsPage extends StatelessWidget {
   final AppinioSwiperController swiperController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ctx) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 60),
@@ -36,14 +36,44 @@ class SavedNewsPage extends StatelessWidget {
                     onPressed: () => swiperController.unswipe(),
                     icon: const Icon(Icons.replay_rounded, color: white),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      //TODO
-                    },
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: white,
-                    ),
+                  PopupMenuButton(
+                    child: const Icon(Icons.more_vert, color: white),
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        onTap: () {
+                          Future.delayed(
+                            Duration.zero,
+                            () => showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('No'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        ctx
+                                            .read<SavedNewsBloc>()
+                                            .add(const SavedNewsEvent.clear());
+                                      },
+                                      child: const Text('Yes, delete'),
+                                    )
+                                  ],
+                                  content: const Text(
+                                      'Are you sure to delete all saved news?'),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: const Text('Delete all'),
+                      )
+                    ],
                   ),
                 ],
               ),

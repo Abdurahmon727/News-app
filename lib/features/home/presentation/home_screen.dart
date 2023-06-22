@@ -25,17 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
     homeSwipeController = AppinioSwiperController();
     savedNewsSwipeController = AppinioSwiperController();
     searchController = TextEditingController();
+
     pages = [
       MultiBlocProvider(
         providers: [
           BlocProvider.value(
             value: sl<SavedNewsBloc>(),
           ),
-          BlocProvider(
-            create: (context) => NewsBloc()
-              ..add(const NewsEvent.init())
-              ..add(const NewsEvent.getNews()),
-          ),
+          BlocProvider(create: (context) => sl<NewsBloc>()),
         ],
         child: HomePage(controller: homeSwipeController),
       ),
