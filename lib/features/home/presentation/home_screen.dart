@@ -9,7 +9,6 @@ import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../../saved_news/presentation/saved_news_page.dart';
 import '../../search/presenation/bloc/search_bloc.dart';
 import '../../search/presenation/search_page.dart';
-import 'bloc/news_bloc.dart';
 import 'pages/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BlocProvider.value(
             value: sl<SavedNewsBloc>(),
           ),
-          BlocProvider(create: (context) => sl<NewsBloc>()),
         ],
         child: HomePage(controller: homeSwipeController),
       ),

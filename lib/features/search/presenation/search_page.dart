@@ -73,6 +73,9 @@ class SearchPage extends StatelessWidget {
                     } else if (state.status == FormzStatus.submissionSuccess) {
                       return Expanded(
                         child: WAppinioSwiper(
+                          onEnd: () => context
+                              .read<SearchBloc>()
+                              .add(SearchEvent.search(searchController.text)),
                           currentIndex: state.currentCardIndex,
                           unlimitedUnswipe: true,
                           cardsBuilder: (context, index) =>

@@ -17,7 +17,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
     on<_Search>((event, emit) async {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       final SearchRepository repo = SearchRepositoryImpl();
-      final result = await repo.getSearchResults(event.query);
+      final int page =
+          (state.maxPage > state.currentPage) ? state.currentPage + 1 : 1;
+      final result = await repo.getSearchResults(event.query, page);
       result.either((error) {
         emit(state.copyWith(
           status: FormzStatus.submissionFailure,
@@ -27,7 +29,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
       }, (data) {
         emit(state.copyWith(
           status: FormzStatus.submissionSuccess,
-          resultModels: data,
+          resultModels: data.$1,
+          currentPage: page,
+          maxPage: data.$2,
           currentCardIndex: 0,
         ));
       });

@@ -5,7 +5,7 @@ import 'package:news_app/core/error/exeptions.dart';
 import '../../../home/data/models/news.dart';
 
 abstract class SearchRemoteDataSource {
-  Future<List<NewsModel>> getSearchResult(String query);
+  Future<(List<NewsModel>, int)> getSearchResult(String query, int page);
 }
 
 class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
@@ -15,9 +15,9 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
 
   final _dio = Dio();
   @override
-  Future<List<NewsModel>> getSearchResult(String query) async {
-    final response =
-        await _dio.get('https://api.newscatcherapi.com/v2/search?q=$query');
+  Future<(List<NewsModel>, int)> getSearchResult(String query, int page) async {
+    final response = await _dio.get(
+        'https://api.newscatcherapi.com/v2/search?q=$query&page=$page&page_size=5');
 
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
       final data = response.data['articles'] as List?;
@@ -28,7 +28,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
       }
       final models = data.map((map) => NewsModel.fromMap(map)).toList();
 
-      return models;
+      return (models, response.data["page_size"] as int);
     } else {
       throw ServerException(
           statusMessage: 'Server not responding',
