@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/assets/theme.dart';
 
+import 'core/bloc/theme/theme_bloc.dart';
 import 'core/data/service_locator.dart';
 import 'core/data/storage_repository.dart';
 import 'core/splash/splash.dart';
@@ -29,42 +31,47 @@ class _MyAppState extends State<MyApp> {
   NavigatorState get navigator => navigatorKey.currentState!;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: sl<NewsBloc>()..add(const NewsEvent.init()),
-      child: MaterialApp(
-        navigatorKey: navigatorKey,
-        title: 'News app',
-        themeMode: ThemeMode.dark,
-        darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          fontFamily: 'Roboto',
-          useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: sl<NewsBloc>()..add(const NewsEvent.init()),
         ),
-        theme: ThemeData.dark().copyWith(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+        BlocProvider(
+          create: (context) => ThemeBloc()..add(const ThemeEvent.loadTheme()),
         ),
-        home: const SplashScreen(),
-        builder: (context, child) {
-          return BlocListener<NewsBloc, NewsState>(
-            listenWhen: (previous, current) =>
-                previous.topics != current.topics,
-            listener: (context, state) {
-              if (state.topics.isEmpty) {
-                navigator.pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) => const ChooseTopicPage()),
-                    (route) => false);
-              } else {
-                navigator.pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    (route) => false);
-              }
-            },
-            child: child ?? const SplashScreen(),
-          );
-        },
-      ),
+      ],
+      child: Builder(builder: (context) {
+        return MaterialApp(
+          navigatorKey: navigatorKey,
+          title: 'News app',
+          themeMode: context.read<ThemeBloc>().state.isLight
+              ? ThemeMode.light
+              : ThemeMode.dark,
+          darkTheme: AppTheme.darkTheme(),
+          theme: AppTheme.lightTheme(),
+          home: const SplashScreen(),
+          builder: (context, child) {
+            return BlocListener<NewsBloc, NewsState>(
+              listenWhen: (previous, current) =>
+                  previous.topics != current.topics,
+              listener: (context, state) {
+                if (state.topics.isEmpty) {
+                  navigator.pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const ChooseTopicPage()),
+                      (route) => false);
+                } else {
+                  navigator.pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                      (route) => false);
+                }
+              },
+              child: child ?? const SplashScreen(),
+            );
+          },
+        );
+      }),
     );
   }
 }
