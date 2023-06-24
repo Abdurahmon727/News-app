@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     //initialize
     homeSwipeController = AppinioSwiperController();
-    savedNewsSwipeController = AppinioSwiperController();
+    savedNewsSrollController = ScrollController();
     searchController = TextEditingController();
 
     pages = [
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       BlocProvider.value(
         value: sl<SavedNewsBloc>()
           ..add(const SavedNewsEvent.getNewsFromStorage()),
-        child: SavedNewsPage(swiperController: savedNewsSwipeController),
+        child: const SavedNewsPage(),
       ),
     ];
     super.initState();
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int indexPage = 0;
   late final List pages;
-  late final AppinioSwiperController savedNewsSwipeController;
+  late final ScrollController savedNewsSrollController;
   late final AppinioSwiperController homeSwipeController;
   late final TextEditingController searchController;
 
