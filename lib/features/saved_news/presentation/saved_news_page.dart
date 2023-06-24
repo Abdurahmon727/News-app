@@ -88,8 +88,12 @@ class SavedNewsPage extends StatelessWidget {
           builder: (context, state) {
             if (state.models.isNotEmpty) {
               return SliverList.separated(
-                itemCount: state.models.length,
+                itemCount: state.models.length + 1,
                 itemBuilder: (context, index) {
+                  if (index >= state.models.length) {
+                    return const SizedBox(height: 80);
+                  }
+
                   final model = state.models[state.models.length - 1 - index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
