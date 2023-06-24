@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/widgets/w_scale.dart';
+import '../../home/presentation/pages/inside_news_page.dart';
 import 'bloc/saved_news_bloc.dart';
 
 class SavedNewsPage extends StatelessWidget {
@@ -46,8 +48,9 @@ class SavedNewsPage extends StatelessWidget {
                             Duration.zero,
                             () => showDialog(
                               context: context,
-                              builder: (context) {
+                              builder: (_) {
                                 return AlertDialog(
+                                  actionsPadding: EdgeInsets.zero,
                                   actions: [
                                     TextButton(
                                       onPressed: () {
@@ -90,54 +93,68 @@ class SavedNewsPage extends StatelessWidget {
                   final model = state.models[state.models.length - 1 - index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: SizedBox(
-                      height: 80,
-                      width: double.maxFinite,
-                      child: Row(children: [
-                        if (model.media != null)
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: SizedBox(
-                              height: 80,
-                              width: 80,
-                              child: CachedNetworkImage(
-                                imageUrl: model.media!,
-                                fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => InsideNewsPage(model: model),
+                          )),
+                      child: SizedBox(
+                        height: 80,
+                        width: double.maxFinite,
+                        child: Row(children: [
+                          if (model.media != null)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: CachedNetworkImage(
+                                  imageUrl: model.media!,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                    child: Text(
+                                  state.models[index].title,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                )),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        '${model.rights} \u{25CB} ${model.topic}',
+                                        maxLines: 1,
+                                        style:
+                                            const TextStyle(color: Colors.grey),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                state.models[index].title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              )),
-                              Row(
-                                children: [
-                                  Text(
-                                    '${model.rights} \u{25CB} ${model.topic}',
-                                    style: const TextStyle(color: Colors.grey),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ]),
+                        ]),
+                      ),
                     ),
                   );
                 },
                 separatorBuilder: (context, index) => const Divider(),
               );
             }
-            return const Center(
-              child: Text(
-                'No saved news found',
-                style: TextStyle(color: white, fontSize: 16),
+            return const SliverToBoxAdapter(
+              child: Center(
+                child: Text(
+                  'No saved news found',
+                  style: TextStyle(color: white, fontSize: 16),
+                ),
               ),
             );
           },

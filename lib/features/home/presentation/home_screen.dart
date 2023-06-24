@@ -22,9 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     //initialize
     homeSwipeController = AppinioSwiperController();
-    savedNewsSrollController = ScrollController();
     searchController = TextEditingController();
-
     pages = [
       MultiBlocProvider(
         providers: [
@@ -58,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int indexPage = 0;
   late final List pages;
-  late final ScrollController savedNewsSrollController;
+
   late final AppinioSwiperController homeSwipeController;
   late final TextEditingController searchController;
 
@@ -82,7 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButton: Container(
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-              color: black, borderRadius: BorderRadius.circular(30)),
+            color: black,
+            borderRadius: BorderRadius.circular(30),
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
