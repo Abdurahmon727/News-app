@@ -9,3 +9,8 @@ const white = Color(0XFFFFFFFF);
 const black = Color(0xFF000000);
 const purple = Color(0xFFEBE5FE);
 const emerald = Color(0xFF45bf80);
+
+const madison = Color(0xFF27374D);
+const cocoa = Color(0xFF4E3636);
+const sapphire = Color(0xFF0E2954);
+const minsk = Color(0xFF37306B);

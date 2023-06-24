@@ -4,7 +4,7 @@ import 'colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme() => ThemeData(
-        fontFamily: 'Roboto',
+        fontFamily: 'Outfit',
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         brightness: Brightness.light,
@@ -19,8 +19,7 @@ class AppTheme {
 
   static ThemeData darkTheme() => ThemeData(
         brightness: Brightness.dark,
-        fontFamily: 'Roboto',
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Outfit',
         useMaterial3: true,
       );
 

@@ -5,16 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/app_functions.dart';
+import '../../../../core/bloc/theme/theme_bloc.dart';
 import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../../data/models/news.dart';
 import '../pages/inside_news_page.dart';
 
 class WPreviewNews extends StatelessWidget {
-  WPreviewNews({super.key, required this.model}) {
-    newsColor = AppFunctions.randomColor(model.title.length);
-  }
+  const WPreviewNews({super.key, required this.model});
   final NewsModel model;
-  late final Color newsColor;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,8 @@ class WPreviewNews extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: newsColor,
+                    color: AppFunctions.randomColor(model.title.length,
+                        context.read<ThemeBloc>().state.isLight),
                   ),
                   height: double.infinity,
                   width: double.infinity,

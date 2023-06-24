@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/assets/theme.dart';
 
+import 'assets/theme.dart';
 import 'core/bloc/theme/theme_bloc.dart';
 import 'core/data/service_locator.dart';
 import 'core/data/storage_repository.dart';
