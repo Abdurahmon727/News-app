@@ -1,5 +1,5 @@
 import 'colors.dart';
 
-const apiKey = 'cHreowra_GiPzqronBTk49-ddOpbkEiRObuRNqGkpqo';
+const apiKey = 'U33qT7SWog1jdkkjUem4rZ5nJcbhWtZkXsp7ttBYj6s';
 
 final backgroundColors = [miskyRose, lemonChiffan, aliceBlue, purple];

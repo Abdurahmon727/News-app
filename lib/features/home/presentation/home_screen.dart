@@ -66,6 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: const Drawer(
+          child: Column(
+            children: [Icon(Icons.topic_rounded)],
+          ),
+        ),
         backgroundColor: black,
         body: Stack(
           alignment: Alignment.bottomCenter,
@@ -105,10 +110,13 @@ class _HomeScreenState extends State<HomeScreen> {
               IconButton.filled(
                 iconSize: 35,
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((_) {
-                  if (indexPage == 1) return white;
-                  return darkGrey;
-                })),
+                  backgroundColor: MaterialStateProperty.resolveWith(
+                    (_) {
+                      if (indexPage == 1) return white;
+                      return darkGrey;
+                    },
+                  ),
+                ),
                 onPressed: () {
                   if (indexPage != 1) {
                     setState(() {

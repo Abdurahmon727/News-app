@@ -22,7 +22,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 2933084354991952865),
       name: 'NewsModel',
-      lastPropertyId: const IdUid(7, 7829076941298851519),
+      lastPropertyId: const IdUid(9, 3243037241551113187),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -58,6 +58,16 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(7, 7829076941298851519),
             name: 'summary',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 3766778835470536629),
+            name: 'topic',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 3243037241551113187),
+            name: 'rights',
             type: 9,
             flags: 0)
       ],
@@ -118,7 +128,10 @@ ModelDefinition getObjectBoxModel() {
               object.media == null ? null : fbb.writeString(object.media!);
           final summaryOffset =
               object.summary == null ? null : fbb.writeString(object.summary!);
-          fbb.startTable(8);
+          final topicOffset = fbb.writeString(object.topic);
+          final rightsOffset =
+              object.rights == null ? null : fbb.writeString(object.rights!);
+          fbb.startTable(10);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
           fbb.addOffset(2, authorOffset);
@@ -126,6 +139,8 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(4, excerptOffset);
           fbb.addOffset(5, mediaOffset);
           fbb.addOffset(6, summaryOffset);
+          fbb.addOffset(7, topicOffset);
+          fbb.addOffset(8, rightsOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -144,8 +159,12 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGetNullable(buffer, rootOffset, 12),
               media: const fb.StringReader(asciiOptimization: true)
                   .vTableGetNullable(buffer, rootOffset, 14),
+              topic: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 18, ''),
               summary: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 16))
+                  .vTableGetNullable(buffer, rootOffset, 16),
+              rights:
+                  const fb.StringReader(asciiOptimization: true).vTableGetNullable(buffer, rootOffset, 20))
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
@@ -183,4 +202,12 @@ class NewsModel_ {
   /// see [NewsModel.summary]
   static final summary =
       QueryStringProperty<NewsModel>(_entities[0].properties[6]);
+
+  /// see [NewsModel.topic]
+  static final topic =
+      QueryStringProperty<NewsModel>(_entities[0].properties[7]);
+
+  /// see [NewsModel.rights]
+  static final rights =
+      QueryStringProperty<NewsModel>(_entities[0].properties[8]);
 }

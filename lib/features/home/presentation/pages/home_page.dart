@@ -1,6 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/widgets/w_scale.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/data/extensions.dart';
@@ -32,10 +33,15 @@ class HomePage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Z-News',
-                  style: TextStyle(
-                      color: white, fontSize: 24, fontWeight: FontWeight.bold),
+                WScaleAnimation(
+                  onTap: () => Scaffold.of(context).openDrawer(),
+                  child: const Text(
+                    'Z-News',
+                    style: TextStyle(
+                        color: white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Row(
                   children: [

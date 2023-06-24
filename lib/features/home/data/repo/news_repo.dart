@@ -25,22 +25,22 @@ class NewsRepositoryImpl implements NewsRepository {
     await _localDataSource.saveBlocProperties(
         calendar: calendar, languages: languages, sources: resources);
     if (await _networkInfo.connected) {
-      try {
-        final result = await NewsRemoteDataSourceImpl(page).getNews(
-            langauges: languages,
-            calendar: calendar,
-            resources: resources,
-            topicIndex: topicIndex,
-            topics: topics);
+      // try {
+      final result = await NewsRemoteDataSourceImpl(page).getNews(
+          langauges: languages,
+          calendar: calendar,
+          resources: resources,
+          topicIndex: topicIndex,
+          topics: topics);
 
-        return Right((result.$1, result.$2));
-      } on ServerException catch (e) {
-        return Left(ServerFailure(
-            errorMessage: e.statusMessage, statusCode: e.statusCode.round()));
-      } catch (e) {
-        return Left(const ServerFailure(
-            errorMessage: 'Something went wrong ', statusCode: 500));
-      }
+      return Right((result.$1, result.$2));
+      // } on ServerException catch (e) {
+      //   return Left(ServerFailure(
+      //       errorMessage: e.statusMessage, statusCode: e.statusCode.round()));
+      // } catch (e) {
+      //   return Left(const ServerFailure(
+      //       errorMessage: 'Something went wrong ', statusCode: 500));
+      // }
     } else {
       return Left(const ServerFailure(errorMessage: 'No Internet'));
     }

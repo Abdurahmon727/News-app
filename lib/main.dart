@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,6 +36,7 @@ class _MyAppState extends State<MyApp> {
         title: 'News app',
         themeMode: ThemeMode.dark,
         darkTheme: ThemeData(
+          brightness: Brightness.dark,
           fontFamily: 'Roboto',
           useMaterial3: true,
         ),
@@ -45,23 +45,25 @@ class _MyAppState extends State<MyApp> {
           useMaterial3: true,
         ),
         home: const SplashScreen(),
-        builder: (context, child) => BlocListener<NewsBloc, NewsState>(
-          listenWhen: (previous, current) => previous.topics != current.topics,
-          listener: (context, state) {
-            print('listener worked');
-            if (state.topics.isEmpty) {
-              navigator.pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) => const ChooseTopicPage()),
-                  (route) => false);
-            } else {
-              navigator.pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                  (route) => false);
-            }
-          },
-          child: child,
-        ),
+        builder: (context, child) {
+          return BlocListener<NewsBloc, NewsState>(
+            listenWhen: (previous, current) =>
+                previous.topics != current.topics,
+            listener: (context, state) {
+              if (state.topics.isEmpty) {
+                navigator.pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => const ChooseTopicPage()),
+                    (route) => false);
+              } else {
+                navigator.pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    (route) => false);
+              }
+            },
+            child: child ?? const SplashScreen(),
+          );
+        },
       ),
     );
   }

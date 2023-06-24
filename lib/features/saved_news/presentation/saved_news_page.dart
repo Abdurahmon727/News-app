@@ -1,10 +1,9 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../assets/colors.dart';
-import '../../../core/widgets/appino_swiper/appino_swiper.dart';
-import '../../home/presentation/widgets/preview_news.dart';
 import 'bloc/saved_news_bloc.dart';
 
 class SavedNewsPage extends StatelessWidget {
@@ -81,19 +80,53 @@ class SavedNewsPage extends StatelessWidget {
             BlocBuilder<SavedNewsBloc, SavedNewsState>(
               builder: (context, state) {
                 if (state.models.isNotEmpty) {
-                  return Expanded(
-                    // height: 450,
-                    // width: double.maxFinite,
-                    child: WAppinioSwiper(
-                      loop: true,
-                      unlimitedUnswipe: true,
-                      controller: swiperController,
-                      currentIndex: state.currentPage,
-                      cardsBuilder: (context, index) => WPreviewNews(
-                          model: state.models[state.models.length - index - 1]),
-                      cardsCount: state.models.length,
-                      pageSavableBloc: context.read<SavedNewsBloc>(),
-                    ),
+                  return ListView.separated(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    shrinkWrap: true,
+                    itemCount: state.models.length,
+                    itemBuilder: (context, index) {
+                      final model = state.models[index];
+                      return SizedBox(
+                        height: 80,
+                        width: double.maxFinite,
+                        child: Row(children: [
+                          if (model.media != null)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: CachedNetworkImage(
+                                  imageUrl: model.media!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: Text(
+                                  state.models[index].title,
+                                  style: TextStyle(color: white),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                )),
+                                Row(
+                                  children: [
+                                    Text(
+                                        '${model.rights} \u{25CB} ${model.topic}')
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ]),
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 10),
                   );
                 }
                 return const Center(
