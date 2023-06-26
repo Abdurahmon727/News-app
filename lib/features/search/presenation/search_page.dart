@@ -39,26 +39,30 @@ class SearchPage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
+                      cursorOpacityAnimates: true,
+                      showCursor: true,
+                      cursorColor: white,
                       controller: searchController,
                       onSubmitted: (_) => context
                           .read<SearchBloc>()
                           .add(SearchEvent.search(searchController.text)),
                       style: const TextStyle(color: white, fontSize: 18),
                       decoration: InputDecoration(
-                          fillColor: Theme.of(context).primaryColor,
-                          hintText: 'Search news',
-                          hintStyle: TextStyle(color: white.withOpacity(0.7)),
-                          filled: true,
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 15),
-                          border: const OutlineInputBorder(
+                        fillColor: Theme.of(context).primaryColor,
+                        hintText: 'Search news',
+                        hintStyle: TextStyle(color: white.withOpacity(0.7)),
+                        filled: true,
+                        focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                          )),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 15),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),

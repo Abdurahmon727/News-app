@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/widgets/w_scale.dart';
-import 'package:news_app/features/home/presentation/pages/choose_topic_page.dart';
 
 import '../../../../core/bloc/theme/theme_bloc.dart';
+import '../../../../core/widgets/w_scale.dart';
+import '../pages/choose_topic_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -38,7 +38,8 @@ class HomeDrawer extends StatelessWidget {
                   Navigator.push(
                       context,
                       CupertinoPageRoute(
-                          builder: (context) => const ChooseTopicPage()));
+                        builder: (context) => const ChooseTopicPage(),
+                      ));
                 },
                 child: const ListTile(
                   title: Text('Change topics'),
