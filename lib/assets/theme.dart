@@ -6,12 +6,13 @@ class AppTheme {
   static ThemeData lightTheme() => ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: white),
         indicatorColor: black,
-        scaffoldBackgroundColor: white.withOpacity(1),
+        scaffoldBackgroundColor: white,
         appBarTheme: const AppBarTheme(
-            actionsIconTheme: IconThemeData(color: white),
-            centerTitle: true,
-            titleTextStyle: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.bold, color: black)),
+          actionsIconTheme: IconThemeData(color: white),
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: black),
+        ),
         fontFamily: 'Outfit',
         useMaterial3: true,
         brightness: Brightness.light,
@@ -30,6 +31,19 @@ class AppTheme {
         brightness: Brightness.dark,
         fontFamily: 'Outfit',
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          actionsIconTheme: IconThemeData(color: white),
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: black),
+        ),
+        textTheme: const TextTheme(
+          displayLarge: headline1,
+          displayMedium: headline2,
+          displaySmall: headline3,
+          headlineMedium: headline4,
+          headlineSmall: headline5,
+        ),
       );
 
   // Fonts

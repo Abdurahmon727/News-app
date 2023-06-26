@@ -1,22 +1,19 @@
-import 'package:flutter/material.dart';
-
-import '../assets/constants.dart';
 import 'models/home_datas.dart';
 
 abstract class AppFunctions {
-  static Color randomColor(int number, bool isLight) {
-    final colors = isLight ? backgroundColors : darkBackgroundColors;
-    final result = number ~/ colors.length;
+  // static Color randomColor(int number, bool isLight) {
+  //   final colors = isLight ? backgroundColors : darkBackgroundColors;
+  //   final result = number ~/ colors.length;
 
-    if (result.isEven) {
-      return colors[0];
-    } else if (result == 1) {
-      return colors[1];
-    } else if (result == 2) {
-      return colors[2];
-    }
-    return colors[3];
-  }
+  //   if (result.isEven) {
+  //     return colors[0];
+  //   } else if (result == 1) {
+  //     return colors[1];
+  //   } else if (result == 2) {
+  //     return colors[2];
+  //   }
+  //   return colors[3];
+  // }
 
   static String calendarToApiCall(Calendar calendar) {
     if (calendar == Calendar.none) return '';

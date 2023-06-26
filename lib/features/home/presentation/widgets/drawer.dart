@@ -19,11 +19,11 @@ class HomeDrawer extends StatelessWidget {
               trailing: BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, state) {
                   return Switch.adaptive(
-                    value: context.read<ThemeBloc>().state.isLight,
+                    value: !context.read<ThemeBloc>().state.isLight,
                     onChanged: (val) {
                       context
                           .read<ThemeBloc>()
-                          .add(ThemeEvent.changeTheme(isLight: val));
+                          .add(ThemeEvent.changeTheme(isLight: !val));
                     },
                   );
                 },

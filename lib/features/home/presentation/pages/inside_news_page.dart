@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/app_functions.dart';
-import '../../../../core/bloc/theme/theme_bloc.dart';
+
 import '../../../../core/widgets/w_interactive_viewer.dart';
 import '../../data/models/news.dart';
 
@@ -17,7 +15,6 @@ class _InsideNewsPageState extends State<InsideNewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       body: ListView(
         padding: const EdgeInsets.symmetric(
           vertical: 20,
@@ -27,10 +24,9 @@ class _InsideNewsPageState extends State<InsideNewsPage> {
           Align(
             alignment: Alignment.topLeft,
             child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.navigate_before)),
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.navigate_before),
+            ),
           ),
           Text(
             widget.model.title,
