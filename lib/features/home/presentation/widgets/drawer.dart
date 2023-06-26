@@ -10,25 +10,27 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          ListTile(
-            title: const Text('Theme'),
-            trailing: BlocBuilder<ThemeBloc, ThemeState>(
-              builder: (context, state) {
-                return Switch.adaptive(
-                  value: context.read<ThemeBloc>().state.isLight,
-                  onChanged: (val) {
-                    context
-                        .read<ThemeBloc>()
-                        .add(ThemeEvent.changeTheme(isLight: val));
-                  },
-                );
-              },
+    return SafeArea(
+      child: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              title: const Text('Theme'),
+              trailing: BlocBuilder<ThemeBloc, ThemeState>(
+                builder: (context, state) {
+                  return Switch.adaptive(
+                    value: context.read<ThemeBloc>().state.isLight,
+                    onChanged: (val) {
+                      context
+                          .read<ThemeBloc>()
+                          .add(ThemeEvent.changeTheme(isLight: val));
+                    },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

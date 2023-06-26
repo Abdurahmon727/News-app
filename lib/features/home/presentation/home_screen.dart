@@ -1,5 +1,6 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../assets/colors.dart';
@@ -63,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return AnnotatedRegion(
+      value:
+          SystemUiOverlayStyle(statusBarColor: Theme.of(context).primaryColor),
       child: Scaffold(
         drawer: const HomeDrawer(),
         body: Stack(

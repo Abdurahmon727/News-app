@@ -17,8 +17,7 @@ class _InsideNewsPageState extends State<InsideNewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppFunctions.randomColor(
-          widget.model.title.length, context.read<ThemeBloc>().state.isLight),
+      backgroundColor: Theme.of(context).primaryColor,
       body: ListView(
         padding: const EdgeInsets.symmetric(
           vertical: 20,

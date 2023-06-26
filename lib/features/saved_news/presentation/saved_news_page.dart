@@ -16,152 +16,154 @@ class SavedNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      key: scrollPositionKey,
-      slivers: [
-        SliverAppBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          automaticallyImplyLeading: false,
-          floating: true,
-          flexibleSpace: FlexibleSpaceBar(
-            centerTitle: true,
-            title: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  WScaleAnimation(
-                    onTap: () => Scaffold.of(context).openDrawer(),
-                    child: const Text('Saved News'),
-                  ),
-                  const Spacer(),
-                  PopupMenuButton(
-                    child: const Icon(
-                      Icons.more_vert,
-                      color: white,
+    return SafeArea(
+      child: CustomScrollView(
+        key: scrollPositionKey,
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Theme.of(context).primaryColor,
+            automaticallyImplyLeading: false,
+            floating: true,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    WScaleAnimation(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: const Text('Saved News'),
                     ),
-                    itemBuilder: (context) => [
-                      PopupMenuItem(
-                        onTap: () {
-                          Future.delayed(
-                            Duration.zero,
-                            () => showDialog(
-                              context: context,
-                              builder: (_) {
-                                return AlertDialog(
-                                  actionsPadding: EdgeInsets.zero,
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('No'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        context
-                                            .read<SavedNewsBloc>()
-                                            .add(const SavedNewsEvent.clear());
-                                      },
-                                      child: const Text('Yes, delete'),
-                                    )
-                                  ],
-                                  content: const Text(
-                                      'Are you sure to delete all saved news?'),
-                                );
-                              },
-                            ),
-                          );
-                        },
-                        child: const Text('Delete all'),
-                      )
-                    ],
-                  ),
-                ],
+                    const Spacer(),
+                    PopupMenuButton(
+                      child: const Icon(
+                        Icons.more_vert,
+                        color: white,
+                      ),
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          onTap: () {
+                            Future.delayed(
+                              Duration.zero,
+                              () => showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    actionsPadding: EdgeInsets.zero,
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('No'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          context.read<SavedNewsBloc>().add(
+                                              const SavedNewsEvent.clear());
+                                        },
+                                        child: const Text('Yes, delete'),
+                                      )
+                                    ],
+                                    content: const Text(
+                                        'Are you sure to delete all saved news?'),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          child: const Text('Delete all'),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        BlocBuilder<SavedNewsBloc, SavedNewsState>(
-          builder: (context, state) {
-            if (state.models.isNotEmpty) {
-              return SliverList.separated(
-                itemCount: state.models.length + 1,
-                itemBuilder: (context, index) {
-                  if (index >= state.models.length) {
-                    return const SizedBox(height: 80);
-                  }
+          BlocBuilder<SavedNewsBloc, SavedNewsState>(
+            builder: (context, state) {
+              if (state.models.isNotEmpty) {
+                return SliverList.separated(
+                  itemCount: state.models.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index >= state.models.length) {
+                      return const SizedBox(height: 80);
+                    }
 
-                  final model = state.models[state.models.length - 1 - index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => InsideNewsPage(model: model),
-                          )),
-                      child: SizedBox(
-                        height: 80,
-                        width: double.maxFinite,
-                        child: Row(children: [
-                          if (model.media != null)
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: SizedBox(
-                                height: 80,
-                                width: 80,
-                                child: CachedNetworkImage(
-                                  imageUrl: model.media!,
-                                  fit: BoxFit.cover,
+                    final model = state.models[state.models.length - 1 - index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) =>
+                                  InsideNewsPage(model: model),
+                            )),
+                        child: SizedBox(
+                          height: 80,
+                          width: double.maxFinite,
+                          child: Row(children: [
+                            if (model.media != null)
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: SizedBox(
+                                  height: 80,
+                                  width: 80,
+                                  child: CachedNetworkImage(
+                                    imageUrl: model.media!,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                    child: Text(
-                                  state.models[index].title,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                )),
-                                Row(
-                                  children: [
-                                    Expanded(
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
                                       child: Text(
-                                        '${model.rights} \u{25CB} ${model.topic}',
-                                        maxLines: 1,
-                                        style:
-                                            const TextStyle(color: Colors.grey),
+                                    state.models[index].title,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  )),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          '${model.rights} \u{25CB} ${model.topic}',
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                              color: Colors.grey),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ]),
+                          ]),
+                        ),
                       ),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => const Divider(),
-              );
-            }
-            return const SliverToBoxAdapter(
-              child: Center(
-                child: Text(
-                  'No saved news found',
-                  style: TextStyle(fontSize: 16),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const Divider(),
+                );
+              }
+              return const SliverToBoxAdapter(
+                child: Center(
+                  child: Text(
+                    'No saved news found',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-      ],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -21,9 +21,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: context.read<NewsBloc>().state.topics.length,
-      initialIndex: 0,
+    return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -232,28 +230,34 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Center(
-            child: TabBar(
-                onTap: (value) {
-                  if (value != context.read<NewsBloc>().state.topicIndex) {
-                    context.read<NewsBloc>().add(NewsEvent.changeTopic(value));
-                  }
-                },
-                dividerColor: Colors.transparent,
-                indicator: const BoxDecoration(),
-                unselectedLabelStyle: const TextStyle(fontSize: 16),
-                labelColor: Theme.of(context).indicatorColor,
-                isScrollable: true,
-                labelStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-                labelPadding: const EdgeInsets.all(8),
-                tabs: context
-                    .read<NewsBloc>()
-                    .state
-                    .topics
-                    .map((e) => Text(e.inCaps))
-                    .toList()),
+            child: DefaultTabController(
+              length: context.read<NewsBloc>().state.topics.length,
+              initialIndex: 0,
+              child: TabBar(
+                  onTap: (value) {
+                    if (value != context.read<NewsBloc>().state.topicIndex) {
+                      context
+                          .read<NewsBloc>()
+                          .add(NewsEvent.changeTopic(value));
+                    }
+                  },
+                  dividerColor: Colors.transparent,
+                  indicator: const BoxDecoration(),
+                  unselectedLabelStyle: const TextStyle(fontSize: 16),
+                  labelColor: Theme.of(context).indicatorColor,
+                  isScrollable: true,
+                  labelStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  labelPadding: const EdgeInsets.all(8),
+                  tabs: context
+                      .read<NewsBloc>()
+                      .state
+                      .topics
+                      .map((e) => Text(e.inCaps))
+                      .toList()),
+            ),
           ),
           BlocBuilder<SavedNewsBloc, SavedNewsState>(
             buildWhen: (previous, current) => previous.models != current.models,
