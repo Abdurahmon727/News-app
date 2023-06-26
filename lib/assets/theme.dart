@@ -4,8 +4,15 @@ import 'colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme() => ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: white),
+        indicatorColor: black,
+        scaffoldBackgroundColor: white.withOpacity(1),
+        appBarTheme: const AppBarTheme(
+            actionsIconTheme: IconThemeData(color: white),
+            centerTitle: true,
+            titleTextStyle: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: black)),
         fontFamily: 'Outfit',
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         brightness: Brightness.light,
         textTheme: const TextTheme(
@@ -18,6 +25,8 @@ class AppTheme {
       );
 
   static ThemeData darkTheme() => ThemeData(
+        indicatorColor: white,
+        scaffoldBackgroundColor: black,
         brightness: Brightness.dark,
         fontFamily: 'Outfit',
         useMaterial3: true,

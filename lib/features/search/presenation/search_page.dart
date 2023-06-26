@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../assets/colors.dart';
 import '../../../core/models/formz/formz_status.dart';
 import '../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../../core/widgets/w_scale.dart';
 import '../../home/presentation/widgets/preview_news.dart';
-
 import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
 
@@ -25,6 +26,17 @@ class SearchPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 5),
               child: Row(
                 children: [
+                  WScaleAnimation(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        child: const Icon(Icons.list, color: white),
+                      )),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       controller: searchController,
@@ -32,31 +44,36 @@ class SearchPage extends StatelessWidget {
                           .read<SearchBloc>()
                           .add(SearchEvent.search(searchController.text)),
                       style: const TextStyle(color: white, fontSize: 18),
-                      decoration: const InputDecoration(
-                          fillColor: darkGrey,
+                      decoration: InputDecoration(
+                          fillColor: Theme.of(context).primaryColor,
                           hintText: 'Search news',
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(color: white.withOpacity(0.7)),
                           filled: true,
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30))),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                          border: OutlineInputBorder(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 15),
+                          border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                           )),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  IconButton.filled(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith((_) => darkGrey)),
-                    onPressed: () => context
+                  WScaleAnimation(
+                    onTap: () => context
                         .read<SearchBloc>()
                         .add(SearchEvent.search(searchController.text)),
-                    icon: const Icon(Icons.search),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: const Icon(Icons.search, color: white),
+                    ),
                   ),
                 ],
               ),
@@ -77,8 +94,7 @@ class SearchPage extends StatelessWidget {
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('${state.currentPage}/${state.maxPage}',
-                              style: const TextStyle(color: white)),
+                          Text('${state.currentPage}/${state.maxPage}'),
                           SizedBox(
                             height: MediaQuery.sizeOf(context).height - 167,
                             width: double.maxFinite,
@@ -105,11 +121,8 @@ class SearchPage extends StatelessWidget {
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height - 173,
                             width: MediaQuery.of(context).size.width,
-                            child: Text(
-                              state.errorMessage,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(color: white),
-                            ),
+                            child: Text(state.errorMessage,
+                                textAlign: TextAlign.center),
                           ),
                         ),
                       );

@@ -1,13 +1,12 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/widgets/w_scale.dart';
 
-import '../../../../assets/colors.dart';
 import '../../../../core/data/extensions.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../../../core/widgets/w_scale.dart';
 import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
@@ -37,10 +36,7 @@ class HomePage extends StatelessWidget {
                   onTap: () => Scaffold.of(context).openDrawer(),
                   child: const Text(
                     'Z-News',
-                    style: TextStyle(
-                        color: white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Row(
@@ -51,7 +47,6 @@ class HomePage extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.replay_rounded,
-                          color: white,
                         )),
                     IconButton(
                       onPressed: () {
@@ -229,7 +224,6 @@ class HomePage extends StatelessWidget {
                       },
                       icon: const Icon(
                         Icons.sort,
-                        color: white,
                       ),
                     ),
                   ],
@@ -246,11 +240,10 @@ class HomePage extends StatelessWidget {
                 },
                 dividerColor: Colors.transparent,
                 indicator: const BoxDecoration(),
-                labelColor: white,
                 unselectedLabelStyle: const TextStyle(fontSize: 16),
+                labelColor: Theme.of(context).indicatorColor,
                 isScrollable: true,
                 labelStyle: const TextStyle(
-                  color: white,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -310,7 +303,6 @@ class HomePage extends StatelessWidget {
                           child: Text(
                             state.errorMessage,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(color: white),
                           ),
                         ),
                       ),

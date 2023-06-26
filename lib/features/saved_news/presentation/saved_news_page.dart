@@ -20,6 +20,7 @@ class SavedNewsPage extends StatelessWidget {
       key: scrollPositionKey,
       slivers: [
         SliverAppBar(
+          backgroundColor: Theme.of(context).primaryColor,
           automaticallyImplyLeading: false,
           floating: true,
           flexibleSpace: FlexibleSpaceBar(
@@ -30,17 +31,14 @@ class SavedNewsPage extends StatelessWidget {
                 children: [
                   WScaleAnimation(
                     onTap: () => Scaffold.of(context).openDrawer(),
-                    child: const Text(
-                      'Saved News',
-                      style: TextStyle(
-                          color: white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    child: const Text('Saved News'),
                   ),
                   const Spacer(),
                   PopupMenuButton(
-                    child: const Icon(Icons.more_vert, color: white),
+                    child: const Icon(
+                      Icons.more_vert,
+                      color: white,
+                    ),
                     itemBuilder: (context) => [
                       PopupMenuItem(
                         onTap: () {
@@ -157,7 +155,7 @@ class SavedNewsPage extends StatelessWidget {
               child: Center(
                 child: Text(
                   'No saved news found',
-                  style: TextStyle(color: white, fontSize: 16),
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             );

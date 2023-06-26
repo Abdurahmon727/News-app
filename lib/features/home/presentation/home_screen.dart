@@ -9,6 +9,7 @@ import '../../saved_news/presentation/saved_news_page.dart';
 import '../../search/presenation/bloc/search_bloc.dart';
 import '../../search/presenation/search_page.dart';
 import 'pages/home_page.dart';
+import 'widgets/drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -64,12 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: const Drawer(
-          child: Column(
-            children: [Icon(Icons.topic_rounded)],
-          ),
-        ),
-        backgroundColor: black,
+        drawer: const HomeDrawer(),
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
@@ -80,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButton: Container(
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-            color: black,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Row(
@@ -91,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith((_) {
                     if (indexPage == 0) return white;
-                    return darkGrey;
+                    return Theme.of(context).primaryColor;
                   }),
                 ),
                 onPressed: () {
@@ -103,7 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 icon: Icon(
                   Icons.home,
-                  color: indexPage == 0 ? black : white,
+                  color:
+                      indexPage == 0 ? Theme.of(context).primaryColor : white,
                 ),
               ),
               const SizedBox(width: 8),
@@ -113,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: MaterialStateProperty.resolveWith(
                     (_) {
                       if (indexPage == 1) return white;
-                      return darkGrey;
+                      return Theme.of(context).primaryColor;
                     },
                   ),
                 ),
@@ -126,7 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 icon: Icon(
                   Icons.search_rounded,
-                  color: indexPage == 1 ? black : white,
+                  color:
+                      indexPage == 1 ? Theme.of(context).primaryColor : white,
                 ),
               ),
               const SizedBox(width: 8),
@@ -135,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith((_) {
                   if (indexPage == 2) return white;
-                  return darkGrey;
+                  return Theme.of(context).primaryColor;
                 })),
                 onPressed: () {
                   if (indexPage != 2) {
@@ -146,7 +144,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 icon: Icon(
                   Icons.bookmark_border_rounded,
-                  color: indexPage == 2 ? black : white,
+                  color:
+                      indexPage == 2 ? Theme.of(context).primaryColor : white,
                 ),
               ),
             ],

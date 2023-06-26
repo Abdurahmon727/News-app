@@ -23,8 +23,6 @@ class _ChooseTopicPageState extends State<ChooseTopicPage> {
     super.initState();
   }
 
-  final shakeKey = GlobalKey();
-
   late List<String> topics;
   @override
   Widget build(BuildContext context) {
