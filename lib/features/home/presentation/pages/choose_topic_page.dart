@@ -27,7 +27,7 @@ class _ChooseTopicPageState extends State<ChooseTopicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: miskyRose,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -89,7 +89,9 @@ class _ChooseTopicPageState extends State<ChooseTopicPage> {
                           child: Text(
                             allTopics[index].inCaps,
                             style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
+                                color: black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       )

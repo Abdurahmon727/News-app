@@ -234,6 +234,8 @@ class HomePage extends StatelessWidget {
               length: context.read<NewsBloc>().state.topics.length,
               initialIndex: 0,
               child: TabBar(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.sizeOf(context).width / 2 - 50),
                   onTap: (value) {
                     if (value != context.read<NewsBloc>().state.topicIndex) {
                       context
@@ -302,8 +304,8 @@ class HomePage extends StatelessWidget {
                       child: SingleChildScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         child: SizedBox(
-                          height: MediaQuery.of(context).size.height - 173,
-                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.sizeOf(context).height - 173,
+                          width: MediaQuery.sizeOf(context).width,
                           child: Text(
                             state.errorMessage,
                             textAlign: TextAlign.center,
