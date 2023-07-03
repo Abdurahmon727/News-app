@@ -73,6 +73,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     on<_ChangeTopics>((event, emit) async {
       emit(state.copyWith(topics: event.topics));
       await NewsLocalDataSourceImpl().saveTopics(event.topics);
+      add(const NewsEvent.changeTopic(0));
     });
 
     on<_ChangeCurrentIndex>(
