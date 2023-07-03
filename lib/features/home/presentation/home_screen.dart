@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       value:
           SystemUiOverlayStyle(statusBarColor: Theme.of(context).primaryColor),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         drawer: const HomeDrawer(),
         body: Stack(
           alignment: Alignment.bottomCenter,

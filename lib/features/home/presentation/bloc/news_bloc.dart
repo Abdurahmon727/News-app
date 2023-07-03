@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/error/failure.dart';
@@ -71,9 +72,11 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     });
 
     on<_ChangeTopics>((event, emit) async {
-      emit(state.copyWith(topics: event.topics));
-      await NewsLocalDataSourceImpl().saveTopics(event.topics);
-      add(const NewsEvent.changeTopic(0));
+      if (!listEquals(state.topics, event.topics)) {
+        emit(state.copyWith(topics: event.topics));
+        await NewsLocalDataSourceImpl().saveTopics(event.topics);
+        add(const NewsEvent.changeTopic(0));
+      }
     });
 
     on<_ChangeCurrentIndex>(

@@ -49,7 +49,10 @@ class SavedNewsPage extends StatelessWidget {
                                 context: context,
                                 builder: (_) {
                                   return AlertDialog(
-                                    actionsPadding: EdgeInsets.zero,
+                                    actionsPadding: const EdgeInsets.only(
+                                      bottom: 10,
+                                      right: 10,
+                                    ),
                                     actions: [
                                       TextButton(
                                         onPressed: () {

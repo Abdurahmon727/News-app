@@ -16,8 +16,8 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
   final _dio = Dio();
   @override
   Future<(List<NewsModel>, int)> getSearchResult(String query, int page) async {
-    final response = await _dio.get(
-        'https://api.newscatcherapi.com/v2/search?q=$query&page=$page&page_size=5');
+    final response = await _dio
+        .get('https://api.newscatcherapi.com/v2/search?q=$query&page=$page');
 
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
       final data = response.data['articles'] as List?;
@@ -28,7 +28,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
       }
       final models = data.map((map) => NewsModel.fromMap(map)).toList();
 
-      return (models, response.data["page_size"] as int);
+      return (models, response.data["total_pages"] as int);
     } else {
       throw ServerException(
           statusMessage: 'Server not responding',
