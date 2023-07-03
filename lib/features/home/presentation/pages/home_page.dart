@@ -80,6 +80,7 @@ class HomePage extends StatelessWidget {
                                 content: SizedBox(
                                   width: double.maxFinite,
                                   child: ListView(
+                                    shrinkWrap: true,
                                     children: [
                                       const Text('News in period of last:'),
                                       Wrap(
@@ -232,7 +233,7 @@ class HomePage extends StatelessWidget {
           Center(
             child: DefaultTabController(
               length: context.read<NewsBloc>().state.topics.length,
-              initialIndex: 0,
+              initialIndex: context.read<NewsBloc>().state.topicIndex,
               child: TabBar(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.sizeOf(context).width / 2 - 50),

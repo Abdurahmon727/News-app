@@ -37,7 +37,8 @@ class _ChooseTopicPageState extends State<ChooseTopicPage> {
             children: [
               const Text(
                 'Select Interests',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.w600, color: white),
               ),
               ListView.separated(
                 shrinkWrap: true,
