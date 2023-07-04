@@ -1,4 +1,3 @@
-import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,12 +18,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     //initialize
-    homeSwipeController = AppinioSwiperController();
-    searchController = TextEditingController();
+
     pages = [
       MultiBlocProvider(
         providers: [
@@ -32,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
             value: sl<SavedNewsBloc>(),
           ),
         ],
-        child: HomePage(controller: homeSwipeController),
+        child: HomePage(),
       ),
       MultiBlocProvider(
         providers: [
@@ -43,9 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             value: sl<SavedNewsBloc>(),
           ),
         ],
-        child: SearchPage(
-          searchController: searchController,
-        ),
+        child: SearchPage(),
       ),
       BlocProvider.value(
         value: sl<SavedNewsBloc>()
@@ -53,106 +49,77 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const SavedNewsPage(),
       ),
     ];
+    tabController = TabController(length: pages.length, vsync: this);
     super.initState();
   }
 
   int indexPage = 0;
-  late final List pages;
+  late final List<Widget> pages;
 
-  late final AppinioSwiperController homeSwipeController;
-  late final TextEditingController searchController;
+  late final TabController tabController;
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value:
           SystemUiOverlayStyle(statusBarColor: Theme.of(context).primaryColor),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        drawer: const HomeDrawer(),
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            pages[indexPage],
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(30),
+      child: DefaultTabController(
+        length: 3,
+        initialIndex: 0,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          drawer: const HomeDrawer(),
+          body: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: tabController,
+            children: pages,
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton.filled(
-                iconSize: 35,
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith((_) {
-                    if (indexPage == 0) return white;
-                    return Theme.of(context).primaryColor;
-                  }),
-                ),
-                onPressed: () {
-                  if (indexPage != 0) {
-                    setState(() {
-                      indexPage = 0;
-                    });
-                  }
-                },
-                icon: Icon(
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Container(
+            height: 60,
+            width: 180,
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: TabBar(
+              enableFeedback: true,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: white,
+              ),
+              onTap: (value) {
+                setState(() {
+                  indexPage = value;
+                });
+                tabController.animateTo(value);
+              },
+              controller: tabController,
+              splashBorderRadius: BorderRadius.zero,
+              tabs: [
+                Icon(
                   Icons.home,
                   color:
                       indexPage == 0 ? Theme.of(context).primaryColor : white,
+                  size: 35,
                 ),
-              ),
-              const SizedBox(width: 8),
-              IconButton.filled(
-                iconSize: 35,
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith(
-                    (_) {
-                      if (indexPage == 1) return white;
-                      return Theme.of(context).primaryColor;
-                    },
-                  ),
-                ),
-                onPressed: () {
-                  if (indexPage != 1) {
-                    setState(() {
-                      indexPage = 1;
-                    });
-                  }
-                },
-                icon: Icon(
-                  Icons.search_rounded,
+                Icon(
+                  Icons.search_outlined,
+                  size: 35,
                   color:
                       indexPage == 1 ? Theme.of(context).primaryColor : white,
                 ),
-              ),
-              const SizedBox(width: 8),
-              IconButton.filled(
-                iconSize: 35,
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((_) {
-                  if (indexPage == 2) return white;
-                  return Theme.of(context).primaryColor;
-                })),
-                onPressed: () {
-                  if (indexPage != 2) {
-                    setState(() {
-                      indexPage = 2;
-                    });
-                  }
-                },
-                icon: Icon(
-                  Icons.bookmark_border_rounded,
+                Icon(
+                  Icons.bookmark_border_outlined,
+                  size: 35,
                   color:
                       indexPage == 2 ? Theme.of(context).primaryColor : white,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

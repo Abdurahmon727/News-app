@@ -12,12 +12,11 @@ import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({
+  HomePage({
     super.key,
-    required this.controller,
   });
 
-  final AppinioSwiperController controller;
+  final AppinioSwiperController controller = AppinioSwiperController();
 
   @override
   Widget build(BuildContext context) {

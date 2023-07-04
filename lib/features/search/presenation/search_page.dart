@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/features/search/presenation/widgets/news_tile.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/models/formz/formz_status.dart';
-import '../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../../../core/widgets/w_scale.dart';
-import '../../home/presentation/widgets/preview_news.dart';
 import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
+import 'widgets/news_tile.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key, required this.searchController});
+  SearchPage({
+    super.key,
+  });
   final PageStorageKey scrollPositionKey =
       const PageStorageKey('search news scroll positon');
 
-  final TextEditingController searchController;
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
