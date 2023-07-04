@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/app_functions.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../home/data/models/news.dart';
@@ -70,6 +71,13 @@ class SavedNewsTile extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     )),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        AppFunctions.dateToPeriod(model.publishedDate),
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                    ),
                     Row(
                       children: [
                         Expanded(

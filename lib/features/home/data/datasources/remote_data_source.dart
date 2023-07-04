@@ -40,7 +40,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
             statusMessage: 'No News found for this category', statusCode: 404);
       }
       final models = data.map((map) => NewsModel.fromMap(map)).toList();
-      return (models, response.data["page_size"] as int);
+      return (models, response.data["total_pages"] as int);
     } else {
       throw ServerException(
           statusMessage: 'Server not responding',
