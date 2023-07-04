@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/features/search/presenation/widgets/news_tile.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/models/formz/formz_status.dart';
@@ -11,6 +13,8 @@ import 'bloc/search_bloc.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key, required this.searchController});
+  final PageStorageKey scrollPositionKey =
+      const PageStorageKey('search news scroll positon');
 
   final TextEditingController searchController;
 
@@ -95,26 +99,66 @@ class SearchPage extends StatelessWidget {
                         FormzStatus.submissionInProgress) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (state.status == FormzStatus.submissionSuccess) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text('${state.currentPage}/${state.maxPage}'),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height - 167,
-                            width: double.maxFinite,
-                            child: WAppinioSwiper(
-                              onEnd: () => context.read<SearchBloc>().add(
-                                  SearchEvent.search(searchController.text)),
-                              currentIndex: state.currentCardIndex,
-                              unlimitedUnswipe: true,
-                              cardsBuilder: (context, index) => WPreviewNews(
-                                  model: state.resultModels[index]),
-                              cardsCount: state.resultModels.length,
-                              pageSavableBloc: context.read<SearchBloc>(),
-                            ),
-                          ),
-                        ],
+                      return Expanded(
+                        child: ListView.separated(
+                          key: scrollPositionKey,
+                          itemCount: state.resultModels.length + 1,
+                          itemBuilder: (context, index) {
+                            if (index == state.resultModels.length) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 150,
+                                width: double.maxFinite,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: state.isFailedToLoadMore
+                                      ? const SizedBox()
+                                      : const CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                            final model = state.resultModels[index];
+                            if (index == state.resultModels.length - 3) {
+                              return VisibilityDetector(
+                                  onVisibilityChanged: (visibilityInfo) {
+                                    final visibilityPercentage =
+                                        visibilityInfo.visibleFraction * 100;
+                                    if (visibilityPercentage == 100) {
+                                      context.read<SearchBloc>().add(
+                                          const SearchEvent
+                                              .fetchAndAddModels());
+                                    }
+                                  },
+                                  key: const Key('10'),
+                                  child: SearchNewsTile(model: model));
+                            }
+
+                            return SearchNewsTile(model: model);
+                          },
+                          separatorBuilder: (_, __) => const Divider(height: 0),
+                        ),
                       );
+                      // return Column(
+                      //   mainAxisSize: MainAxisSize.min,
+                      //   children: [
+                      //     Text('${state.currentPage}/${state.maxPage}'),
+                      //     SizedBox(
+                      //       height: MediaQuery.sizeOf(context).height - 167,
+                      //       width: double.maxFinite,
+                      //       child: WAppinioSwiper(
+                      //         onEnd: () => context.read<SearchBloc>().add(
+                      //             SearchEvent.search(searchController.text)),
+                      //         currentIndex: state.currentCardIndex,
+                      //         unlimitedUnswipe: true,
+                      //         cardsBuilder: (context, index) => WPreviewNews(
+                      //             model: state.resultModels[index]),
+                      //         cardsCount: state.resultModels.length,
+                      //         pageSavableBloc: context.read<SearchBloc>(),
+                      //       ),
+                      //     ),
+                      //     const SizedBox(height: 60),
+                      //   ],
+                      // );
                     } else {
                       return RefreshIndicator(
                         onRefresh: () async => context
@@ -135,7 +179,6 @@ class SearchPage extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: 60),
           ],
         ),
       );

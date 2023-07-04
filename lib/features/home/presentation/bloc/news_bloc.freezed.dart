@@ -120,12 +120,18 @@ class __$$_GetNewsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetNews implements _GetNews {
+class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
   const _$_GetNews();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsEvent.getNews()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'NewsEvent.getNews'));
   }
 
   @override
@@ -267,15 +273,23 @@ class __$$_ChangeTopicCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangeTopic implements _ChangeTopic {
+class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
   const _$_ChangeTopic(this.index);
 
   @override
   final int index;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsEvent.changeTopic(index: $index)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NewsEvent.changeTopic'))
+      ..add(DiagnosticsProperty('index', index));
   }
 
   @override
@@ -440,7 +454,7 @@ class __$$_ApplyFilterCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ApplyFilter implements _ApplyFilter {
+class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
   const _$_ApplyFilter(
       {required this.calendar,
       required final List<String> languages,
@@ -467,8 +481,18 @@ class _$_ApplyFilter implements _ApplyFilter {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsEvent.applyFilter(calendar: $calendar, languages: $languages, sources: $sources)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NewsEvent.applyFilter'))
+      ..add(DiagnosticsProperty('calendar', calendar))
+      ..add(DiagnosticsProperty('languages', languages))
+      ..add(DiagnosticsProperty('sources', sources));
   }
 
   @override
@@ -636,15 +660,25 @@ class __$$_ChangeCurrentIndexCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangeCurrentIndex implements _ChangeCurrentIndex {
+class _$_ChangeCurrentIndex
+    with DiagnosticableTreeMixin
+    implements _ChangeCurrentIndex {
   const _$_ChangeCurrentIndex(this.value);
 
   @override
   final int value;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsEvent.changeCurrentIndex(value: $value)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NewsEvent.changeCurrentIndex'))
+      ..add(DiagnosticsProperty('value', value));
   }
 
   @override
@@ -782,12 +816,18 @@ class __$$_InitCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res, _$_Init>
 
 /// @nodoc
 
-class _$_Init implements _Init {
+class _$_Init with DiagnosticableTreeMixin implements _Init {
   const _$_Init();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsEvent.init()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'NewsEvent.init'));
   }
 
   @override
@@ -929,7 +969,7 @@ class __$$_ChangeTopicsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangeTopics implements _ChangeTopics {
+class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
   const _$_ChangeTopics(final List<String> topics) : _topics = topics;
 
   final List<String> _topics;
@@ -941,8 +981,16 @@ class _$_ChangeTopics implements _ChangeTopics {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsEvent.changeTopics(topics: $topics)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NewsEvent.changeTopics'))
+      ..add(DiagnosticsProperty('topics', topics));
   }
 
   @override
@@ -1272,7 +1320,7 @@ class __$$_NewsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NewsState implements _NewsState {
+class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
   const _$_NewsState(
       {this.status = FormzStatus.pure,
       final List<NewsModel> models = const [],
@@ -1348,8 +1396,26 @@ class _$_NewsState implements _NewsState {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages, currentIndex: $currentIndex, topics: $topics)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NewsState'))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('models', models))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage))
+      ..add(DiagnosticsProperty('curruntPage', curruntPage))
+      ..add(DiagnosticsProperty('maxPage', maxPage))
+      ..add(DiagnosticsProperty('topicIndex', topicIndex))
+      ..add(DiagnosticsProperty('calendar', calendar))
+      ..add(DiagnosticsProperty('sources', sources))
+      ..add(DiagnosticsProperty('languages', languages))
+      ..add(DiagnosticsProperty('currentIndex', currentIndex))
+      ..add(DiagnosticsProperty('topics', topics));
   }
 
   @override

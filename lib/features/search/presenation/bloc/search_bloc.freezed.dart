@@ -20,18 +20,21 @@ mixin _$SearchEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String query) search,
     required TResult Function(int index) changeCurrentCardPage,
+    required TResult Function() fetchAndAddModels,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? search,
     TResult? Function(int index)? changeCurrentCardPage,
+    TResult? Function()? fetchAndAddModels,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? search,
     TResult Function(int index)? changeCurrentCardPage,
+    TResult Function()? fetchAndAddModels,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +43,21 @@ mixin _$SearchEvent {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeCurrentPageIndex value)
         changeCurrentCardPage,
+    required TResult Function(_FetchAndAddModels value) fetchAndAddModels,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult? Function(_FetchAndAddModels value)? fetchAndAddModels,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
     TResult Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult Function(_FetchAndAddModels value)? fetchAndAddModels,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,6 +145,7 @@ class _$_Search implements _Search {
   TResult when<TResult extends Object?>({
     required TResult Function(String query) search,
     required TResult Function(int index) changeCurrentCardPage,
+    required TResult Function() fetchAndAddModels,
   }) {
     return search(query);
   }
@@ -148,6 +155,7 @@ class _$_Search implements _Search {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? search,
     TResult? Function(int index)? changeCurrentCardPage,
+    TResult? Function()? fetchAndAddModels,
   }) {
     return search?.call(query);
   }
@@ -157,6 +165,7 @@ class _$_Search implements _Search {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? search,
     TResult Function(int index)? changeCurrentCardPage,
+    TResult Function()? fetchAndAddModels,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -171,6 +180,7 @@ class _$_Search implements _Search {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeCurrentPageIndex value)
         changeCurrentCardPage,
+    required TResult Function(_FetchAndAddModels value) fetchAndAddModels,
   }) {
     return search(this);
   }
@@ -180,6 +190,7 @@ class _$_Search implements _Search {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult? Function(_FetchAndAddModels value)? fetchAndAddModels,
   }) {
     return search?.call(this);
   }
@@ -189,6 +200,7 @@ class _$_Search implements _Search {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
     TResult Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult Function(_FetchAndAddModels value)? fetchAndAddModels,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -274,6 +286,7 @@ class _$_ChangeCurrentPageIndex implements _ChangeCurrentPageIndex {
   TResult when<TResult extends Object?>({
     required TResult Function(String query) search,
     required TResult Function(int index) changeCurrentCardPage,
+    required TResult Function() fetchAndAddModels,
   }) {
     return changeCurrentCardPage(index);
   }
@@ -283,6 +296,7 @@ class _$_ChangeCurrentPageIndex implements _ChangeCurrentPageIndex {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? search,
     TResult? Function(int index)? changeCurrentCardPage,
+    TResult? Function()? fetchAndAddModels,
   }) {
     return changeCurrentCardPage?.call(index);
   }
@@ -292,6 +306,7 @@ class _$_ChangeCurrentPageIndex implements _ChangeCurrentPageIndex {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? search,
     TResult Function(int index)? changeCurrentCardPage,
+    TResult Function()? fetchAndAddModels,
     required TResult orElse(),
   }) {
     if (changeCurrentCardPage != null) {
@@ -306,6 +321,7 @@ class _$_ChangeCurrentPageIndex implements _ChangeCurrentPageIndex {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeCurrentPageIndex value)
         changeCurrentCardPage,
+    required TResult Function(_FetchAndAddModels value) fetchAndAddModels,
   }) {
     return changeCurrentCardPage(this);
   }
@@ -315,6 +331,7 @@ class _$_ChangeCurrentPageIndex implements _ChangeCurrentPageIndex {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult? Function(_FetchAndAddModels value)? fetchAndAddModels,
   }) {
     return changeCurrentCardPage?.call(this);
   }
@@ -324,6 +341,7 @@ class _$_ChangeCurrentPageIndex implements _ChangeCurrentPageIndex {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
     TResult Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult Function(_FetchAndAddModels value)? fetchAndAddModels,
     required TResult orElse(),
   }) {
     if (changeCurrentCardPage != null) {
@@ -344,6 +362,115 @@ abstract class _ChangeCurrentPageIndex implements SearchEvent {
 }
 
 /// @nodoc
+abstract class _$$_FetchAndAddModelsCopyWith<$Res> {
+  factory _$$_FetchAndAddModelsCopyWith(_$_FetchAndAddModels value,
+          $Res Function(_$_FetchAndAddModels) then) =
+      __$$_FetchAndAddModelsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FetchAndAddModelsCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$_FetchAndAddModels>
+    implements _$$_FetchAndAddModelsCopyWith<$Res> {
+  __$$_FetchAndAddModelsCopyWithImpl(
+      _$_FetchAndAddModels _value, $Res Function(_$_FetchAndAddModels) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_FetchAndAddModels implements _FetchAndAddModels {
+  const _$_FetchAndAddModels();
+
+  @override
+  String toString() {
+    return 'SearchEvent.fetchAndAddModels()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_FetchAndAddModels);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String query) search,
+    required TResult Function(int index) changeCurrentCardPage,
+    required TResult Function() fetchAndAddModels,
+  }) {
+    return fetchAndAddModels();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? search,
+    TResult? Function(int index)? changeCurrentCardPage,
+    TResult? Function()? fetchAndAddModels,
+  }) {
+    return fetchAndAddModels?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String query)? search,
+    TResult Function(int index)? changeCurrentCardPage,
+    TResult Function()? fetchAndAddModels,
+    required TResult orElse(),
+  }) {
+    if (fetchAndAddModels != null) {
+      return fetchAndAddModels();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeCurrentPageIndex value)
+        changeCurrentCardPage,
+    required TResult Function(_FetchAndAddModels value) fetchAndAddModels,
+  }) {
+    return fetchAndAddModels(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult? Function(_FetchAndAddModels value)? fetchAndAddModels,
+  }) {
+    return fetchAndAddModels?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeCurrentPageIndex value)? changeCurrentCardPage,
+    TResult Function(_FetchAndAddModels value)? fetchAndAddModels,
+    required TResult orElse(),
+  }) {
+    if (fetchAndAddModels != null) {
+      return fetchAndAddModels(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAndAddModels implements SearchEvent {
+  const factory _FetchAndAddModels() = _$_FetchAndAddModels;
+}
+
+/// @nodoc
 mixin _$SearchState {
   FormzStatus get status => throw _privateConstructorUsedError;
   String get query => throw _privateConstructorUsedError;
@@ -352,6 +479,7 @@ mixin _$SearchState {
   int get maxPage => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   int get currentCardIndex => throw _privateConstructorUsedError;
+  bool get isFailedToLoadMore => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -371,7 +499,8 @@ abstract class $SearchStateCopyWith<$Res> {
       int currentPage,
       int maxPage,
       String errorMessage,
-      int currentCardIndex});
+      int currentCardIndex,
+      bool isFailedToLoadMore});
 }
 
 /// @nodoc
@@ -394,6 +523,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? maxPage = null,
     Object? errorMessage = null,
     Object? currentCardIndex = null,
+    Object? isFailedToLoadMore = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -424,6 +554,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.currentCardIndex
           : currentCardIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isFailedToLoadMore: null == isFailedToLoadMore
+          ? _value.isFailedToLoadMore
+          : isFailedToLoadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -443,7 +577,8 @@ abstract class _$$_SearchStateCopyWith<$Res>
       int currentPage,
       int maxPage,
       String errorMessage,
-      int currentCardIndex});
+      int currentCardIndex,
+      bool isFailedToLoadMore});
 }
 
 /// @nodoc
@@ -464,6 +599,7 @@ class __$$_SearchStateCopyWithImpl<$Res>
     Object? maxPage = null,
     Object? errorMessage = null,
     Object? currentCardIndex = null,
+    Object? isFailedToLoadMore = null,
   }) {
     return _then(_$_SearchState(
       status: null == status
@@ -494,6 +630,10 @@ class __$$_SearchStateCopyWithImpl<$Res>
           ? _value.currentCardIndex
           : currentCardIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isFailedToLoadMore: null == isFailedToLoadMore
+          ? _value.isFailedToLoadMore
+          : isFailedToLoadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -508,7 +648,8 @@ class _$_SearchState implements _SearchState {
       this.currentPage = 1,
       this.maxPage = 1,
       this.errorMessage = '',
-      this.currentCardIndex = 0})
+      this.currentCardIndex = 0,
+      this.isFailedToLoadMore = false})
       : _resultModels = resultModels;
 
   @override
@@ -538,10 +679,13 @@ class _$_SearchState implements _SearchState {
   @override
   @JsonKey()
   final int currentCardIndex;
+  @override
+  @JsonKey()
+  final bool isFailedToLoadMore;
 
   @override
   String toString() {
-    return 'SearchState(status: $status, query: $query, resultModels: $resultModels, currentPage: $currentPage, maxPage: $maxPage, errorMessage: $errorMessage, currentCardIndex: $currentCardIndex)';
+    return 'SearchState(status: $status, query: $query, resultModels: $resultModels, currentPage: $currentPage, maxPage: $maxPage, errorMessage: $errorMessage, currentCardIndex: $currentCardIndex, isFailedToLoadMore: $isFailedToLoadMore)';
   }
 
   @override
@@ -559,7 +703,9 @@ class _$_SearchState implements _SearchState {
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.currentCardIndex, currentCardIndex) ||
-                other.currentCardIndex == currentCardIndex));
+                other.currentCardIndex == currentCardIndex) &&
+            (identical(other.isFailedToLoadMore, isFailedToLoadMore) ||
+                other.isFailedToLoadMore == isFailedToLoadMore));
   }
 
   @override
@@ -571,7 +717,8 @@ class _$_SearchState implements _SearchState {
       currentPage,
       maxPage,
       errorMessage,
-      currentCardIndex);
+      currentCardIndex,
+      isFailedToLoadMore);
 
   @JsonKey(ignore: true)
   @override
@@ -588,7 +735,8 @@ abstract class _SearchState implements SearchState {
       final int currentPage,
       final int maxPage,
       final String errorMessage,
-      final int currentCardIndex}) = _$_SearchState;
+      final int currentCardIndex,
+      final bool isFailedToLoadMore}) = _$_SearchState;
 
   @override
   FormzStatus get status;
@@ -604,6 +752,8 @@ abstract class _SearchState implements SearchState {
   String get errorMessage;
   @override
   int get currentCardIndex;
+  @override
+  bool get isFailedToLoadMore;
   @override
   @JsonKey(ignore: true)
   _$$_SearchStateCopyWith<_$_SearchState> get copyWith =>

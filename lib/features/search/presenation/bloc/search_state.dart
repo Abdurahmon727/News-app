@@ -10,5 +10,6 @@ class SearchState with _$SearchState {
     @Default(1) int maxPage,
     @Default('') String errorMessage,
     @Default(0) int currentCardIndex,
+    @Default(false) bool isFailedToLoadMore,
   }) = _SearchState;
 }

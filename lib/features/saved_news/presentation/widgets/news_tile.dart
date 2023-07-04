@@ -21,10 +21,11 @@ class SavedNewsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => InsideNewsPage(model: model),
-          )),
+        context,
+        CupertinoPageRoute(
+          builder: (context) => InsideNewsPage(model: model),
+        ),
+      ),
       child: Dismissible(
         direction: DismissDirection.endToStart,
         key: ValueKey(model.title),

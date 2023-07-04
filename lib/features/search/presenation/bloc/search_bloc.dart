@@ -42,6 +42,25 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
       }
     });
 
+    on<_FetchAndAddModels>((event, emit) async {
+      final int page =
+          state.maxPage > state.currentPage ? state.currentPage + 1 : 1;
+      final SearchRepository repo = SearchRepositoryImpl();
+      final result = await repo.getSearchResults(state.query, page);
+      result.either((error) {
+        emit(state.copyWith(
+          isFailedToLoadMore: true,
+        ));
+      }, (data) {
+        emit(state.copyWith(
+          isFailedToLoadMore: false,
+          resultModels: state.resultModels + data.$1,
+          currentPage: page,
+          maxPage: data.$2,
+        ));
+      });
+    });
+
     on<_ChangeCurrentPageIndex>((event, emit) {
       emit(state.copyWith(currentCardIndex: event.index));
     });
