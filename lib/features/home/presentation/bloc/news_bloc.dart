@@ -89,6 +89,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
             resources: state.sources,
             topics: state.topics,
             topicIndex: state.topicIndex);
+
         result.either((failure) {
           emit(
             state.copyWith(

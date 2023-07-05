@@ -49,13 +49,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                        onPressed: () {
-                          controller.unswipe();
-                        },
-                        icon: const Icon(
-                          Icons.replay_rounded,
-                        )),
+                    if (context.watch<ThemeBloc>().state.isCardView)
+                      IconButton(
+                          onPressed: () {
+                            controller.unswipe();
+                          },
+                          icon: const Icon(
+                            Icons.replay_rounded,
+                          )),
                     IconButton(
                       onPressed: () {
                         showDialog(
@@ -78,6 +79,8 @@ class _HomePageState extends State<HomePage> {
                                       )),
                                   ElevatedButton(
                                       onPressed: () {
+                                        scrollPositionKey = AppFunctions
+                                            .getNewUniquePageStorageKey();
                                         context.read<NewsBloc>().add(
                                             NewsEvent.applyFilter(
                                                 calendar: calendar,
@@ -245,33 +248,31 @@ class _HomePageState extends State<HomePage> {
               length: context.read<NewsBloc>().state.topics.length,
               initialIndex: context.read<NewsBloc>().state.topicIndex,
               child: TabBar(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.sizeOf(context).width / 2 - 50),
-                  onTap: (value) {
-                    scrollPositionKey =
-                        AppFunctions.getNewUniquePageStorageKey();
-                    if (value != context.read<NewsBloc>().state.topicIndex) {
-                      context
-                          .read<NewsBloc>()
-                          .add(NewsEvent.changeTopic(value));
-                    }
-                  },
-                  dividerColor: Colors.transparent,
-                  indicator: const BoxDecoration(),
-                  unselectedLabelStyle: const TextStyle(fontSize: 16),
-                  labelColor: Theme.of(context).indicatorColor,
-                  isScrollable: true,
-                  labelStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  labelPadding: const EdgeInsets.all(8),
-                  tabs: context
-                      .read<NewsBloc>()
-                      .state
-                      .topics
-                      .map((e) => Text(e.inCaps))
-                      .toList()),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.sizeOf(context).width / 2 - 50),
+                onTap: (value) {
+                  scrollPositionKey = AppFunctions.getNewUniquePageStorageKey();
+                  if (value != context.read<NewsBloc>().state.topicIndex) {
+                    context.read<NewsBloc>().add(NewsEvent.changeTopic(value));
+                  }
+                },
+                dividerColor: Colors.transparent,
+                indicator: const BoxDecoration(),
+                unselectedLabelStyle: const TextStyle(fontSize: 16),
+                labelColor: Theme.of(context).indicatorColor,
+                isScrollable: true,
+                labelStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+                labelPadding: const EdgeInsets.all(8),
+                tabs: context
+                    .read<NewsBloc>()
+                    .state
+                    .topics
+                    .map((e) => Text(e.inCaps))
+                    .toList(),
+              ),
             ),
           ),
           BlocBuilder<SavedNewsBloc, SavedNewsState>(
@@ -289,28 +290,22 @@ class _HomePageState extends State<HomePage> {
                     final data = state.models;
                     if (context.read<ThemeBloc>().state.isCardView) {
                       return Expanded(
-                        child: Column(
-                          children: [
-                            WAppinioSwiper(
-                              currentIndex:
-                                  context.read<NewsBloc>().state.currentIndex,
-                              unlimitedUnswipe: true,
-                              onEnd: () {
-                                context
-                                    .read<NewsBloc>()
-                                    .add(const NewsEvent.getNews());
-                              },
-                              duration: const Duration(milliseconds: 300),
-                              controller: controller,
-                              padding: const EdgeInsets.all(20),
-                              cardsBuilder: (context, index) {
-                                return WPreviewNews(model: data[index]);
-                              },
-                              cardsCount: data.length,
-                              pageSavableBloc: context.read<NewsBloc>(),
-                            ),
-                            const SizedBox(height: 60),
-                          ],
+                        child: WAppinioSwiper(
+                          currentIndex:
+                              context.read<NewsBloc>().state.currentIndex,
+                          unlimitedUnswipe: true,
+                          onEnd: () => context
+                              .read<NewsBloc>()
+                              .add(const NewsEvent.getNews()),
+                          duration: const Duration(milliseconds: 300),
+                          controller: controller,
+                          padding: const EdgeInsets.only(
+                              bottom: 60, left: 20, right: 20, top: 10),
+                          cardsBuilder: (context, index) {
+                            return WPreviewNews(model: data[index]);
+                          },
+                          cardsCount: data.length,
+                          pageSavableBloc: context.read<NewsBloc>(),
                         ),
                       );
                     } else {

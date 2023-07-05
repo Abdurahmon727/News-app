@@ -22,7 +22,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         key: 'app_view_card',
         value: event.isCardView,
       );
-      emit(state.copyWith(isLight: event.isCardView));
+      emit(state.copyWith(isCardView: event.isCardView));
     });
 
     on<_LoadTheme>((event, emit) async {
@@ -33,7 +33,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       );
       final isCardView = StorageRepository.getBool(
         'app_view_card',
-        defValue: false,
+        defValue: true,
       );
       emit(state.copyWith(isLight: isLight, isCardView: isCardView));
     });

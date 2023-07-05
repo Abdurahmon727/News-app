@@ -44,7 +44,9 @@ class PaginationListView extends StatelessWidget {
                 onVisibilityChanged: (visibilityInfo) {
                   final visibilityPercentage =
                       visibilityInfo.visibleFraction * 100;
-                  if (visibilityPercentage == 100) {}
+                  if (visibilityPercentage == 100) {
+                    onLoadMore();
+                  }
                 },
                 key: const Key('10'),
                 child: NewsTile(model: model));

@@ -102,7 +102,7 @@ class SearchPage extends StatelessWidget {
                         FormzStatus.submissionInProgress) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (state.status == FormzStatus.submissionSuccess) {
-                      if (!context.read<ThemeBloc>().state.isCardView) {
+                      if (!context.watch<ThemeBloc>().state.isCardView) {
                         return Expanded(
                           child: ListView.separated(
                             key: scrollPositionKey,

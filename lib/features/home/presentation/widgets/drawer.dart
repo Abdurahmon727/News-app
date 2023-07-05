@@ -18,11 +18,11 @@ class HomeDrawer extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              title: const Text('Theme'),
+              title: const Text('Theme Light/Dart'),
               trailing: BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, state) {
                   return Switch.adaptive(
-                    value: !context.read<ThemeBloc>().state.isLight,
+                    value: !state.isLight,
                     onChanged: (val) {
                       context
                           .read<ThemeBloc>()
@@ -43,7 +43,22 @@ class HomeDrawer extends StatelessWidget {
                 },
                 child: const ListTile(
                   title: Text('Change topics'),
-                ))
+                )),
+            ListTile(
+              title: const Text('View Card/List'),
+              trailing: Builder(
+                builder: (context) {
+                  return Switch.adaptive(
+                    value: !context.watch<ThemeBloc>().state.isCardView,
+                    onChanged: (val) {
+                      context
+                          .read<ThemeBloc>()
+                          .add(ThemeEvent.changeView(isCardView: !val));
+                    },
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
