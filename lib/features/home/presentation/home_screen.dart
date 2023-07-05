@@ -78,47 +78,54 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: Container(
             height: 60,
-            width: 180,
+            width: 170,
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(30),
             ),
-            child: TabBar(
-              enableFeedback: true,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: white,
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: Theme.of(context).colorScheme.copyWith(
+                      surfaceVariant: Colors.transparent,
+                    ),
               ),
-              onTap: (value) {
-                setState(() {
-                  indexPage = value;
-                });
-                tabController.animateTo(value);
-              },
-              controller: tabController,
-              splashBorderRadius: BorderRadius.zero,
-              tabs: [
-                Icon(
-                  Icons.home,
-                  color:
-                      indexPage == 0 ? Theme.of(context).primaryColor : white,
-                  size: 35,
+              child: TabBar(
+                indicatorColor: Colors.transparent,
+                enableFeedback: true,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: white,
                 ),
-                Icon(
-                  Icons.search_outlined,
-                  size: 35,
-                  color:
-                      indexPage == 1 ? Theme.of(context).primaryColor : white,
-                ),
-                Icon(
-                  Icons.bookmark_border_outlined,
-                  size: 35,
-                  color:
-                      indexPage == 2 ? Theme.of(context).primaryColor : white,
-                ),
-              ],
+                onTap: (value) {
+                  setState(() {
+                    indexPage = value;
+                  });
+                },
+                splashBorderRadius: BorderRadius.zero,
+                controller: tabController,
+                tabs: [
+                  Icon(
+                    Icons.home,
+                    color:
+                        indexPage == 0 ? Theme.of(context).primaryColor : white,
+                    // size: 30,
+                  ),
+                  Icon(
+                    Icons.search_outlined,
+                    // size: 35,
+                    color:
+                        indexPage == 1 ? Theme.of(context).primaryColor : white,
+                  ),
+                  Icon(
+                    Icons.bookmark_border_outlined,
+                    // size: 35,
+                    color:
+                        indexPage == 2 ? Theme.of(context).primaryColor : white,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
