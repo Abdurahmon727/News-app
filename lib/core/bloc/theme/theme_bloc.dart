@@ -17,13 +17,25 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       emit(state.copyWith(isLight: event.isLight));
     });
 
+    on<_ChangeView>((event, emit) async {
+      await StorageRepository.putBool(
+        key: 'app_view_card',
+        value: event.isCardView,
+      );
+      emit(state.copyWith(isLight: event.isCardView));
+    });
+
     on<_LoadTheme>((event, emit) async {
       await StorageRepository.getInstance();
       final isLight = StorageRepository.getBool(
         'app_theme_light',
+        defValue: true,
+      );
+      final isCardView = StorageRepository.getBool(
+        'app_view_card',
         defValue: false,
       );
-      emit(state.copyWith(isLight: isLight));
+      emit(state.copyWith(isLight: isLight, isCardView: isCardView));
     });
   }
 }

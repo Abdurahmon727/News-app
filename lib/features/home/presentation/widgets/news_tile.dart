@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/app_functions.dart';
 
-import '../../../home/data/models/news.dart';
-import '../../../home/presentation/pages/inside_news_page.dart';
+import '../../data/models/news.dart';
+import '../pages/inside_news_page.dart';
 
-class SearchNewsTile extends StatelessWidget {
-  const SearchNewsTile({
+class NewsTile extends StatelessWidget {
+  const NewsTile({
     super.key,
     required this.model,
   });

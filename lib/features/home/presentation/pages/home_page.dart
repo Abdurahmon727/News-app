@@ -1,20 +1,31 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/app_functions.dart';
 
+import '../../../../core/bloc/theme/theme_bloc.dart';
 import '../../../../core/data/extensions.dart';
 import '../../../../core/models/formz/formz_status.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../../../core/widgets/pagination_loader.dart';
 import '../../../../core/widgets/w_scale.dart';
 import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
   });
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  PageStorageKey<String> scrollPositionKey =
+      const PageStorageKey('home_position_key');
 
   final AppinioSwiperController controller = AppinioSwiperController();
 
@@ -237,6 +248,8 @@ class HomePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.sizeOf(context).width / 2 - 50),
                   onTap: (value) {
+                    scrollPositionKey =
+                        AppFunctions.getNewUniquePageStorageKey();
                     if (value != context.read<NewsBloc>().state.topicIndex) {
                       context
                           .read<NewsBloc>()
@@ -274,26 +287,42 @@ class HomePage extends StatelessWidget {
                   }
                   if (state.status == FormzStatus.submissionSuccess) {
                     final data = state.models;
-                    return Expanded(
-                      child: WAppinioSwiper(
-                        currentIndex:
-                            context.read<NewsBloc>().state.currentIndex,
-                        unlimitedUnswipe: true,
-                        onEnd: () {
-                          context
-                              .read<NewsBloc>()
-                              .add(const NewsEvent.getNews());
-                        },
-                        duration: const Duration(milliseconds: 300),
-                        controller: controller,
-                        padding: const EdgeInsets.all(20),
-                        cardsBuilder: (context, index) {
-                          return WPreviewNews(model: data[index]);
-                        },
-                        cardsCount: data.length,
-                        pageSavableBloc: context.read<NewsBloc>(),
-                      ),
-                    );
+                    if (context.read<ThemeBloc>().state.isCardView) {
+                      return Expanded(
+                        child: Column(
+                          children: [
+                            WAppinioSwiper(
+                              currentIndex:
+                                  context.read<NewsBloc>().state.currentIndex,
+                              unlimitedUnswipe: true,
+                              onEnd: () {
+                                context
+                                    .read<NewsBloc>()
+                                    .add(const NewsEvent.getNews());
+                              },
+                              duration: const Duration(milliseconds: 300),
+                              controller: controller,
+                              padding: const EdgeInsets.all(20),
+                              cardsBuilder: (context, index) {
+                                return WPreviewNews(model: data[index]);
+                              },
+                              cardsCount: data.length,
+                              pageSavableBloc: context.read<NewsBloc>(),
+                            ),
+                            const SizedBox(height: 60),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return PaginationListView(
+                        scrollPositionKey: scrollPositionKey,
+                        isFailedToLoadMore: state.isFailedToLoadMore,
+                        models: state.models,
+                        onLoadMore: () => context
+                            .read<NewsBloc>()
+                            .add(const NewsEvent.loadPagination()),
+                      );
+                    }
                   } else if (state.status == FormzStatus.submissionInProgress) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
@@ -318,7 +347,6 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 60),
         ],
       ),
     );

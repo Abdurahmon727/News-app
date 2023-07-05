@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
           value: sl<NewsBloc>()..add(const NewsEvent.init()),
         ),
         BlocProvider(
-          create: (context) => ThemeBloc()..add(const ThemeEvent.loadTheme()),
+          create: (context) => ThemeBloc()..add(const ThemeEvent.load()),
         ),
       ],
       child: Builder(builder: (context) {

@@ -1,68 +1,59 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
-// import '../../assets/colors.dart';
+import '../../features/home/data/models/news.dart';
+import '../../features/home/presentation/widgets/news_tile.dart';
 
-// class PaginationLoader extends StatelessWidget {
-//   final ScrollPhysics? scrollPhysics;
-//   final EdgeInsets? margin;
-//   final EdgeInsets? padding;
-//   final List<dynamic> list;
-//   final int totalPages;
-//   final int currentPage;
-//   final bool isLoading;
-//   final VoidCallback onLoadMore;
-//   final double seperatorHeight;
-//   final bool isFailedToLoad;
-//   const PaginationLoader({
-//     required this.list,
-//     required this.onLoadMore,
-//     required this.isLoading,
-//     required this.currentPage,
-//     required this.totalPages,
-//     required this.isFailedToLoad,
-//     this.seperatorHeight = 0,
-//     this.scrollPhysics,
-//     this.padding,
-//     this.margin,
-//     Key? key,
-//   }) : super(key: key);
+class PaginationListView extends StatelessWidget {
+  const PaginationListView({
+    super.key,
+    this.scrollPositionKey,
+    required this.models,
+    required this.onLoadMore,
+    required this.isFailedToLoadMore,
+  });
 
-//   @override
-//   Widget build(BuildContext context) => Container(
-//         margin: margin,
-//         child: SingleChildScrollView(
-//           padding: padding,
-//           physics: scrollPhysics,
-//           child: Column(
-//             children: [
-//               ...List.generate(
-//                 list.length,
-//                 (index) => Container(
-//                   padding: EdgeInsets.only(bottom: seperatorHeight),
-//                   child: list[index],
-//                 ),
-//               ),
-//               // ...list,
-//               if (totalPages > currentPage)
-//                 VisibilityDetector(
-//                   key: const Key('my-key'),
-//                   onVisibilityChanged: (visibilityInfo) {
-//                     final visibilityPercentage =
-//                         visibilityInfo.visibleFraction * 100;
-//                     if (visibilityPercentage == 100) {
-//                       onLoadMore();
-//                     }
-//                   },
-//                   child: !isFailedToLoad
-//                       ? const CircularProgressIndicator.adaptive(
-//                           backgroundColor: black)
-//                       : const SizedBox(),
-//                 )
-//               else
-//                 const SizedBox()
-//             ],
-//           ),
-//         ),
-//       );
-// }
+  final List<NewsModel> models;
+  final VoidCallback onLoadMore;
+  final bool isFailedToLoadMore;
+  final PageStorageKey<String>? scrollPositionKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.separated(
+        key: scrollPositionKey,
+        itemCount: models.length + 1,
+        itemBuilder: (context, index) {
+          if (index == models.length) {
+            return Container(
+              alignment: Alignment.topCenter,
+              height: 150,
+              width: double.maxFinite,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: isFailedToLoadMore
+                    ? const SizedBox()
+                    : const CircularProgressIndicator(),
+              ),
+            );
+          }
+          final model = models[index];
+          if (index == models.length - 3) {
+            return VisibilityDetector(
+                onVisibilityChanged: (visibilityInfo) {
+                  final visibilityPercentage =
+                      visibilityInfo.visibleFraction * 100;
+                  if (visibilityPercentage == 100) {}
+                },
+                key: const Key('10'),
+                child: NewsTile(model: model));
+          }
+
+          return NewsTile(model: model);
+        },
+        separatorBuilder: (_, __) => const Divider(height: 0),
+      ),
+    );
+  }
+}

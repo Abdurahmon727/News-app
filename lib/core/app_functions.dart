@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
 import 'models/home_datas.dart';
 
 abstract class AppFunctions {
@@ -14,6 +18,13 @@ abstract class AppFunctions {
   //   }
   //   return colors[3];
   // }
+
+  static PageStorageKey<String> getNewUniquePageStorageKey() {
+    int randomNumber = Random().nextInt(10000000);
+
+    // Create a new PageStorageKey with the random number.
+    return PageStorageKey(randomNumber.toString());
+  }
 
   static String calendarToApiCall(Calendar calendar) {
     if (calendar == Calendar.none) return '';

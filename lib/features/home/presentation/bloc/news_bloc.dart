@@ -79,6 +79,35 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
       }
     });
 
+    on<_LoadPagination>((event, emit) async {
+      final isLoadingNextPage = state.maxPage > state.curruntPage;
+      if (isLoadingNextPage) {
+        final repository = NewsRepositoryImpl(page: state.curruntPage + 1);
+        final result = await repository.getNews(
+            languages: state.languages,
+            calendar: state.calendar,
+            resources: state.sources,
+            topics: state.topics,
+            topicIndex: state.topicIndex);
+        result.either((failure) {
+          emit(
+            state.copyWith(
+              isFailedToLoadMore: true,
+            ),
+          );
+        }, (data) {
+          emit(state.copyWith(
+            curruntPage: state.curruntPage + 1,
+            isFailedToLoadMore: false,
+            models: state.models + data.$1,
+            maxPage: data.$2,
+          ));
+        });
+      } else {
+        emit(state.copyWith(isFailedToLoadMore: true));
+      }
+    });
+
     on<_ChangeCurrentIndex>(
         (event, emit) => emit(state.copyWith(currentIndex: event.value)));
   }

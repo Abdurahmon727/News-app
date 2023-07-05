@@ -26,6 +26,7 @@ mixin _$NewsEvent {
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,7 @@ mixin _$NewsEvent {
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,7 @@ mixin _$NewsEvent {
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +64,7 @@ mixin _$NewsEvent {
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +75,7 @@ mixin _$NewsEvent {
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +86,7 @@ mixin _$NewsEvent {
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -154,6 +160,7 @@ class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) {
     return getNews();
   }
@@ -169,6 +176,7 @@ class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) {
     return getNews?.call();
   }
@@ -184,6 +192,7 @@ class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -201,6 +210,7 @@ class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) {
     return getNews(this);
   }
@@ -214,6 +224,7 @@ class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) {
     return getNews?.call(this);
   }
@@ -227,6 +238,7 @@ class _$_GetNews with DiagnosticableTreeMixin implements _GetNews {
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -320,6 +332,7 @@ class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) {
     return changeTopic(index);
   }
@@ -335,6 +348,7 @@ class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) {
     return changeTopic?.call(index);
   }
@@ -350,6 +364,7 @@ class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) {
     if (changeTopic != null) {
@@ -367,6 +382,7 @@ class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) {
     return changeTopic(this);
   }
@@ -380,6 +396,7 @@ class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) {
     return changeTopic?.call(this);
   }
@@ -393,6 +410,7 @@ class _$_ChangeTopic with DiagnosticableTreeMixin implements _ChangeTopic {
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) {
     if (changeTopic != null) {
@@ -531,6 +549,7 @@ class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) {
     return applyFilter(calendar, languages, sources);
   }
@@ -546,6 +565,7 @@ class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) {
     return applyFilter?.call(calendar, languages, sources);
   }
@@ -561,6 +581,7 @@ class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -578,6 +599,7 @@ class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) {
     return applyFilter(this);
   }
@@ -591,6 +613,7 @@ class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) {
     return applyFilter?.call(this);
   }
@@ -604,6 +627,7 @@ class _$_ApplyFilter with DiagnosticableTreeMixin implements _ApplyFilter {
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -710,6 +734,7 @@ class _$_ChangeCurrentIndex
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) {
     return changeCurrentIndex(value);
   }
@@ -725,6 +750,7 @@ class _$_ChangeCurrentIndex
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) {
     return changeCurrentIndex?.call(value);
   }
@@ -740,6 +766,7 @@ class _$_ChangeCurrentIndex
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) {
     if (changeCurrentIndex != null) {
@@ -757,6 +784,7 @@ class _$_ChangeCurrentIndex
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) {
     return changeCurrentIndex(this);
   }
@@ -770,6 +798,7 @@ class _$_ChangeCurrentIndex
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) {
     return changeCurrentIndex?.call(this);
   }
@@ -783,6 +812,7 @@ class _$_ChangeCurrentIndex
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) {
     if (changeCurrentIndex != null) {
@@ -850,6 +880,7 @@ class _$_Init with DiagnosticableTreeMixin implements _Init {
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) {
     return init();
   }
@@ -865,6 +896,7 @@ class _$_Init with DiagnosticableTreeMixin implements _Init {
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) {
     return init?.call();
   }
@@ -880,6 +912,7 @@ class _$_Init with DiagnosticableTreeMixin implements _Init {
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -897,6 +930,7 @@ class _$_Init with DiagnosticableTreeMixin implements _Init {
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) {
     return init(this);
   }
@@ -910,6 +944,7 @@ class _$_Init with DiagnosticableTreeMixin implements _Init {
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) {
     return init?.call(this);
   }
@@ -923,6 +958,7 @@ class _$_Init with DiagnosticableTreeMixin implements _Init {
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -1022,6 +1058,7 @@ class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
     required TResult Function(int value) changeCurrentIndex,
     required TResult Function() init,
     required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
   }) {
     return changeTopics(topics);
   }
@@ -1037,6 +1074,7 @@ class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
     TResult? Function(int value)? changeCurrentIndex,
     TResult? Function()? init,
     TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
   }) {
     return changeTopics?.call(topics);
   }
@@ -1052,6 +1090,7 @@ class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
     TResult Function(int value)? changeCurrentIndex,
     TResult Function()? init,
     TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
     required TResult orElse(),
   }) {
     if (changeTopics != null) {
@@ -1069,6 +1108,7 @@ class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
     required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
   }) {
     return changeTopics(this);
   }
@@ -1082,6 +1122,7 @@ class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
     TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
   }) {
     return changeTopics?.call(this);
   }
@@ -1095,6 +1136,7 @@ class _$_ChangeTopics with DiagnosticableTreeMixin implements _ChangeTopics {
     TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
     required TResult orElse(),
   }) {
     if (changeTopics != null) {
@@ -1114,6 +1156,152 @@ abstract class _ChangeTopics implements NewsEvent {
 }
 
 /// @nodoc
+abstract class _$$_LoadPaginationCopyWith<$Res> {
+  factory _$$_LoadPaginationCopyWith(
+          _$_LoadPagination value, $Res Function(_$_LoadPagination) then) =
+      __$$_LoadPaginationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadPaginationCopyWithImpl<$Res>
+    extends _$NewsEventCopyWithImpl<$Res, _$_LoadPagination>
+    implements _$$_LoadPaginationCopyWith<$Res> {
+  __$$_LoadPaginationCopyWithImpl(
+      _$_LoadPagination _value, $Res Function(_$_LoadPagination) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_LoadPagination
+    with DiagnosticableTreeMixin
+    implements _LoadPagination {
+  const _$_LoadPagination();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'NewsEvent.loadPagination()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'NewsEvent.loadPagination'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LoadPagination);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getNews,
+    required TResult Function(int index) changeTopic,
+    required TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)
+        applyFilter,
+    required TResult Function(int value) changeCurrentIndex,
+    required TResult Function() init,
+    required TResult Function(List<String> topics) changeTopics,
+    required TResult Function() loadPagination,
+  }) {
+    return loadPagination();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getNews,
+    TResult? Function(int index)? changeTopic,
+    TResult? Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
+    TResult? Function(int value)? changeCurrentIndex,
+    TResult? Function()? init,
+    TResult? Function(List<String> topics)? changeTopics,
+    TResult? Function()? loadPagination,
+  }) {
+    return loadPagination?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getNews,
+    TResult Function(int index)? changeTopic,
+    TResult Function(
+            Calendar calendar, List<String> languages, List<String> sources)?
+        applyFilter,
+    TResult Function(int value)? changeCurrentIndex,
+    TResult Function()? init,
+    TResult Function(List<String> topics)? changeTopics,
+    TResult Function()? loadPagination,
+    required TResult orElse(),
+  }) {
+    if (loadPagination != null) {
+      return loadPagination();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetNews value) getNews,
+    required TResult Function(_ChangeTopic value) changeTopic,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ChangeCurrentIndex value) changeCurrentIndex,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTopics value) changeTopics,
+    required TResult Function(_LoadPagination value) loadPagination,
+  }) {
+    return loadPagination(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_ChangeTopic value)? changeTopic,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ChangeCurrentIndex value)? changeCurrentIndex,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTopics value)? changeTopics,
+    TResult? Function(_LoadPagination value)? loadPagination,
+  }) {
+    return loadPagination?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetNews value)? getNews,
+    TResult Function(_ChangeTopic value)? changeTopic,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ChangeCurrentIndex value)? changeCurrentIndex,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTopics value)? changeTopics,
+    TResult Function(_LoadPagination value)? loadPagination,
+    required TResult orElse(),
+  }) {
+    if (loadPagination != null) {
+      return loadPagination(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadPagination implements NewsEvent {
+  const factory _LoadPagination() = _$_LoadPagination;
+}
+
+/// @nodoc
 mixin _$NewsState {
   FormzStatus get status => throw _privateConstructorUsedError;
   List<NewsModel> get models => throw _privateConstructorUsedError;
@@ -1125,6 +1313,7 @@ mixin _$NewsState {
   List<String> get sources => throw _privateConstructorUsedError;
   List<String> get languages => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
+  bool get isFailedToLoadMore => throw _privateConstructorUsedError;
   List<String> get topics => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1148,6 +1337,7 @@ abstract class $NewsStateCopyWith<$Res> {
       List<String> sources,
       List<String> languages,
       int currentIndex,
+      bool isFailedToLoadMore,
       List<String> topics});
 }
 
@@ -1174,6 +1364,7 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
     Object? sources = null,
     Object? languages = null,
     Object? currentIndex = null,
+    Object? isFailedToLoadMore = null,
     Object? topics = null,
   }) {
     return _then(_value.copyWith(
@@ -1217,6 +1408,10 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
           ? _value.currentIndex
           : currentIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isFailedToLoadMore: null == isFailedToLoadMore
+          ? _value.isFailedToLoadMore
+          : isFailedToLoadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
       topics: null == topics
           ? _value.topics
           : topics // ignore: cast_nullable_to_non_nullable
@@ -1243,6 +1438,7 @@ abstract class _$$_NewsStateCopyWith<$Res> implements $NewsStateCopyWith<$Res> {
       List<String> sources,
       List<String> languages,
       int currentIndex,
+      bool isFailedToLoadMore,
       List<String> topics});
 }
 
@@ -1267,6 +1463,7 @@ class __$$_NewsStateCopyWithImpl<$Res>
     Object? sources = null,
     Object? languages = null,
     Object? currentIndex = null,
+    Object? isFailedToLoadMore = null,
     Object? topics = null,
   }) {
     return _then(_$_NewsState(
@@ -1310,6 +1507,10 @@ class __$$_NewsStateCopyWithImpl<$Res>
           ? _value.currentIndex
           : currentIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isFailedToLoadMore: null == isFailedToLoadMore
+          ? _value.isFailedToLoadMore
+          : isFailedToLoadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
       topics: null == topics
           ? _value._topics
           : topics // ignore: cast_nullable_to_non_nullable
@@ -1332,6 +1533,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
       final List<String> sources = const [],
       final List<String> languages = const [],
       this.currentIndex = 0,
+      this.isFailedToLoadMore = false,
       final List<String> topics = const []})
       : _models = models,
         _sources = sources,
@@ -1386,6 +1588,9 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
   @override
   @JsonKey()
   final int currentIndex;
+  @override
+  @JsonKey()
+  final bool isFailedToLoadMore;
   final List<String> _topics;
   @override
   @JsonKey()
@@ -1397,7 +1602,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages, currentIndex: $currentIndex, topics: $topics)';
+    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages, currentIndex: $currentIndex, isFailedToLoadMore: $isFailedToLoadMore, topics: $topics)';
   }
 
   @override
@@ -1415,6 +1620,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
       ..add(DiagnosticsProperty('sources', sources))
       ..add(DiagnosticsProperty('languages', languages))
       ..add(DiagnosticsProperty('currentIndex', currentIndex))
+      ..add(DiagnosticsProperty('isFailedToLoadMore', isFailedToLoadMore))
       ..add(DiagnosticsProperty('topics', topics));
   }
 
@@ -1439,6 +1645,8 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
                 .equals(other._languages, _languages) &&
             (identical(other.currentIndex, currentIndex) ||
                 other.currentIndex == currentIndex) &&
+            (identical(other.isFailedToLoadMore, isFailedToLoadMore) ||
+                other.isFailedToLoadMore == isFailedToLoadMore) &&
             const DeepCollectionEquality().equals(other._topics, _topics));
   }
 
@@ -1455,6 +1663,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
       const DeepCollectionEquality().hash(_sources),
       const DeepCollectionEquality().hash(_languages),
       currentIndex,
+      isFailedToLoadMore,
       const DeepCollectionEquality().hash(_topics));
 
   @JsonKey(ignore: true)
@@ -1476,6 +1685,7 @@ abstract class _NewsState implements NewsState {
       final List<String> sources,
       final List<String> languages,
       final int currentIndex,
+      final bool isFailedToLoadMore,
       final List<String> topics}) = _$_NewsState;
 
   @override
@@ -1498,6 +1708,8 @@ abstract class _NewsState implements NewsState {
   List<String> get languages;
   @override
   int get currentIndex;
+  @override
+  bool get isFailedToLoadMore;
   @override
   List<String> get topics;
   @override

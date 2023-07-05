@@ -13,5 +13,6 @@ class NewsState with _$NewsState {
       @Default([]) List<String> sources,
       @Default([]) List<String> languages,
       @Default(0) int currentIndex,
+      @Default(false) bool isFailedToLoadMore,
       @Default([]) List<String> topics}) = _NewsState;
 }
