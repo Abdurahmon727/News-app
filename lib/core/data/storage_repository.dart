@@ -24,7 +24,7 @@ class StorageRepository {
     return _preferences!.setString(key, value);
   }
 
-  static Future<bool>? putInt(String key, int value) {
+  static Future<bool>? putInt({required String key, required int value}) {
     if (_preferences == null) return null;
     return _preferences!.setInt(key, value);
   }

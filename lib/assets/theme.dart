@@ -5,6 +5,7 @@ import 'colors.dart';
 class AppTheme {
   static ThemeData lightTheme() => ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: white),
+        hoverColor: Colors.blueGrey.withOpacity(0.15),
         indicatorColor: black,
         scaffoldBackgroundColor: white,
         appBarTheme: const AppBarTheme(
@@ -26,6 +27,7 @@ class AppTheme {
       );
 
   static ThemeData darkTheme() => ThemeData(
+        hoverColor: Colors.blueGrey.withOpacity(0.2),
         indicatorColor: white,
         scaffoldBackgroundColor: black,
         brightness: Brightness.dark,

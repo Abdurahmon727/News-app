@@ -19,22 +19,28 @@ mixin _$ThemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(bool isLight) changeTheme,
-    required TResult Function(bool isCardView) changeView,
+    required TResult Function() changeTheme,
+    required TResult Function() changeUseSystemTheme,
+    required TResult Function(int index) changePrimaryColorIndex,
+    required TResult Function() changeView,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(bool isLight)? changeTheme,
-    TResult? Function(bool isCardView)? changeView,
+    TResult? Function()? changeTheme,
+    TResult? Function()? changeUseSystemTheme,
+    TResult? Function(int index)? changePrimaryColorIndex,
+    TResult? Function()? changeView,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(bool isLight)? changeTheme,
-    TResult Function(bool isCardView)? changeView,
+    TResult Function()? changeTheme,
+    TResult Function()? changeUseSystemTheme,
+    TResult Function(int index)? changePrimaryColorIndex,
+    TResult Function()? changeView,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,6 +48,9 @@ mixin _$ThemeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadTheme value) load,
     required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_ChangeUseSystemTheme value) changeUseSystemTheme,
+    required TResult Function(_ChangePrimaryColorIndex value)
+        changePrimaryColorIndex,
     required TResult Function(_ChangeView value) changeView,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +58,8 @@ mixin _$ThemeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadTheme value)? load,
     TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult? Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult? Function(_ChangeView value)? changeView,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +67,8 @@ mixin _$ThemeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadTheme value)? load,
     TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult Function(_ChangeView value)? changeView,
     required TResult orElse(),
   }) =>
@@ -119,8 +132,10 @@ class _$_LoadTheme implements _LoadTheme {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(bool isLight) changeTheme,
-    required TResult Function(bool isCardView) changeView,
+    required TResult Function() changeTheme,
+    required TResult Function() changeUseSystemTheme,
+    required TResult Function(int index) changePrimaryColorIndex,
+    required TResult Function() changeView,
   }) {
     return load();
   }
@@ -129,8 +144,10 @@ class _$_LoadTheme implements _LoadTheme {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(bool isLight)? changeTheme,
-    TResult? Function(bool isCardView)? changeView,
+    TResult? Function()? changeTheme,
+    TResult? Function()? changeUseSystemTheme,
+    TResult? Function(int index)? changePrimaryColorIndex,
+    TResult? Function()? changeView,
   }) {
     return load?.call();
   }
@@ -139,8 +156,10 @@ class _$_LoadTheme implements _LoadTheme {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(bool isLight)? changeTheme,
-    TResult Function(bool isCardView)? changeView,
+    TResult Function()? changeTheme,
+    TResult Function()? changeUseSystemTheme,
+    TResult Function(int index)? changePrimaryColorIndex,
+    TResult Function()? changeView,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -154,6 +173,9 @@ class _$_LoadTheme implements _LoadTheme {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadTheme value) load,
     required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_ChangeUseSystemTheme value) changeUseSystemTheme,
+    required TResult Function(_ChangePrimaryColorIndex value)
+        changePrimaryColorIndex,
     required TResult Function(_ChangeView value) changeView,
   }) {
     return load(this);
@@ -164,6 +186,8 @@ class _$_LoadTheme implements _LoadTheme {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadTheme value)? load,
     TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult? Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult? Function(_ChangeView value)? changeView,
   }) {
     return load?.call(this);
@@ -174,6 +198,8 @@ class _$_LoadTheme implements _LoadTheme {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadTheme value)? load,
     TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult Function(_ChangeView value)? changeView,
     required TResult orElse(),
   }) {
@@ -193,8 +219,6 @@ abstract class _$$_ChangeThemeCopyWith<$Res> {
   factory _$$_ChangeThemeCopyWith(
           _$_ChangeTheme value, $Res Function(_$_ChangeTheme) then) =
       __$$_ChangeThemeCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool isLight});
 }
 
 /// @nodoc
@@ -204,81 +228,63 @@ class __$$_ChangeThemeCopyWithImpl<$Res>
   __$$_ChangeThemeCopyWithImpl(
       _$_ChangeTheme _value, $Res Function(_$_ChangeTheme) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLight = null,
-  }) {
-    return _then(_$_ChangeTheme(
-      isLight: null == isLight
-          ? _value.isLight
-          : isLight // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_ChangeTheme implements _ChangeTheme {
-  const _$_ChangeTheme({required this.isLight});
-
-  @override
-  final bool isLight;
+  const _$_ChangeTheme();
 
   @override
   String toString() {
-    return 'ThemeEvent.changeTheme(isLight: $isLight)';
+    return 'ThemeEvent.changeTheme()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ChangeTheme &&
-            (identical(other.isLight, isLight) || other.isLight == isLight));
+        (other.runtimeType == runtimeType && other is _$_ChangeTheme);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLight);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ChangeThemeCopyWith<_$_ChangeTheme> get copyWith =>
-      __$$_ChangeThemeCopyWithImpl<_$_ChangeTheme>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(bool isLight) changeTheme,
-    required TResult Function(bool isCardView) changeView,
+    required TResult Function() changeTheme,
+    required TResult Function() changeUseSystemTheme,
+    required TResult Function(int index) changePrimaryColorIndex,
+    required TResult Function() changeView,
   }) {
-    return changeTheme(isLight);
+    return changeTheme();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(bool isLight)? changeTheme,
-    TResult? Function(bool isCardView)? changeView,
+    TResult? Function()? changeTheme,
+    TResult? Function()? changeUseSystemTheme,
+    TResult? Function(int index)? changePrimaryColorIndex,
+    TResult? Function()? changeView,
   }) {
-    return changeTheme?.call(isLight);
+    return changeTheme?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(bool isLight)? changeTheme,
-    TResult Function(bool isCardView)? changeView,
+    TResult Function()? changeTheme,
+    TResult Function()? changeUseSystemTheme,
+    TResult Function(int index)? changePrimaryColorIndex,
+    TResult Function()? changeView,
     required TResult orElse(),
   }) {
     if (changeTheme != null) {
-      return changeTheme(isLight);
+      return changeTheme();
     }
     return orElse();
   }
@@ -288,6 +294,9 @@ class _$_ChangeTheme implements _ChangeTheme {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadTheme value) load,
     required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_ChangeUseSystemTheme value) changeUseSystemTheme,
+    required TResult Function(_ChangePrimaryColorIndex value)
+        changePrimaryColorIndex,
     required TResult Function(_ChangeView value) changeView,
   }) {
     return changeTheme(this);
@@ -298,6 +307,8 @@ class _$_ChangeTheme implements _ChangeTheme {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadTheme value)? load,
     TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult? Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult? Function(_ChangeView value)? changeView,
   }) {
     return changeTheme?.call(this);
@@ -308,6 +319,8 @@ class _$_ChangeTheme implements _ChangeTheme {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadTheme value)? load,
     TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult Function(_ChangeView value)? changeView,
     required TResult orElse(),
   }) {
@@ -319,106 +332,80 @@ class _$_ChangeTheme implements _ChangeTheme {
 }
 
 abstract class _ChangeTheme implements ThemeEvent {
-  const factory _ChangeTheme({required final bool isLight}) = _$_ChangeTheme;
-
-  bool get isLight;
-  @JsonKey(ignore: true)
-  _$$_ChangeThemeCopyWith<_$_ChangeTheme> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _ChangeTheme() = _$_ChangeTheme;
 }
 
 /// @nodoc
-abstract class _$$_ChangeViewCopyWith<$Res> {
-  factory _$$_ChangeViewCopyWith(
-          _$_ChangeView value, $Res Function(_$_ChangeView) then) =
-      __$$_ChangeViewCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool isCardView});
+abstract class _$$_ChangeUseSystemThemeCopyWith<$Res> {
+  factory _$$_ChangeUseSystemThemeCopyWith(_$_ChangeUseSystemTheme value,
+          $Res Function(_$_ChangeUseSystemTheme) then) =
+      __$$_ChangeUseSystemThemeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ChangeViewCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$_ChangeView>
-    implements _$$_ChangeViewCopyWith<$Res> {
-  __$$_ChangeViewCopyWithImpl(
-      _$_ChangeView _value, $Res Function(_$_ChangeView) _then)
+class __$$_ChangeUseSystemThemeCopyWithImpl<$Res>
+    extends _$ThemeEventCopyWithImpl<$Res, _$_ChangeUseSystemTheme>
+    implements _$$_ChangeUseSystemThemeCopyWith<$Res> {
+  __$$_ChangeUseSystemThemeCopyWithImpl(_$_ChangeUseSystemTheme _value,
+      $Res Function(_$_ChangeUseSystemTheme) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isCardView = null,
-  }) {
-    return _then(_$_ChangeView(
-      isCardView: null == isCardView
-          ? _value.isCardView
-          : isCardView // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_ChangeView implements _ChangeView {
-  const _$_ChangeView({required this.isCardView});
-
-  @override
-  final bool isCardView;
+class _$_ChangeUseSystemTheme implements _ChangeUseSystemTheme {
+  const _$_ChangeUseSystemTheme();
 
   @override
   String toString() {
-    return 'ThemeEvent.changeView(isCardView: $isCardView)';
+    return 'ThemeEvent.changeUseSystemTheme()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ChangeView &&
-            (identical(other.isCardView, isCardView) ||
-                other.isCardView == isCardView));
+        (other.runtimeType == runtimeType && other is _$_ChangeUseSystemTheme);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isCardView);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ChangeViewCopyWith<_$_ChangeView> get copyWith =>
-      __$$_ChangeViewCopyWithImpl<_$_ChangeView>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(bool isLight) changeTheme,
-    required TResult Function(bool isCardView) changeView,
+    required TResult Function() changeTheme,
+    required TResult Function() changeUseSystemTheme,
+    required TResult Function(int index) changePrimaryColorIndex,
+    required TResult Function() changeView,
   }) {
-    return changeView(isCardView);
+    return changeUseSystemTheme();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(bool isLight)? changeTheme,
-    TResult? Function(bool isCardView)? changeView,
+    TResult? Function()? changeTheme,
+    TResult? Function()? changeUseSystemTheme,
+    TResult? Function(int index)? changePrimaryColorIndex,
+    TResult? Function()? changeView,
   }) {
-    return changeView?.call(isCardView);
+    return changeUseSystemTheme?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(bool isLight)? changeTheme,
-    TResult Function(bool isCardView)? changeView,
+    TResult Function()? changeTheme,
+    TResult Function()? changeUseSystemTheme,
+    TResult Function(int index)? changePrimaryColorIndex,
+    TResult Function()? changeView,
     required TResult orElse(),
   }) {
-    if (changeView != null) {
-      return changeView(isCardView);
+    if (changeUseSystemTheme != null) {
+      return changeUseSystemTheme();
     }
     return orElse();
   }
@@ -428,6 +415,285 @@ class _$_ChangeView implements _ChangeView {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadTheme value) load,
     required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_ChangeUseSystemTheme value) changeUseSystemTheme,
+    required TResult Function(_ChangePrimaryColorIndex value)
+        changePrimaryColorIndex,
+    required TResult Function(_ChangeView value) changeView,
+  }) {
+    return changeUseSystemTheme(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadTheme value)? load,
+    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult? Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
+    TResult? Function(_ChangeView value)? changeView,
+  }) {
+    return changeUseSystemTheme?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadTheme value)? load,
+    TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
+    TResult Function(_ChangeView value)? changeView,
+    required TResult orElse(),
+  }) {
+    if (changeUseSystemTheme != null) {
+      return changeUseSystemTheme(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeUseSystemTheme implements ThemeEvent {
+  const factory _ChangeUseSystemTheme() = _$_ChangeUseSystemTheme;
+}
+
+/// @nodoc
+abstract class _$$_ChangePrimaryColorIndexCopyWith<$Res> {
+  factory _$$_ChangePrimaryColorIndexCopyWith(_$_ChangePrimaryColorIndex value,
+          $Res Function(_$_ChangePrimaryColorIndex) then) =
+      __$$_ChangePrimaryColorIndexCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$_ChangePrimaryColorIndexCopyWithImpl<$Res>
+    extends _$ThemeEventCopyWithImpl<$Res, _$_ChangePrimaryColorIndex>
+    implements _$$_ChangePrimaryColorIndexCopyWith<$Res> {
+  __$$_ChangePrimaryColorIndexCopyWithImpl(_$_ChangePrimaryColorIndex _value,
+      $Res Function(_$_ChangePrimaryColorIndex) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$_ChangePrimaryColorIndex(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangePrimaryColorIndex implements _ChangePrimaryColorIndex {
+  const _$_ChangePrimaryColorIndex(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'ThemeEvent.changePrimaryColorIndex(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangePrimaryColorIndex &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChangePrimaryColorIndexCopyWith<_$_ChangePrimaryColorIndex>
+      get copyWith =>
+          __$$_ChangePrimaryColorIndexCopyWithImpl<_$_ChangePrimaryColorIndex>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() changeTheme,
+    required TResult Function() changeUseSystemTheme,
+    required TResult Function(int index) changePrimaryColorIndex,
+    required TResult Function() changeView,
+  }) {
+    return changePrimaryColorIndex(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? changeTheme,
+    TResult? Function()? changeUseSystemTheme,
+    TResult? Function(int index)? changePrimaryColorIndex,
+    TResult? Function()? changeView,
+  }) {
+    return changePrimaryColorIndex?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? changeTheme,
+    TResult Function()? changeUseSystemTheme,
+    TResult Function(int index)? changePrimaryColorIndex,
+    TResult Function()? changeView,
+    required TResult orElse(),
+  }) {
+    if (changePrimaryColorIndex != null) {
+      return changePrimaryColorIndex(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadTheme value) load,
+    required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_ChangeUseSystemTheme value) changeUseSystemTheme,
+    required TResult Function(_ChangePrimaryColorIndex value)
+        changePrimaryColorIndex,
+    required TResult Function(_ChangeView value) changeView,
+  }) {
+    return changePrimaryColorIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadTheme value)? load,
+    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult? Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
+    TResult? Function(_ChangeView value)? changeView,
+  }) {
+    return changePrimaryColorIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadTheme value)? load,
+    TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
+    TResult Function(_ChangeView value)? changeView,
+    required TResult orElse(),
+  }) {
+    if (changePrimaryColorIndex != null) {
+      return changePrimaryColorIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangePrimaryColorIndex implements ThemeEvent {
+  const factory _ChangePrimaryColorIndex(final int index) =
+      _$_ChangePrimaryColorIndex;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$_ChangePrimaryColorIndexCopyWith<_$_ChangePrimaryColorIndex>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ChangeViewCopyWith<$Res> {
+  factory _$$_ChangeViewCopyWith(
+          _$_ChangeView value, $Res Function(_$_ChangeView) then) =
+      __$$_ChangeViewCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ChangeViewCopyWithImpl<$Res>
+    extends _$ThemeEventCopyWithImpl<$Res, _$_ChangeView>
+    implements _$$_ChangeViewCopyWith<$Res> {
+  __$$_ChangeViewCopyWithImpl(
+      _$_ChangeView _value, $Res Function(_$_ChangeView) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ChangeView implements _ChangeView {
+  const _$_ChangeView();
+
+  @override
+  String toString() {
+    return 'ThemeEvent.changeView()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ChangeView);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() changeTheme,
+    required TResult Function() changeUseSystemTheme,
+    required TResult Function(int index) changePrimaryColorIndex,
+    required TResult Function() changeView,
+  }) {
+    return changeView();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? changeTheme,
+    TResult? Function()? changeUseSystemTheme,
+    TResult? Function(int index)? changePrimaryColorIndex,
+    TResult? Function()? changeView,
+  }) {
+    return changeView?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? changeTheme,
+    TResult Function()? changeUseSystemTheme,
+    TResult Function(int index)? changePrimaryColorIndex,
+    TResult Function()? changeView,
+    required TResult orElse(),
+  }) {
+    if (changeView != null) {
+      return changeView();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadTheme value) load,
+    required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_ChangeUseSystemTheme value) changeUseSystemTheme,
+    required TResult Function(_ChangePrimaryColorIndex value)
+        changePrimaryColorIndex,
     required TResult Function(_ChangeView value) changeView,
   }) {
     return changeView(this);
@@ -438,6 +704,8 @@ class _$_ChangeView implements _ChangeView {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadTheme value)? load,
     TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult? Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult? Function(_ChangeView value)? changeView,
   }) {
     return changeView?.call(this);
@@ -448,6 +716,8 @@ class _$_ChangeView implements _ChangeView {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadTheme value)? load,
     TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_ChangeUseSystemTheme value)? changeUseSystemTheme,
+    TResult Function(_ChangePrimaryColorIndex value)? changePrimaryColorIndex,
     TResult Function(_ChangeView value)? changeView,
     required TResult orElse(),
   }) {
@@ -459,18 +729,15 @@ class _$_ChangeView implements _ChangeView {
 }
 
 abstract class _ChangeView implements ThemeEvent {
-  const factory _ChangeView({required final bool isCardView}) = _$_ChangeView;
-
-  bool get isCardView;
-  @JsonKey(ignore: true)
-  _$$_ChangeViewCopyWith<_$_ChangeView> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _ChangeView() = _$_ChangeView;
 }
 
 /// @nodoc
 mixin _$ThemeState {
   bool get isLight => throw _privateConstructorUsedError;
+  bool get useSystemTheme => throw _privateConstructorUsedError;
   bool get isCardView => throw _privateConstructorUsedError;
+  int get primaryColorIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemeStateCopyWith<ThemeState> get copyWith =>
@@ -483,7 +750,11 @@ abstract class $ThemeStateCopyWith<$Res> {
           ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res, ThemeState>;
   @useResult
-  $Res call({bool isLight, bool isCardView});
+  $Res call(
+      {bool isLight,
+      bool useSystemTheme,
+      bool isCardView,
+      int primaryColorIndex});
 }
 
 /// @nodoc
@@ -500,17 +771,27 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
   @override
   $Res call({
     Object? isLight = null,
+    Object? useSystemTheme = null,
     Object? isCardView = null,
+    Object? primaryColorIndex = null,
   }) {
     return _then(_value.copyWith(
       isLight: null == isLight
           ? _value.isLight
           : isLight // ignore: cast_nullable_to_non_nullable
               as bool,
+      useSystemTheme: null == useSystemTheme
+          ? _value.useSystemTheme
+          : useSystemTheme // ignore: cast_nullable_to_non_nullable
+              as bool,
       isCardView: null == isCardView
           ? _value.isCardView
           : isCardView // ignore: cast_nullable_to_non_nullable
               as bool,
+      primaryColorIndex: null == primaryColorIndex
+          ? _value.primaryColorIndex
+          : primaryColorIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -523,7 +804,11 @@ abstract class _$$_ThemeStateCopyWith<$Res>
       __$$_ThemeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLight, bool isCardView});
+  $Res call(
+      {bool isLight,
+      bool useSystemTheme,
+      bool isCardView,
+      int primaryColorIndex});
 }
 
 /// @nodoc
@@ -538,17 +823,27 @@ class __$$_ThemeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLight = null,
+    Object? useSystemTheme = null,
     Object? isCardView = null,
+    Object? primaryColorIndex = null,
   }) {
     return _then(_$_ThemeState(
       isLight: null == isLight
           ? _value.isLight
           : isLight // ignore: cast_nullable_to_non_nullable
               as bool,
+      useSystemTheme: null == useSystemTheme
+          ? _value.useSystemTheme
+          : useSystemTheme // ignore: cast_nullable_to_non_nullable
+              as bool,
       isCardView: null == isCardView
           ? _value.isCardView
           : isCardView // ignore: cast_nullable_to_non_nullable
               as bool,
+      primaryColorIndex: null == primaryColorIndex
+          ? _value.primaryColorIndex
+          : primaryColorIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -556,18 +851,28 @@ class __$$_ThemeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ThemeState implements _ThemeState {
-  const _$_ThemeState({this.isLight = true, this.isCardView = true});
+  const _$_ThemeState(
+      {this.isLight = true,
+      this.useSystemTheme = true,
+      this.isCardView = true,
+      this.primaryColorIndex = 0});
 
   @override
   @JsonKey()
   final bool isLight;
   @override
   @JsonKey()
+  final bool useSystemTheme;
+  @override
+  @JsonKey()
   final bool isCardView;
+  @override
+  @JsonKey()
+  final int primaryColorIndex;
 
   @override
   String toString() {
-    return 'ThemeState(isLight: $isLight, isCardView: $isCardView)';
+    return 'ThemeState(isLight: $isLight, useSystemTheme: $useSystemTheme, isCardView: $isCardView, primaryColorIndex: $primaryColorIndex)';
   }
 
   @override
@@ -576,12 +881,17 @@ class _$_ThemeState implements _ThemeState {
         (other.runtimeType == runtimeType &&
             other is _$_ThemeState &&
             (identical(other.isLight, isLight) || other.isLight == isLight) &&
+            (identical(other.useSystemTheme, useSystemTheme) ||
+                other.useSystemTheme == useSystemTheme) &&
             (identical(other.isCardView, isCardView) ||
-                other.isCardView == isCardView));
+                other.isCardView == isCardView) &&
+            (identical(other.primaryColorIndex, primaryColorIndex) ||
+                other.primaryColorIndex == primaryColorIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLight, isCardView);
+  int get hashCode => Object.hash(
+      runtimeType, isLight, useSystemTheme, isCardView, primaryColorIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -591,13 +901,20 @@ class _$_ThemeState implements _ThemeState {
 }
 
 abstract class _ThemeState implements ThemeState {
-  const factory _ThemeState({final bool isLight, final bool isCardView}) =
-      _$_ThemeState;
+  const factory _ThemeState(
+      {final bool isLight,
+      final bool useSystemTheme,
+      final bool isCardView,
+      final int primaryColorIndex}) = _$_ThemeState;
 
   @override
   bool get isLight;
   @override
+  bool get useSystemTheme;
+  @override
   bool get isCardView;
+  @override
+  int get primaryColorIndex;
   @override
   @JsonKey(ignore: true)
   _$$_ThemeStateCopyWith<_$_ThemeState> get copyWith =>

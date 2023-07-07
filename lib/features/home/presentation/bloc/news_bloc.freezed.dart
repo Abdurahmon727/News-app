@@ -1306,7 +1306,7 @@ mixin _$NewsState {
   FormzStatus get status => throw _privateConstructorUsedError;
   List<NewsModel> get models => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  int get curruntPage => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
   int get maxPage => throw _privateConstructorUsedError;
   int get topicIndex => throw _privateConstructorUsedError;
   Calendar get calendar => throw _privateConstructorUsedError;
@@ -1330,7 +1330,7 @@ abstract class $NewsStateCopyWith<$Res> {
       {FormzStatus status,
       List<NewsModel> models,
       String errorMessage,
-      int curruntPage,
+      int currentPage,
       int maxPage,
       int topicIndex,
       Calendar calendar,
@@ -1357,7 +1357,7 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
     Object? status = null,
     Object? models = null,
     Object? errorMessage = null,
-    Object? curruntPage = null,
+    Object? currentPage = null,
     Object? maxPage = null,
     Object? topicIndex = null,
     Object? calendar = null,
@@ -1380,9 +1380,9 @@ class _$NewsStateCopyWithImpl<$Res, $Val extends NewsState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      curruntPage: null == curruntPage
-          ? _value.curruntPage
-          : curruntPage // ignore: cast_nullable_to_non_nullable
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
       maxPage: null == maxPage
           ? _value.maxPage
@@ -1431,7 +1431,7 @@ abstract class _$$_NewsStateCopyWith<$Res> implements $NewsStateCopyWith<$Res> {
       {FormzStatus status,
       List<NewsModel> models,
       String errorMessage,
-      int curruntPage,
+      int currentPage,
       int maxPage,
       int topicIndex,
       Calendar calendar,
@@ -1456,7 +1456,7 @@ class __$$_NewsStateCopyWithImpl<$Res>
     Object? status = null,
     Object? models = null,
     Object? errorMessage = null,
-    Object? curruntPage = null,
+    Object? currentPage = null,
     Object? maxPage = null,
     Object? topicIndex = null,
     Object? calendar = null,
@@ -1479,9 +1479,9 @@ class __$$_NewsStateCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      curruntPage: null == curruntPage
-          ? _value.curruntPage
-          : curruntPage // ignore: cast_nullable_to_non_nullable
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
       maxPage: null == maxPage
           ? _value.maxPage
@@ -1526,7 +1526,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
       {this.status = FormzStatus.pure,
       final List<NewsModel> models = const [],
       this.errorMessage = '',
-      this.curruntPage = 1,
+      this.currentPage = 1,
       this.maxPage = 1,
       this.topicIndex = 0,
       this.calendar = Calendar.none,
@@ -1557,7 +1557,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
   final String errorMessage;
   @override
   @JsonKey()
-  final int curruntPage;
+  final int currentPage;
   @override
   @JsonKey()
   final int maxPage;
@@ -1602,7 +1602,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, curruntPage: $curruntPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages, currentIndex: $currentIndex, isFailedToLoadMore: $isFailedToLoadMore, topics: $topics)';
+    return 'NewsState(status: $status, models: $models, errorMessage: $errorMessage, currentPage: $currentPage, maxPage: $maxPage, topicIndex: $topicIndex, calendar: $calendar, sources: $sources, languages: $languages, currentIndex: $currentIndex, isFailedToLoadMore: $isFailedToLoadMore, topics: $topics)';
   }
 
   @override
@@ -1613,7 +1613,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('models', models))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
-      ..add(DiagnosticsProperty('curruntPage', curruntPage))
+      ..add(DiagnosticsProperty('currentPage', currentPage))
       ..add(DiagnosticsProperty('maxPage', maxPage))
       ..add(DiagnosticsProperty('topicIndex', topicIndex))
       ..add(DiagnosticsProperty('calendar', calendar))
@@ -1633,8 +1633,8 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
             const DeepCollectionEquality().equals(other._models, _models) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.curruntPage, curruntPage) ||
-                other.curruntPage == curruntPage) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
             (identical(other.maxPage, maxPage) || other.maxPage == maxPage) &&
             (identical(other.topicIndex, topicIndex) ||
                 other.topicIndex == topicIndex) &&
@@ -1656,7 +1656,7 @@ class _$_NewsState with DiagnosticableTreeMixin implements _NewsState {
       status,
       const DeepCollectionEquality().hash(_models),
       errorMessage,
-      curruntPage,
+      currentPage,
       maxPage,
       topicIndex,
       calendar,
@@ -1678,7 +1678,7 @@ abstract class _NewsState implements NewsState {
       {final FormzStatus status,
       final List<NewsModel> models,
       final String errorMessage,
-      final int curruntPage,
+      final int currentPage,
       final int maxPage,
       final int topicIndex,
       final Calendar calendar,
@@ -1695,7 +1695,7 @@ abstract class _NewsState implements NewsState {
   @override
   String get errorMessage;
   @override
-  int get curruntPage;
+  int get currentPage;
   @override
   int get maxPage;
   @override

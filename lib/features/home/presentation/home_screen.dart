@@ -88,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               dividerColor: Colors.transparent,
               enableFeedback: true,
               indicatorSize: TabBarIndicatorSize.tab,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+              indicator: const BoxDecoration(
+                shape: BoxShape.circle,
                 color: white,
               ),
               onTap: (value) {
@@ -104,17 +104,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Icons.home,
                   color:
                       indexPage == 0 ? Theme.of(context).primaryColor : white,
-                  // size: 30,
+                  size: 24,
                 ),
                 Icon(
                   Icons.search_outlined,
-                  // size: 35,
+                  size: 24,
                   color:
                       indexPage == 1 ? Theme.of(context).primaryColor : white,
                 ),
                 Icon(
                   Icons.bookmark_border_outlined,
-                  // size: 35,
+                  size: 24,
                   color:
                       indexPage == 2 ? Theme.of(context).primaryColor : white,
                 ),

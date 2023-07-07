@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/assets/constants.dart';
 
 import 'assets/theme.dart';
 import 'core/bloc/theme/theme_bloc.dart';
@@ -41,37 +42,39 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: Builder(builder: (context) {
-        return BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (context, state) {
-            return MaterialApp(
-              navigatorKey: navigatorKey,
-              title: 'News app',
-              themeMode: context.read<ThemeBloc>().state.isLight
+        return MaterialApp(
+          navigatorKey: navigatorKey,
+          title: 'News app',
+          themeMode: context.watch<ThemeBloc>().state.useSystemTheme
+              ? ThemeMode.system
+              : context.read<ThemeBloc>().state.isLight
                   ? ThemeMode.light
                   : ThemeMode.dark,
-              darkTheme: AppTheme.darkTheme(),
-              theme: AppTheme.lightTheme(),
-              home: const SplashScreen(),
-              builder: (context, child) {
-                return BlocListener<NewsBloc, NewsState>(
-                  listenWhen: (previous, current) =>
-                      previous.topics != current.topics,
-                  listener: (context, state) {
-                    if (state.topics.isEmpty) {
-                      navigator.pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const ChooseTopicPage()),
-                          (route) => false);
-                    } else {
-                      navigator.pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
-                          (route) => false);
-                    }
-                  },
-                  child: child ?? const SplashScreen(),
-                );
+          darkTheme: AppTheme.darkTheme().copyWith(
+              primaryColor: themePrimaryColors[
+                  context.read<ThemeBloc>().state.primaryColorIndex]),
+          theme: AppTheme.lightTheme().copyWith(
+              primaryColor: themePrimaryColors[
+                  context.read<ThemeBloc>().state.primaryColorIndex]),
+          home: const SplashScreen(),
+          builder: (context, child) {
+            return BlocListener<NewsBloc, NewsState>(
+              listenWhen: (previous, current) =>
+                  previous.topics != current.topics,
+              listener: (context, state) {
+                if (state.topics.isEmpty) {
+                  navigator.pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const ChooseTopicPage()),
+                      (route) => false);
+                } else {
+                  navigator.pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                      (route) => false);
+                }
               },
+              child: child ?? const SplashScreen(),
             );
           },
         );

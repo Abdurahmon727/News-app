@@ -31,10 +31,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
 
     on<_GetNews>((event, emit) async {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
-      final isLoadingNextPage = state.maxPage > state.curruntPage;
+      final isLoadingNextPage = state.maxPage > state.currentPage;
 
       final repository = NewsRepositoryImpl(
-          page: isLoadingNextPage ? state.curruntPage + 1 : 1);
+          page: isLoadingNextPage ? state.currentPage + 1 : 1);
       final result = await repository.getNews(
           languages: state.languages,
           calendar: state.calendar,
@@ -80,9 +80,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     });
 
     on<_LoadPagination>((event, emit) async {
-      final isLoadingNextPage = state.maxPage > state.curruntPage;
-      if (isLoadingNextPage) {
-        final repository = NewsRepositoryImpl(page: state.curruntPage + 1);
+      final int page =
+          state.maxPage > state.currentPage ? state.currentPage + 1 : 1;
+      if (page != 1) {
+        final repository = NewsRepositoryImpl(page: page);
         final result = await repository.getNews(
             languages: state.languages,
             calendar: state.calendar,
@@ -98,7 +99,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
           );
         }, (data) {
           emit(state.copyWith(
-            curruntPage: state.curruntPage + 1,
+            currentPage: page,
             isFailedToLoadMore: false,
             models: state.models + data.$1,
             maxPage: data.$2,
@@ -110,7 +111,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     });
 
     on<_ChangeCurrentIndex>(
-        (event, emit) => emit(state.copyWith(currentIndex: event.value)));
+      (event, emit) => emit(state.copyWith(currentIndex: event.value)),
+    );
   }
 
   @override

@@ -70,6 +70,9 @@ class _HomePageState extends State<HomePage> {
                                 context.read<NewsBloc>().state.sources);
                             return StatefulBuilder(builder: (_, setState) {
                               return AlertDialog(
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withAlpha(200),
                                 actions: [
                                   ElevatedButton(
                                       onPressed: () => Navigator.pop(context),

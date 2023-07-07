@@ -12,21 +12,41 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<_ChangeTheme>((event, emit) async {
       await StorageRepository.putBool(
         key: 'app_theme_light',
-        value: event.isLight,
+        value: !state.isLight,
       );
-      emit(state.copyWith(isLight: event.isLight));
+      emit(state.copyWith(isLight: !state.isLight));
     });
 
     on<_ChangeView>((event, emit) async {
+      emit(state.copyWith(isCardView: !state.isCardView));
       await StorageRepository.putBool(
         key: 'app_view_card',
-        value: event.isCardView,
+        value: !state.isCardView,
       );
-      emit(state.copyWith(isCardView: event.isCardView));
+    });
+
+    on<_ChangeUseSystemTheme>((event, emit) async {
+      emit(state.copyWith(useSystemTheme: !state.useSystemTheme));
+      await StorageRepository.putBool(
+        key: 'app_theme_system',
+        value: !state.useSystemTheme,
+      );
+    });
+
+    on<_ChangePrimaryColorIndex>((event, emit) async {
+      emit(state.copyWith(primaryColorIndex: event.index));
+      await StorageRepository.putInt(
+        key: 'app_theme_primary_color_index',
+        value: state.primaryColorIndex,
+      );
     });
 
     on<_LoadTheme>((event, emit) async {
-      await StorageRepository.getInstance();
+      final useSystemTheme = StorageRepository.getBool(
+        'app_theme_system',
+        defValue: true,
+      );
+
       final isLight = StorageRepository.getBool(
         'app_theme_light',
         defValue: true,
@@ -35,7 +55,15 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         'app_view_card',
         defValue: true,
       );
-      emit(state.copyWith(isLight: isLight, isCardView: isCardView));
+      final primaryColorIndex = StorageRepository.getInt(
+          'app_theme_primary_color_index',
+          defValue: 0);
+      emit(state.copyWith(
+        primaryColorIndex: primaryColorIndex,
+        isLight: isLight,
+        isCardView: isCardView,
+        useSystemTheme: useSystemTheme,
+      ));
     });
   }
 }

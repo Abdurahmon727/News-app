@@ -22,7 +22,9 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource {
     required List<String> languages,
   }) async {
     await StorageRepository.putInt(
-        'calendar', AppFunctions.calendarToInt(calendar));
+      key: 'calendar',
+      value: AppFunctions.calendarToInt(calendar),
+    );
     await StorageRepository.putList('sources', sources);
     await StorageRepository.putList('languages', languages);
   }
