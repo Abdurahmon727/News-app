@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/assets/constants.dart';
-import 'package:news_app/core/widgets/w_scale.dart';
 
+import '../../../../assets/constants.dart';
 import '../../../../core/bloc/theme/theme_bloc.dart';
+import '../../../../core/widgets/w_scale.dart';
+import '../widgets/view_option.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -16,14 +17,12 @@ class SettingsPage extends StatelessWidget {
         title: const Text('Settings'),
       ),
       body: ListView(padding: const EdgeInsets.all(16), children: [
-        // Center(
-        //   child: Text('Theme mode'),
-        // ),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Theme.of(context).primaryColor.withOpacity(0.2)),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
                 onTap: () => context
@@ -60,11 +59,18 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Text('Primary Color'),
+              const Padding(
+                padding: EdgeInsets.only(left: 14),
+                child: Text(
+                  'Choose Primary Color',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
               SizedBox(
                 height: 50,
                 width: MediaQuery.sizeOf(context).width,
                 child: ListView.separated(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   shrinkWrap: true,
                   primary: true,
                   scrollDirection: Axis.horizontal,
@@ -104,18 +110,81 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 10),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Theme.of(context).primaryColor.withOpacity(0.2)),
-          child: const ListTile(
-            title: Text('Preview for news'),
-            trailing: Icon(Icons.expand_more_outlined),
+          child: WScaleAnimation(
+            onTap: () => showBottomSheetToChangeViev(context),
+            child: const ListTile(
+              title: Text('Preview for news'),
+              trailing: Icon(Icons.expand_more_outlined),
+            ),
           ),
         ),
       ]),
     );
+  }
+
+  Future<dynamic> showBottomSheetToChangeViev(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) => Container(
+              height: 240,
+              margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    height: 5,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  Text(
+                    'Choose one',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      WViewOption(
+                        icon: const Icon(
+                          Icons.style_rounded,
+                          size: 40,
+                        ),
+                        title: 'Card',
+                        isSelected: context.read<ThemeBloc>().state.isCardView,
+                        onTap: () {
+                          if (!context.read<ThemeBloc>().state.isCardView) {
+                            context
+                                .read<ThemeBloc>()
+                                .add(const ThemeEvent.changeView());
+                          }
+                        },
+                      ),
+                      const SizedBox(width: 10),
+                      WViewOption(
+                        icon: const Icon(
+                          Icons.list_alt_rounded,
+                          size: 40,
+                        ),
+                        title: 'List',
+                        isSelected: !context.read<ThemeBloc>().state.isCardView,
+                        onTap: () {
+                          if (context.read<ThemeBloc>().state.isCardView) {
+                            context
+                                .read<ThemeBloc>()
+                                .add(const ThemeEvent.changeView());
+                          }
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ));
   }
 }
