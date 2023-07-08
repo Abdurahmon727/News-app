@@ -323,7 +323,10 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
               } else if (state.status == FormzStatus.submissionInProgress) {
-                return const Center(child: CircularProgressIndicator());
+                return Center(
+                    child: CircularProgressIndicator(
+                  color: Theme.of(context).primaryColor,
+                ));
               } else {
                 return RefreshIndicator(
                   onRefresh: () async =>

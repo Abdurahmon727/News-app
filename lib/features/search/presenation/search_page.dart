@@ -111,7 +111,10 @@ class _SearchPageState extends State<SearchPage> {
                       return const SizedBox();
                     } else if (state.status ==
                         FormzStatus.submissionInProgress) {
-                      return const Center(child: CircularProgressIndicator());
+                      return Center(
+                          child: CircularProgressIndicator(
+                        color: Theme.of(context).primaryColor,
+                      ));
                     } else if (state.status == FormzStatus.submissionSuccess) {
                       if (!context.watch<ThemeBloc>().state.isCardView) {
                         return Expanded(

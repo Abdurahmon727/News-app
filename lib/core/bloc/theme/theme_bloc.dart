@@ -44,12 +44,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<_LoadTheme>((event, emit) async {
       final useSystemTheme = StorageRepository.getBool(
         'app_theme_system',
-        defValue: false,
+        defValue: true,
       );
 
       final isLight = StorageRepository.getBool(
         'app_theme_light',
-        defValue: false,
+        defValue: true,
       );
       final isCardView = StorageRepository.getBool(
         'app_view_card',

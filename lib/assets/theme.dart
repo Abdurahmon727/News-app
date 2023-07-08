@@ -12,7 +12,7 @@ class AppTheme {
           actionsIconTheme: IconThemeData(color: white),
           centerTitle: true,
           titleTextStyle: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: black),
+              fontSize: 22, fontWeight: FontWeight.w500, color: black),
         ),
         fontFamily: 'Outfit',
         useMaterial3: true,
@@ -37,7 +37,7 @@ class AppTheme {
           actionsIconTheme: IconThemeData(color: white),
           centerTitle: true,
           titleTextStyle: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: white),
+              fontSize: 22, fontWeight: FontWeight.w500, color: white),
         ),
         textTheme: const TextTheme(
           displayLarge: headline1,
