@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/app_functions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../assets/colors.dart';
@@ -12,11 +13,17 @@ import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
 import '../../home/presentation/widgets/news_tile.dart';
 
-class SearchPage extends StatelessWidget {
-  SearchPage({
+class SearchPage extends StatefulWidget {
+  const SearchPage({
     super.key,
   });
-  final PageStorageKey scrollPositionKey =
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  PageStorageKey scrollPositionKey =
       const PageStorageKey('search news scroll positon');
 
   final TextEditingController searchController = TextEditingController();
@@ -50,9 +57,13 @@ class SearchPage extends StatelessWidget {
                       showCursor: true,
                       cursorColor: white,
                       controller: searchController,
-                      onSubmitted: (_) => context
-                          .read<SearchBloc>()
-                          .add(SearchEvent.search(searchController.text)),
+                      onSubmitted: (_) {
+                        context
+                            .read<SearchBloc>()
+                            .add(SearchEvent.search(searchController.text));
+                        scrollPositionKey =
+                            AppFunctions.getNewUniquePageStorageKey();
+                      },
                       style: const TextStyle(color: white, fontSize: 18),
                       decoration: InputDecoration(
                         fillColor: Theme.of(context).primaryColor,

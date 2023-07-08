@@ -37,7 +37,7 @@ class AppTheme {
           actionsIconTheme: IconThemeData(color: white),
           centerTitle: true,
           titleTextStyle: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: black),
+              fontSize: 24, fontWeight: FontWeight.bold, color: white),
         ),
         textTheme: const TextTheme(
           displayLarge: headline1,

@@ -18,19 +18,19 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     });
 
     on<_ChangeView>((event, emit) async {
-      emit(state.copyWith(isCardView: !state.isCardView));
       await StorageRepository.putBool(
         key: 'app_view_card',
         value: !state.isCardView,
       );
+      emit(state.copyWith(isCardView: !state.isCardView));
     });
 
     on<_ChangeUseSystemTheme>((event, emit) async {
-      emit(state.copyWith(useSystemTheme: !state.useSystemTheme));
       await StorageRepository.putBool(
         key: 'app_theme_system',
         value: !state.useSystemTheme,
       );
+      emit(state.copyWith(useSystemTheme: !state.useSystemTheme));
     });
 
     on<_ChangePrimaryColorIndex>((event, emit) async {
@@ -44,12 +44,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<_LoadTheme>((event, emit) async {
       final useSystemTheme = StorageRepository.getBool(
         'app_theme_system',
-        defValue: true,
+        defValue: false,
       );
 
       final isLight = StorageRepository.getBool(
         'app_theme_light',
-        defValue: true,
+        defValue: false,
       );
       final isCardView = StorageRepository.getBool(
         'app_view_card',

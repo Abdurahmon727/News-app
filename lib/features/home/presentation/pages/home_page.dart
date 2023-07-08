@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/app_functions.dart';
 
+import '../../../../assets/colors.dart';
 import '../../../../core/bloc/theme/theme_bloc.dart';
 import '../../../../core/data/extensions.dart';
 import '../../../../core/models/formz/formz_status.dart';
@@ -70,9 +71,7 @@ class _HomePageState extends State<HomePage> {
                                 context.read<NewsBloc>().state.sources);
                             return StatefulBuilder(builder: (_, setState) {
                               return AlertDialog(
-                                backgroundColor: Theme.of(context)
-                                    .primaryColor
-                                    .withAlpha(200),
+                                backgroundColor: white,
                                 actions: [
                                   ElevatedButton(
                                       onPressed: () => Navigator.pop(context),
@@ -81,17 +80,23 @@ class _HomePageState extends State<HomePage> {
                                         style: TextStyle(color: Colors.grey),
                                       )),
                                   ElevatedButton(
-                                      onPressed: () {
-                                        scrollPositionKey = AppFunctions
-                                            .getNewUniquePageStorageKey();
-                                        context.read<NewsBloc>().add(
-                                            NewsEvent.applyFilter(
-                                                calendar: calendar,
-                                                languages: languages,
-                                                sources: sources));
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('Apply')),
+                                    onPressed: () {
+                                      scrollPositionKey = AppFunctions
+                                          .getNewUniquePageStorageKey();
+                                      context.read<NewsBloc>().add(
+                                          NewsEvent.applyFilter(
+                                              calendar: calendar,
+                                              languages: languages,
+                                              sources: sources));
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      'Apply',
+                                      style: TextStyle(
+                                          color:
+                                              Theme.of(context).primaryColor),
+                                    ),
+                                  ),
                                 ],
                                 content: SizedBox(
                                   width: double.maxFinite,
