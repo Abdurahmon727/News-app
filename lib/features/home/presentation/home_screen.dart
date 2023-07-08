@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/data/service_locator.dart';
-import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../../saved_news/presentation/saved_news_page.dart';
 import '../../search/presenation/bloc/search_bloc.dart';
 import '../../search/presenation/search_page.dart';
@@ -24,30 +23,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     //initialize
 
     pages = [
-      MultiBlocProvider(
-        providers: [
-          BlocProvider.value(
-            value: sl<SavedNewsBloc>(),
-          ),
-        ],
-        child: HomePage(),
-      ),
-      MultiBlocProvider(
-        providers: [
-          BlocProvider.value(
-            value: sl<SearchBloc>(),
-          ),
-          BlocProvider.value(
-            value: sl<SavedNewsBloc>(),
-          ),
-        ],
-        child: SearchPage(),
-      ),
+      const HomePage(),
       BlocProvider.value(
-        value: sl<SavedNewsBloc>()
-          ..add(const SavedNewsEvent.getNewsFromStorage()),
-        child: const SavedNewsPage(),
+        value: sl<SearchBloc>(),
+        child: const SearchPage(),
       ),
+      const SavedNewsPage(),
     ];
     tabController = TabController(length: pages.length, vsync: this);
     super.initState();

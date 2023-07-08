@@ -1,52 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/assets/colors.dart';
+import 'package:news_app/core/widgets/w_scale.dart';
 
 import '../../../../core/widgets/w_interactive_viewer.dart';
+import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import '../../data/models/news.dart';
 
-class InsideNewsPage extends StatefulWidget {
+class InsideNewsPage extends StatelessWidget {
   const InsideNewsPage({super.key, required this.model});
   final NewsModel model;
 
   @override
-  State<InsideNewsPage> createState() => _InsideNewsPageState();
-}
-
-class _InsideNewsPageState extends State<InsideNewsPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton:
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        WScaleAnimation(
+          onTap: () {},
+          child: FloatingActionButton(
+            heroTag: 'hero1',
+            splashColor: Colors.transparent,
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () {
+              context
+                  .read<SavedNewsBloc>()
+                  .add(SavedNewsEvent.addOrRemove(model));
+            },
+            child: BlocBuilder<SavedNewsBloc, SavedNewsState>(
+              builder: (context, state) {
+                return Icon(
+                  (state.models.contains(model))
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_border_rounded,
+                  color: white,
+                  size: 30,
+                );
+              },
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        WScaleAnimation(
+          onTap: () {},
+          child: FloatingActionButton(
+            heroTag: 'hero2',
+            splashColor: Colors.transparent,
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () {},
+            child: const Icon(
+              Icons.share,
+              color: white,
+              size: 30,
+            ),
+          ),
+        ),
+      ]),
       body: ListView(
         padding: const EdgeInsets.symmetric(
           vertical: 20,
           horizontal: 16,
         ),
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.navigate_before),
+          Row(children: [
+            WScaleAnimation(
+              onTap: () => Navigator.pop(context),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: Icon(Icons.arrow_back_ios_new),
+              ),
             ),
-          ),
+          ]),
           Text(
-            widget.model.title,
+            model.title,
             style: const TextStyle(fontSize: 20),
             textAlign: TextAlign.center,
           ),
-          if (widget.model.author.isNotEmpty)
+          if (model.author.isNotEmpty)
             Align(
               alignment: Alignment.topRight,
               child: Text(
-                'By ${widget.model.author}',
+                'By ${model.author}',
               ),
             ),
-          Text(widget.model.excerpt ?? ''),
-          if (widget.model.media != null)
+          Text(model.excerpt ?? ''),
+          if (model.media != null)
             WInteractiveViewer(
               borderRadius: BorderRadius.circular(15),
-              imageUrl: widget.model.media!,
+              imageUrl: model.media!,
             ),
-          Text(widget.model.summary ?? ''),
+          Text(model.summary ?? ''),
+          SizedBox(height: 50),
         ],
       ),
     );

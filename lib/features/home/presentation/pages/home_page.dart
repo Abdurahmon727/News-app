@@ -11,7 +11,7 @@ import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../../../../core/widgets/pagination_loader.dart';
 import '../../../../core/widgets/w_scale.dart';
-import '../../../saved_news/presentation/bloc/saved_news_bloc.dart';
+
 import '../bloc/news_bloc.dart';
 import '../widgets/preview_news.dart';
 
@@ -283,71 +283,64 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          BlocBuilder<SavedNewsBloc, SavedNewsState>(
-            buildWhen: (previous, current) => previous.models != current.models,
+          BlocBuilder<NewsBloc, NewsState>(
+            buildWhen: (previous, current) =>
+                (previous.status != current.status),
             builder: (context, state) {
-              return BlocBuilder<NewsBloc, NewsState>(
-                buildWhen: (previous, current) =>
-                    (previous.status != current.status),
-                builder: (context, state) {
-                  if (state.status == FormzStatus.pure) {
-                    context.read<NewsBloc>().add(const NewsEvent.getNews());
-                    return const SizedBox();
-                  }
-                  if (state.status == FormzStatus.submissionSuccess) {
-                    final data = state.models;
-                    if (context.read<ThemeBloc>().state.isCardView) {
-                      return Expanded(
-                        child: WAppinioSwiper(
-                          currentIndex:
-                              context.read<NewsBloc>().state.currentIndex,
-                          unlimitedUnswipe: true,
-                          onEnd: () => context
-                              .read<NewsBloc>()
-                              .add(const NewsEvent.getNews()),
-                          duration: const Duration(milliseconds: 300),
-                          controller: controller,
-                          padding: const EdgeInsets.only(
-                              bottom: 60, left: 20, right: 20, top: 10),
-                          cardsBuilder: (context, index) {
-                            return WPreviewNews(model: data[index]);
-                          },
-                          cardsCount: data.length,
-                          pageSavableBloc: context.read<NewsBloc>(),
-                        ),
-                      );
-                    } else {
-                      return PaginationListView(
-                        scrollPositionKey: scrollPositionKey,
-                        isFailedToLoadMore: state.isFailedToLoadMore,
-                        models: state.models,
-                        onLoadMore: () => context
-                            .read<NewsBloc>()
-                            .add(const NewsEvent.loadPagination()),
-                      );
-                    }
-                  } else if (state.status == FormzStatus.submissionInProgress) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else {
-                    return RefreshIndicator(
-                      onRefresh: () async => context
+              if (state.status == FormzStatus.pure) {
+                context.read<NewsBloc>().add(const NewsEvent.getNews());
+                return const SizedBox();
+              }
+              if (state.status == FormzStatus.submissionSuccess) {
+                final data = state.models;
+                if (context.read<ThemeBloc>().state.isCardView) {
+                  return Expanded(
+                    child: WAppinioSwiper(
+                      currentIndex: context.read<NewsBloc>().state.currentIndex,
+                      unlimitedUnswipe: true,
+                      onEnd: () => context
                           .read<NewsBloc>()
                           .add(const NewsEvent.getNews()),
-                      child: SingleChildScrollView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        child: SizedBox(
-                          height: MediaQuery.sizeOf(context).height - 173,
-                          width: MediaQuery.sizeOf(context).width,
-                          child: Text(
-                            state.errorMessage,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
+                      duration: const Duration(milliseconds: 300),
+                      controller: controller,
+                      padding: const EdgeInsets.only(
+                          bottom: 60, left: 20, right: 20, top: 10),
+                      cardsBuilder: (context, index) {
+                        return WPreviewNews(model: data[index]);
+                      },
+                      cardsCount: data.length,
+                      pageSavableBloc: context.read<NewsBloc>(),
+                    ),
+                  );
+                } else {
+                  return PaginationListView(
+                    scrollPositionKey: scrollPositionKey,
+                    isFailedToLoadMore: state.isFailedToLoadMore,
+                    models: state.models,
+                    onLoadMore: () => context
+                        .read<NewsBloc>()
+                        .add(const NewsEvent.loadPagination()),
+                  );
+                }
+              } else if (state.status == FormzStatus.submissionInProgress) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return RefreshIndicator(
+                  onRefresh: () async =>
+                      context.read<NewsBloc>().add(const NewsEvent.getNews()),
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: SizedBox(
+                      height: MediaQuery.sizeOf(context).height - 173,
+                      width: MediaQuery.sizeOf(context).width,
+                      child: Text(
+                        state.errorMessage,
+                        textAlign: TextAlign.center,
                       ),
-                    );
-                  }
-                },
-              );
+                    ),
+                  ),
+                );
+              }
             },
           ),
         ],

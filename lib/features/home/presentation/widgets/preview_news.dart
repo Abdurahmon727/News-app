@@ -99,22 +99,25 @@ class WPreviewNews extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
-                onPressed: () {
-                  context
-                      .read<SavedNewsBloc>()
-                      .add(SavedNewsEvent.addOrRemove(model));
+              onPressed: () => context
+                  .read<SavedNewsBloc>()
+                  .add(SavedNewsEvent.addOrRemove(model)),
+              icon: BlocBuilder<SavedNewsBloc, SavedNewsState>(
+                builder: (context, state) {
+                  return Icon(
+                    state.models.contains(model)
+                        ? Icons.bookmark
+                        : Icons.bookmark_outline_rounded,
+                    color: white,
+                  );
                 },
-                icon: context.read<SavedNewsBloc>().state.models.contains(model)
-                    ? const Icon(
-                        Icons.bookmark,
-                        color: white,
-                      )
-                    : const Icon(Icons.bookmark_outline_rounded, color: white)),
+              ),
+            ),
             IconButton(
                 onPressed: () {
                   //TODO:
                 },
-                icon: const Icon(Icons.share, color: white))
+                icon: const Icon(Icons.share, color: white)),
           ],
         )
       ],

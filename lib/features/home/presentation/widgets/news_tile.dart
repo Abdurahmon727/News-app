@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/app_functions.dart';
-
 import '../../data/models/news.dart';
 import '../pages/inside_news_page.dart';
 

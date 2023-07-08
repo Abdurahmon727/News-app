@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/assets/constants.dart';
+import 'package:news_app/features/saved_news/presentation/bloc/saved_news_bloc.dart';
 
 import 'assets/theme.dart';
 import 'core/bloc/theme/theme_bloc.dart';
@@ -39,6 +40,10 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => ThemeBloc()..add(const ThemeEvent.load()),
+        ),
+        BlocProvider(
+          create: (context) => sl<SavedNewsBloc>()
+            ..add(const SavedNewsEvent.getNewsFromStorage()),
         ),
       ],
       child: Builder(builder: (context) {
