@@ -14,4 +14,6 @@ final themePrimaryColors = [
   Colors.amber,
   Colors.deepOrangeAccent,
   Colors.teal,
+  Colors.black,
+  Colors.blueGrey
 ];
