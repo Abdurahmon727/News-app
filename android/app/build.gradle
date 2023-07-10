@@ -22,10 +22,15 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+
+
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+
 
 android {
     namespace "com.example.news_app"
@@ -70,6 +75,7 @@ flutter {
 }
 
 dependencies {
+     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

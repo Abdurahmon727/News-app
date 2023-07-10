@@ -32,7 +32,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
     final time = AppFunctions.calendarToApiCall(calendar);
 
     final response = await _dio.get(
-        'https://api.newscatcherapi.com/v2/latest_headlines?page=$page$lang$sources$time&topic=${topics[topicIndex]}');
+        'https://api.newscatcherapi.com/v2/latest_headlines?page=$page$lang$sources$time&topic=${topics[topicIndex]}&page_size=10');
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
       final data = response.data['articles'] as List?;
       if (data == null) {

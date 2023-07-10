@@ -60,187 +60,7 @@ class _HomePageState extends State<HomePage> {
                           )),
                     IconButton(
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (_) {
-                            var calendar =
-                                context.read<NewsBloc>().state.calendar;
-                            var languages = List<String>.from(
-                                context.read<NewsBloc>().state.languages);
-                            var sources = List<String>.from(
-                                context.read<NewsBloc>().state.sources);
-                            return StatefulBuilder(builder: (_, setState) {
-                              return AlertDialog(
-                                backgroundColor: white,
-                                actions: [
-                                  ElevatedButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text(
-                                        'Cancel',
-                                        style: TextStyle(color: Colors.grey),
-                                      )),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      scrollPositionKey = AppFunctions
-                                          .getNewUniquePageStorageKey();
-                                      context.read<NewsBloc>().add(
-                                          NewsEvent.applyFilter(
-                                              calendar: calendar,
-                                              languages: languages,
-                                              sources: sources));
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      'Apply',
-                                      style: TextStyle(
-                                          color:
-                                              Theme.of(context).primaryColor),
-                                    ),
-                                  ),
-                                ],
-                                content: SizedBox(
-                                  width: double.maxFinite,
-                                  child: ListView(
-                                    shrinkWrap: true,
-                                    children: [
-                                      const Text('News in period of last:'),
-                                      Wrap(
-                                        spacing: 10,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (calendar != Calendar.hour) {
-                                                calendar = Calendar.hour;
-                                              } else {
-                                                calendar = Calendar.none;
-                                              }
-                                              setState(() {});
-                                            },
-                                            child: Chip(
-                                              label: const Text('an hour'),
-                                              avatar:
-                                                  (calendar == Calendar.hour)
-                                                      ? const Icon(
-                                                          Icons.check_circle)
-                                                      : null,
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (calendar != Calendar.day) {
-                                                calendar = Calendar.day;
-                                              } else {
-                                                calendar = Calendar.none;
-                                              }
-                                              setState(() {});
-                                            },
-                                            child: Chip(
-                                              label: const Text('24 hours'),
-                                              avatar: (calendar == Calendar.day)
-                                                  ? const Icon(
-                                                      Icons.check_circle)
-                                                  : null,
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (calendar != Calendar.day7) {
-                                                calendar = Calendar.day7;
-                                              } else {
-                                                calendar = Calendar.none;
-                                              }
-                                              setState(() {});
-                                            },
-                                            child: Chip(
-                                                label: const Text('7 days'),
-                                                avatar:
-                                                    (calendar == Calendar.day7)
-                                                        ? const Icon(
-                                                            Icons.check_circle)
-                                                        : null),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (calendar != Calendar.day30) {
-                                                calendar = Calendar.day30;
-                                              } else {
-                                                calendar = Calendar.none;
-                                              }
-                                              setState(() {});
-                                            },
-                                            child: Chip(
-                                                label: const Text('30 days'),
-                                                avatar:
-                                                    (calendar == Calendar.day30)
-                                                        ? const Icon(
-                                                            Icons.check_circle)
-                                                        : null),
-                                          ),
-                                        ],
-                                      ),
-                                      const Text('News in languages only:'),
-                                      Wrap(
-                                        spacing: 10,
-                                        children: allLanguages
-                                            .map(
-                                              (lang) => GestureDetector(
-                                                onTap: () {
-                                                  if (languages
-                                                      .contains(lang)) {
-                                                    languages.removeWhere(
-                                                        (element) =>
-                                                            element == lang);
-                                                  } else {
-                                                    languages += [lang];
-                                                  }
-                                                  setState(() {});
-                                                },
-                                                child: Chip(
-                                                  label: Text(lang),
-                                                  avatar: (languages
-                                                          .contains(lang))
-                                                      ? const Icon(
-                                                          Icons.check_circle)
-                                                      : null,
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                      const Text('Show News from sources:'),
-                                      Wrap(
-                                        spacing: 10,
-                                        children: allSources
-                                            .map(
-                                              (element) => GestureDetector(
-                                                onTap: () {
-                                                  if (sources
-                                                      .contains(element)) {
-                                                    sources.remove(element);
-                                                  } else {
-                                                    sources += [element];
-                                                  }
-                                                  setState(() {});
-                                                },
-                                                child: Chip(
-                                                  label: Text(element),
-                                                  avatar: (sources
-                                                          .contains(element))
-                                                      ? const Icon(
-                                                          Icons.check_circle)
-                                                      : null,
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                          },
-                        );
+                        showSortDialog(context);
                       },
                       icon: const Icon(
                         Icons.sort,
@@ -285,8 +105,10 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<NewsBloc, NewsState>(
             buildWhen: (previous, current) =>
-                (previous.status != current.status),
+                (previous.status != current.status ||
+                    previous.models.length != current.models.length),
             builder: (context, state) {
+              print('rebuilt');
               if (state.status == FormzStatus.pure) {
                 context.read<NewsBloc>().add(const NewsEvent.getNews());
                 return const SizedBox();
@@ -296,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                 if (context.read<ThemeBloc>().state.isCardView) {
                   return Expanded(
                     child: WAppinioSwiper(
-                      currentIndex: context.read<NewsBloc>().state.currentIndex,
+                      currentIndex: state.currentIndex,
                       unlimitedUnswipe: true,
                       onEnd: () => context
                           .read<NewsBloc>()
@@ -305,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                       controller: controller,
                       padding: const EdgeInsets.only(
                           bottom: 60, left: 20, right: 20, top: 10),
-                      cardsBuilder: (context, index) {
+                      cardsBuilder: (_, index) {
                         return WPreviewNews(model: data[index]);
                       },
                       cardsCount: data.length,
@@ -348,6 +170,170 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> showSortDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (_) {
+        var calendar = context.read<NewsBloc>().state.calendar;
+        var languages =
+            List<String>.from(context.read<NewsBloc>().state.languages);
+        var sources = List<String>.from(context.read<NewsBloc>().state.sources);
+        return StatefulBuilder(builder: (_, setState) {
+          return AlertDialog(
+            backgroundColor: white,
+            actions: [
+              ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.grey),
+                  )),
+              ElevatedButton(
+                onPressed: () {
+                  scrollPositionKey = AppFunctions.getNewUniquePageStorageKey();
+                  context.read<NewsBloc>().add(NewsEvent.applyFilter(
+                      calendar: calendar,
+                      languages: languages,
+                      sources: sources));
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Apply',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+              ),
+            ],
+            content: SizedBox(
+              width: double.maxFinite,
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  const Text('News in period of last:'),
+                  Wrap(
+                    spacing: 10,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          if (calendar != Calendar.hour) {
+                            calendar = Calendar.hour;
+                          } else {
+                            calendar = Calendar.none;
+                          }
+                          setState(() {});
+                        },
+                        child: Chip(
+                          label: const Text('an hour'),
+                          avatar: (calendar == Calendar.hour)
+                              ? const Icon(Icons.check_circle)
+                              : null,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (calendar != Calendar.day) {
+                            calendar = Calendar.day;
+                          } else {
+                            calendar = Calendar.none;
+                          }
+                          setState(() {});
+                        },
+                        child: Chip(
+                          label: const Text('24 hours'),
+                          avatar: (calendar == Calendar.day)
+                              ? const Icon(Icons.check_circle)
+                              : null,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (calendar != Calendar.day7) {
+                            calendar = Calendar.day7;
+                          } else {
+                            calendar = Calendar.none;
+                          }
+                          setState(() {});
+                        },
+                        child: Chip(
+                            label: const Text('7 days'),
+                            avatar: (calendar == Calendar.day7)
+                                ? const Icon(Icons.check_circle)
+                                : null),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (calendar != Calendar.day30) {
+                            calendar = Calendar.day30;
+                          } else {
+                            calendar = Calendar.none;
+                          }
+                          setState(() {});
+                        },
+                        child: Chip(
+                            label: const Text('30 days'),
+                            avatar: (calendar == Calendar.day30)
+                                ? const Icon(Icons.check_circle)
+                                : null),
+                      ),
+                    ],
+                  ),
+                  const Text('News in languages only:'),
+                  Wrap(
+                    spacing: 10,
+                    children: allLanguages
+                        .map(
+                          (lang) => GestureDetector(
+                            onTap: () {
+                              if (languages.contains(lang)) {
+                                languages
+                                    .removeWhere((element) => element == lang);
+                              } else {
+                                languages += [lang];
+                              }
+                              setState(() {});
+                            },
+                            child: Chip(
+                              label: Text(lang),
+                              avatar: (languages.contains(lang))
+                                  ? const Icon(Icons.check_circle)
+                                  : null,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  const Text('Show News from sources:'),
+                  Wrap(
+                    spacing: 10,
+                    children: allSources
+                        .map(
+                          (element) => GestureDetector(
+                            onTap: () {
+                              if (sources.contains(element)) {
+                                sources.remove(element);
+                              } else {
+                                sources += [element];
+                              }
+                              setState(() {});
+                            },
+                            child: Chip(
+                              label: Text(element),
+                              avatar: (sources.contains(element))
+                                  ? const Icon(Icons.check_circle)
+                                  : null,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+      },
     );
   }
 }

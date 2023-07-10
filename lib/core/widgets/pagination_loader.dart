@@ -31,10 +31,11 @@ class PaginationListView extends StatelessWidget {
                 final visibilityPercentage =
                     visibilityInfo.visibleFraction * 100;
                 if (visibilityPercentage == 100) {
+                  print('onLoadMore');
                   onLoadMore();
                 }
               },
-              key: const Key('10'),
+              key: const Key('my-key'),
               child: Container(
                 alignment: Alignment.topCenter,
                 height: 150,
@@ -43,14 +44,15 @@ class PaginationListView extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: isFailedToLoadMore
                       ? const SizedBox()
-                      : const CircularProgressIndicator(),
+                      : CircularProgressIndicator(
+                          color: Theme.of(context).primaryColor,
+                        ),
                 ),
               ),
             );
           }
-          final model = models[index];
 
-          return NewsTile(model: model);
+          return NewsTile(model: models[index]);
         },
         separatorBuilder: (_, __) => const Divider(height: 0),
       ),

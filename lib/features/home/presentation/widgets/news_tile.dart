@@ -38,9 +38,9 @@ class NewsTile extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: model.media!,
                     fit: BoxFit.cover,
-                    errorWidget: (_, __, e) =>
+                    errorWidget: (_, __, ___) =>
                         Image.asset(AppImages.defaultPreviewImage),
-                    placeholder: (context, url) =>
+                    placeholder: (_, __) =>
                         Image.asset(AppImages.defaultPreviewImage),
                   ),
                 ),
