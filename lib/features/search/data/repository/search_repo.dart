@@ -23,7 +23,8 @@ class SearchRepositoryImpl implements SearchRepository {
               errorMessage: e.statusMessage, statusCode: e.statusCode.toInt()),
         );
       } catch (e) {
-        return Left(const ServerFailure(errorMessage: 'Something went wrong'));
+        return Left(
+            const ServerFailure(errorMessage: 'Something went wrong 😩'));
       }
     } else {
       return Left(const ServerFailure(errorMessage: 'No internet'));

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/app_functions.dart';
 
 import '../../../../assets/colors.dart';
+import '../../../../assets/images.dart';
 import '../../../home/data/models/news.dart';
 import '../../../home/presentation/pages/inside_news_page.dart';
 import '../bloc/saved_news_bloc.dart';
@@ -57,6 +58,10 @@ class SavedNewsTile extends StatelessWidget {
                     width: 80,
                     child: CachedNetworkImage(
                       imageUrl: model.media!,
+                      errorWidget: (_, __, ___) =>
+                          Image.asset(AppImages.defaultPreviewImage),
+                      placeholder: (_, __) =>
+                          Image.asset(AppImages.defaultPreviewImage),
                       fit: BoxFit.cover,
                     ),
                   ),

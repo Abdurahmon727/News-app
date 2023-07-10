@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-const apiKey = 'GYtUIcksxIGK8uiK6ryXFnc9j0BrtPF8kPnRhP1t3YE';
+const apiKey = 'vg0eBnr5sIjVzy8QKKMHe7_GWH7_YY5pXeEtb85Zf5o';
 
 final backgroundColors = [miskyRose, lemonChiffan, aliceBlue, purple];
 final darkBackgroundColors = [madison, cocoa, sapphire, minsk];

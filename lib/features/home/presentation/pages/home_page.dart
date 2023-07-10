@@ -1,6 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/assets/constants.dart';
 import 'package:news_app/core/app_functions.dart';
 import 'package:news_app/features/home/presentation/widgets/list_of_news_tile_shimmer.dart';
 import 'package:news_app/features/home/presentation/widgets/preview_news_shimmer.dart';
@@ -144,10 +145,19 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
               } else if (state.status == FormzStatus.submissionInProgress) {
-                if (isCardView) return const PreviewNewsShimmer();
-                return const ListOfNewsTileShimmer();
+                if (isCardView) {
+                  return const Expanded(
+                      child: PreviewNewsShimmer(
+                    padding: EdgeInsets.only(
+                        bottom: 60, left: 20, right: 20, top: 10),
+                  ));
+                } else {
+                  return const ListOfNewsTileShimmer();
+                }
               } else {
                 return RefreshIndicator(
+                  color: themePrimaryColors[
+                      context.read<ThemeBloc>().state.primaryColorIndex],
                   onRefresh: () async =>
                       context.read<NewsBloc>().add(const NewsEvent.getNews()),
                   child: SingleChildScrollView(

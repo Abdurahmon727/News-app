@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/app_functions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../assets/colors.dart';
+import '../../../assets/constants.dart';
+import '../../../core/app_functions.dart';
 import '../../../core/bloc/theme/theme_bloc.dart';
 import '../../../core/models/formz/formz_status.dart';
 import '../../../core/widgets/appino_swiper/appino_swiper.dart';
 import '../../../core/widgets/w_scale.dart';
+import '../../home/presentation/widgets/list_of_news_tile_shimmer.dart';
+import '../../home/presentation/widgets/news_tile.dart';
 import '../../home/presentation/widgets/preview_news.dart';
+import '../../home/presentation/widgets/preview_news_shimmer.dart';
 import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
-import '../../home/presentation/widgets/news_tile.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({
@@ -110,10 +113,15 @@ class _SearchPageState extends State<SearchPage> {
                       return const SizedBox();
                     } else if (state.status ==
                         FormzStatus.submissionInProgress) {
-                      return Center(
-                          child: CircularProgressIndicator(
-                        color: Theme.of(context).primaryColor,
-                      ));
+                      if (context.read<ThemeBloc>().state.isCardView) {
+                        return const Expanded(
+                            child: PreviewNewsShimmer(
+                          padding: EdgeInsets.only(
+                              bottom: 60, left: 20, right: 20, top: 10),
+                        ));
+                      } else {
+                        return const ListOfNewsTileShimmer();
+                      }
                     } else if (state.status == FormzStatus.submissionSuccess) {
                       if (!context.watch<ThemeBloc>().state.isCardView) {
                         return Expanded(
@@ -182,6 +190,8 @@ class _SearchPageState extends State<SearchPage> {
                       }
                     } else {
                       return RefreshIndicator(
+                        color: themePrimaryColors[
+                            context.read<ThemeBloc>().state.primaryColorIndex],
                         onRefresh: () async => context.read<SearchBloc>().add(
                             SearchEvent.search(widget.searchController.text)),
                         child: SingleChildScrollView(

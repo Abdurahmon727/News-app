@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/assets/constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../assets/colors.dart';
@@ -18,7 +19,7 @@ class ShimmerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLight = context.read<ThemeBloc>().state.isLight;
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Shimmer.fromColors(
       baseColor: isLight ? Colors.grey.shade300 : Colors.grey.shade500,
       highlightColor: isLight ? white : black,
