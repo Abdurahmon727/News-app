@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../assets/constants.dart';
-import '../../../../core/bloc/theme/theme_bloc.dart';
-import '../../../../core/widgets/w_scale.dart';
-import '../widgets/view_option.dart';
+import '../../../assets/constants.dart';
+import '../../../core/bloc/theme/theme_bloc.dart';
+import '../../../core/widgets/w_scale.dart';
+import 'widgets/view_option.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

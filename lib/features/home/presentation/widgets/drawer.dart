@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/w_scale.dart';
-import '../pages/choose_topic_page.dart';
-import '../pages/settings_page.dart';
+import '../../../settings/presentation/pages/choose_topic_page.dart';
+import '../../../settings/presentation/settings_page.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({

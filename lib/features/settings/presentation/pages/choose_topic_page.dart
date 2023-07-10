@@ -6,8 +6,8 @@ import '../../../../assets/colors.dart';
 import '../../../../core/data/extensions.dart';
 import '../../../../core/models/home_datas.dart';
 import '../../../../core/widgets/w_scale.dart';
-import '../bloc/news_bloc.dart';
-import '../home_screen.dart';
+import '../../../home/presentation/bloc/news_bloc.dart';
+import '../../../home/presentation/home_screen.dart';
 
 class ChooseTopicPage extends StatefulWidget {
   const ChooseTopicPage({super.key});

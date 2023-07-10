@@ -27,7 +27,7 @@ class NewsTileShimmer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ShimmerContainer(width: double.maxFinite, height: 40),
+                ShimmerContainer(width: double.maxFinite, height: 32),
                 Spacer(),
                 ShimmerContainer(width: 200, height: 20)
               ],

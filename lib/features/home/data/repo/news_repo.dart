@@ -39,7 +39,7 @@ class NewsRepositoryImpl implements NewsRepository {
             errorMessage: e.statusMessage, statusCode: e.statusCode.round()));
       } catch (e) {
         return Left(const ServerFailure(
-            errorMessage: 'Something went wrong ', statusCode: 500));
+            errorMessage: 'Something went wrong 😩', statusCode: 500));
       }
     } else {
       return Left(const ServerFailure(errorMessage: 'No Internet'));

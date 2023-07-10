@@ -10,7 +10,7 @@ import 'core/data/storage_repository.dart';
 import 'core/splash/splash.dart';
 import 'features/home/presentation/bloc/news_bloc.dart';
 import 'features/home/presentation/home_screen.dart';
-import 'features/home/presentation/pages/choose_topic_page.dart';
+import 'features/settings/presentation/pages/choose_topic_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

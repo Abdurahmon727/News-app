@@ -2,6 +2,8 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/app_functions.dart';
+import 'package:news_app/features/home/presentation/widgets/list_of_news_tile_shimmer.dart';
+import 'package:news_app/features/home/presentation/widgets/preview_news_shimmer.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../core/bloc/theme/theme_bloc.dart';
@@ -105,13 +107,14 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
+              final isCardView = context.read<ThemeBloc>().state.isCardView;
               if (state.status == FormzStatus.pure) {
                 context.read<NewsBloc>().add(const NewsEvent.getNews());
                 return const SizedBox();
               }
               if (state.status == FormzStatus.submissionSuccess) {
                 final data = state.models;
-                if (context.read<ThemeBloc>().state.isCardView) {
+                if (isCardView) {
                   return Expanded(
                     child: WAppinioSwiper(
                       currentIndex: state.currentIndex,
@@ -141,10 +144,8 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
               } else if (state.status == FormzStatus.submissionInProgress) {
-                return Center(
-                    child: CircularProgressIndicator(
-                  color: Theme.of(context).primaryColor,
-                ));
+                if (isCardView) return const PreviewNewsShimmer();
+                return const ListOfNewsTileShimmer();
               } else {
                 return RefreshIndicator(
                   onRefresh: () async =>
