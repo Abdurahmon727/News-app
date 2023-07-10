@@ -16,7 +16,9 @@ import '../../home/presentation/widgets/news_tile.dart';
 class SearchPage extends StatefulWidget {
   const SearchPage({
     super.key,
+    required this.searchController,
   });
+  final TextEditingController searchController;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -25,8 +27,6 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   PageStorageKey scrollPositionKey =
       const PageStorageKey('search news scroll positon');
-
-  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +56,10 @@ class _SearchPageState extends State<SearchPage> {
                       cursorOpacityAnimates: true,
                       showCursor: true,
                       cursorColor: white,
-                      controller: searchController,
+                      controller: widget.searchController,
                       onSubmitted: (_) {
-                        context
-                            .read<SearchBloc>()
-                            .add(SearchEvent.search(searchController.text));
+                        context.read<SearchBloc>().add(
+                            SearchEvent.search(widget.searchController.text));
                         scrollPositionKey =
                             AppFunctions.getNewUniquePageStorageKey();
                       },
@@ -87,7 +86,7 @@ class _SearchPageState extends State<SearchPage> {
                   WScaleAnimation(
                     onTap: () => context
                         .read<SearchBloc>()
-                        .add(SearchEvent.search(searchController.text)),
+                        .add(SearchEvent.search(widget.searchController.text)),
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
@@ -167,7 +166,8 @@ class _SearchPageState extends State<SearchPage> {
                               width: double.maxFinite,
                               child: WAppinioSwiper(
                                 onEnd: () => context.read<SearchBloc>().add(
-                                    SearchEvent.search(searchController.text)),
+                                    SearchEvent.search(
+                                        widget.searchController.text)),
                                 currentIndex: state.currentCardIndex,
                                 unlimitedUnswipe: true,
                                 cardsBuilder: (context, index) => WPreviewNews(
@@ -182,9 +182,8 @@ class _SearchPageState extends State<SearchPage> {
                       }
                     } else {
                       return RefreshIndicator(
-                        onRefresh: () async => context
-                            .read<SearchBloc>()
-                            .add(SearchEvent.search(searchController.text)),
+                        onRefresh: () async => context.read<SearchBloc>().add(
+                            SearchEvent.search(widget.searchController.text)),
                         child: SingleChildScrollView(
                           physics: const AlwaysScrollableScrollPhysics(),
                           child: SizedBox(

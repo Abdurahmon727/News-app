@@ -26,31 +26,29 @@ class PaginationListView extends StatelessWidget {
         itemCount: models.length + 1,
         itemBuilder: (context, index) {
           if (index == models.length) {
-            return Container(
-              alignment: Alignment.topCenter,
-              height: 150,
-              width: double.maxFinite,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: isFailedToLoadMore
-                    ? const SizedBox()
-                    : const CircularProgressIndicator(),
+            return VisibilityDetector(
+              onVisibilityChanged: (visibilityInfo) {
+                final visibilityPercentage =
+                    visibilityInfo.visibleFraction * 100;
+                if (visibilityPercentage == 100) {
+                  onLoadMore();
+                }
+              },
+              key: const Key('10'),
+              child: Container(
+                alignment: Alignment.topCenter,
+                height: 150,
+                width: double.maxFinite,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: isFailedToLoadMore
+                      ? const SizedBox()
+                      : const CircularProgressIndicator(),
+                ),
               ),
             );
           }
           final model = models[index];
-          if (index == models.length - 3) {
-            return VisibilityDetector(
-                onVisibilityChanged: (visibilityInfo) {
-                  final visibilityPercentage =
-                      visibilityInfo.visibleFraction * 100;
-                  if (visibilityPercentage == 100) {
-                    onLoadMore();
-                  }
-                },
-                key: const Key('10'),
-                child: NewsTile(model: model));
-          }
 
           return NewsTile(model: model);
         },

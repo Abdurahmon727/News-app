@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../assets/images.dart';
 import '../../../../core/app_functions.dart';
 import '../../data/models/news.dart';
 import '../pages/inside_news_page.dart';
@@ -37,6 +38,10 @@ class NewsTile extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: model.media!,
                     fit: BoxFit.cover,
+                    errorWidget: (_, __, e) =>
+                        Image.asset(AppImages.defaultPreviewImage),
+                    placeholder: (context, url) =>
+                        Image.asset(AppImages.defaultPreviewImage),
                   ),
                 ),
               ),

@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       const HomePage(),
       BlocProvider.value(
         value: sl<SearchBloc>(),
-        child: const SearchPage(),
+        child: SearchPage(searchController: searchController),
       ),
       const SavedNewsPage(),
     ];
@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final List<Widget> pages;
 
   late final TabController tabController;
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

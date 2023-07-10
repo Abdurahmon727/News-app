@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 
 import 'models/home_datas.dart';
@@ -116,5 +117,27 @@ abstract class AppFunctions {
     } else {
       return Calendar.none;
     }
+  }
+
+  static Future<String> createDynamicLink(int id) async {
+    final DynamicLinkParameters parameters = DynamicLinkParameters(
+      uriPrefix: 'https://recipe7.page.link',
+
+      link: Uri.parse('https://google.com/$id'),
+      androidParameters: const AndroidParameters(
+        packageName: 'com.example.remote_recipe',
+        minimumVersion: 0,
+      ),
+      // iosParameters: const IOSParameters(
+      //   bundleId: 'io.flutter.plugins.firebase.dynamiclinksexample',
+      //   minimumVersion: '0',
+      // ),
+    );
+    Uri url;
+
+    url = (await FirebaseDynamicLinks.instance.buildShortLink(parameters))
+        .shortUrl;
+
+    return url.toString();
   }
 }
