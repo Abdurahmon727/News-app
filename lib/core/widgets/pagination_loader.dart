@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/features/home/presentation/widgets/new_tile_shimmer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../features/home/data/models/news.dart';
@@ -26,29 +27,18 @@ class PaginationListView extends StatelessWidget {
         itemCount: models.length + 1,
         itemBuilder: (context, index) {
           if (index == models.length) {
+            if (isFailedToLoadMore) return const SizedBox();
             return VisibilityDetector(
               onVisibilityChanged: (visibilityInfo) {
                 final visibilityPercentage =
                     visibilityInfo.visibleFraction * 100;
                 if (visibilityPercentage == 100) {
-                  print('onLoadMore');
+                  debugPrint('onLoadMore');
                   onLoadMore();
                 }
               },
-              key: const Key('my-key'),
-              child: Container(
-                alignment: Alignment.topCenter,
-                height: 150,
-                width: double.maxFinite,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: isFailedToLoadMore
-                      ? const SizedBox()
-                      : CircularProgressIndicator(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                ),
-              ),
+              key: const Key('pagination-key'),
+              child: const NewsTileShimmer(),
             );
           }
 

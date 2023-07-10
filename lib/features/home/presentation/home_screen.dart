@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     //initialize
 
     pages = [
-      const HomePage(),
+      HomePage(),
       BlocProvider.value(
         value: sl<SearchBloc>(),
         child: SearchPage(searchController: searchController),

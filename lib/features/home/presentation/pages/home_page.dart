@@ -104,11 +104,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           BlocBuilder<NewsBloc, NewsState>(
-            buildWhen: (previous, current) =>
-                (previous.status != current.status ||
-                    previous.models.length != current.models.length),
             builder: (context, state) {
-              print('rebuilt');
               if (state.status == FormzStatus.pure) {
                 context.read<NewsBloc>().add(const NewsEvent.getNews());
                 return const SizedBox();
