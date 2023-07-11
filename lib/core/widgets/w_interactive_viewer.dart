@@ -54,9 +54,7 @@ class _WInteractiveViewerState extends State<WInteractiveViewer>
       panEnabled: false,
       minScale: 1,
       maxScale: 5,
-      onInteractionEnd: (details) {
-        resetAnimation();
-      },
+      onInteractionEnd: (_) => resetAnimation(),
       child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: CachedNetworkImage(

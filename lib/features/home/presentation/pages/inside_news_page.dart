@@ -91,7 +91,7 @@ class InsideNewsPage extends StatelessWidget {
               imageUrl: model.media!,
             ),
           Text(model.summary ?? ''),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
         ],
       ),
     );

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/assets/constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../assets/colors.dart';
-import '../bloc/theme/theme_bloc.dart';
 
 class ShimmerContainer extends StatelessWidget {
   final double width;

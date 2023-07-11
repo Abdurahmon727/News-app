@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../assets/colors.dart';
 import '../../../assets/constants.dart';
@@ -8,9 +7,9 @@ import '../../../core/app_functions.dart';
 import '../../../core/bloc/theme/theme_bloc.dart';
 import '../../../core/models/formz/formz_status.dart';
 import '../../../core/widgets/appino_swiper/appino_swiper.dart';
+import '../../../core/widgets/pagination_loader.dart';
 import '../../../core/widgets/w_scale.dart';
 import '../../home/presentation/widgets/list_of_news_tile_shimmer.dart';
-import '../../home/presentation/widgets/news_tile.dart';
 import '../../home/presentation/widgets/preview_news.dart';
 import '../../home/presentation/widgets/preview_news_shimmer.dart';
 import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
@@ -125,45 +124,13 @@ class _SearchPageState extends State<SearchPage> {
                     } else if (state.status == FormzStatus.submissionSuccess) {
                       if (!context.watch<ThemeBloc>().state.isCardView) {
                         return Expanded(
-                          child: ListView.separated(
-                            key: scrollPositionKey,
-                            itemCount: state.resultModels.length + 1,
-                            itemBuilder: (context, index) {
-                              if (index == state.resultModels.length) {
-                                return Container(
-                                  alignment: Alignment.topCenter,
-                                  height: 150,
-                                  width: double.maxFinite,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: state.isFailedToLoadMore
-                                        ? const SizedBox()
-                                        : const CircularProgressIndicator(),
-                                  ),
-                                );
-                              }
-                              final model = state.resultModels[index];
-                              if (index == state.resultModels.length - 3) {
-                                return VisibilityDetector(
-                                    onVisibilityChanged: (visibilityInfo) {
-                                      final visibilityPercentage =
-                                          visibilityInfo.visibleFraction * 100;
-                                      if (visibilityPercentage == 100) {
-                                        context.read<SearchBloc>().add(
-                                            const SearchEvent
-                                                .fetchAndAddModels());
-                                      }
-                                    },
-                                    key: const Key('10'),
-                                    child: NewsTile(model: model));
-                              }
-
-                              return NewsTile(model: model);
-                            },
-                            separatorBuilder: (_, __) =>
-                                const Divider(height: 0),
-                          ),
-                        );
+                            child: PaginationListView(
+                          isFailedToLoadMore: state.isFailedToLoadMore,
+                          models: state.resultModels,
+                          onLoadMore: () => context
+                              .read<SearchBloc>()
+                              .add(const SearchEvent.fetchAndAddModels()),
+                        ));
                       } else {
                         return Column(
                           mainAxisSize: MainAxisSize.min,

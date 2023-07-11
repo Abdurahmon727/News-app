@@ -27,6 +27,7 @@ class AppTheme {
       );
 
   static ThemeData darkTheme() => ThemeData(
+        dialogBackgroundColor: black,
         hoverColor: Colors.blueGrey.withOpacity(0.2),
         indicatorColor: white,
         scaffoldBackgroundColor: black,

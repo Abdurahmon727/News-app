@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import '../../../assets/colors.dart';
 import '../../../core/data/service_locator.dart';
@@ -48,59 +49,65 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       child: DefaultTabController(
         length: 3,
         initialIndex: 0,
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          drawer: const HomeDrawer(),
-          body: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: tabController,
-            children: pages,
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: Container(
-            height: 60,
-            width: 170,
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: TabBar(
-              dividerColor: Colors.transparent,
-              enableFeedback: true,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicator: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: white,
-              ),
-              onTap: (value) {
-                setState(() {
-                  indexPage = value;
-                });
-              },
-              splashBorderRadius: BorderRadius.zero,
+        child: KeyboardDismisser(
+          gestures: const [
+            GestureType.onTap,
+            GestureType.onPanUpdateDownDirection
+          ],
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            drawer: const HomeDrawer(),
+            body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: tabController,
-              tabs: [
-                Icon(
-                  Icons.home,
-                  color:
-                      indexPage == 0 ? Theme.of(context).primaryColor : white,
-                  size: 24,
+              children: pages,
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: Container(
+              height: 60,
+              width: 170,
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: TabBar(
+                dividerColor: Colors.transparent,
+                enableFeedback: true,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: white,
                 ),
-                Icon(
-                  Icons.search_outlined,
-                  size: 24,
-                  color:
-                      indexPage == 1 ? Theme.of(context).primaryColor : white,
-                ),
-                Icon(
-                  Icons.bookmark_border_outlined,
-                  size: 24,
-                  color:
-                      indexPage == 2 ? Theme.of(context).primaryColor : white,
-                ),
-              ],
+                onTap: (value) {
+                  setState(() {
+                    indexPage = value;
+                  });
+                },
+                splashBorderRadius: BorderRadius.zero,
+                controller: tabController,
+                tabs: [
+                  Icon(
+                    Icons.home,
+                    color:
+                        indexPage == 0 ? Theme.of(context).primaryColor : white,
+                    size: 24,
+                  ),
+                  Icon(
+                    Icons.search_outlined,
+                    size: 24,
+                    color:
+                        indexPage == 1 ? Theme.of(context).primaryColor : white,
+                  ),
+                  Icon(
+                    Icons.bookmark_border_outlined,
+                    size: 24,
+                    color:
+                        indexPage == 2 ? Theme.of(context).primaryColor : white,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
