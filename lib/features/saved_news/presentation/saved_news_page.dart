@@ -29,6 +29,10 @@ class SavedNewsPage extends StatelessWidget {
                 child: Row(
                   children: [
                     WScaleAnimation(
+                        onTap: () => Scaffold.of(context).openDrawer(),
+                        child: const Icon(Icons.list, color: white)),
+                    const SizedBox(width: 10),
+                    WScaleAnimation(
                       onTap: () => Scaffold.of(context).openDrawer(),
                       child: const Text('Saved News'),
                     ),

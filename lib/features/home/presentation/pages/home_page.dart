@@ -2,6 +2,7 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../assets/colors.dart';
 import '../../../../assets/constants.dart';
 import '../../../../core/app_functions.dart';
 import '../../../../core/bloc/theme/theme_bloc.dart';
@@ -43,12 +44,24 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 WScaleAnimation(
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: const Icon(Icons.list, color: white),
+                    )),
+                const SizedBox(width: 10),
+                WScaleAnimation(
                   onTap: () => Scaffold.of(context).openDrawer(),
                   child: const Text(
                     'Z-News',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
+                const Spacer(),
                 Row(
                   children: [
                     if (context.watch<ThemeBloc>().state.isCardView)
