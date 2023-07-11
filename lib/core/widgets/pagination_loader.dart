@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/features/home/presentation/widgets/new_tile_shimmer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../features/home/data/models/news.dart';
+import '../../features/home/presentation/widgets/new_tile_shimmer.dart';
 import '../../features/home/presentation/widgets/news_tile.dart';
 
 class PaginationListView extends StatelessWidget {
