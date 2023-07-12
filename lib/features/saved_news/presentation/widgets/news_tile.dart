@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/app_functions.dart';
+import '../../../../core/app_functions.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../../assets/images.dart';
@@ -21,8 +21,7 @@ class SavedNewsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
+      onTap: () => Navigator.of(context, rootNavigator: true).push(
         CupertinoPageRoute(
           builder: (context) => InsideNewsPage(model: model),
         ),
@@ -35,10 +34,7 @@ class SavedNewsTile extends StatelessWidget {
           color: Colors.red,
           child: const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Icon(
-              Icons.delete_rounded,
-              color: white,
-            ),
+            child: Icon(Icons.delete_rounded, color: white),
           ),
         ),
         onDismissed: (direction) => context
