@@ -30,7 +30,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState>
     });
 
     on<_GetNews>((event, emit) async {
-      emit(state.copyWith(status: FormzStatus.submissionInProgress));
+      emit(state.copyWith(
+          status: FormzStatus.submissionInProgress, isFailedToLoadMore: false));
       final isLoadingNextPage = state.maxPage > state.currentPage;
 
       final repository = NewsRepositoryImpl(

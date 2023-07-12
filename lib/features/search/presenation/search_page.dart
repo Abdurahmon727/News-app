@@ -12,7 +12,6 @@ import '../../../core/widgets/w_scale.dart';
 import '../../home/presentation/widgets/list_of_news_tile_shimmer.dart';
 import '../../home/presentation/widgets/preview_news.dart';
 import '../../home/presentation/widgets/preview_news_shimmer.dart';
-import '../../saved_news/presentation/bloc/saved_news_bloc.dart';
 import 'bloc/search_bloc.dart';
 
 class SearchPage extends StatefulWidget {
@@ -101,79 +100,76 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-            BlocBuilder<SavedNewsBloc, SavedNewsState>(
+            BlocBuilder<SearchBloc, SearchState>(
+              buildWhen: (previous, current) =>
+                  previous.status != current.status ||
+                  previous.currentPage != current.currentPage,
               builder: (context, state) {
-                return BlocBuilder<SearchBloc, SearchState>(
-                  buildWhen: (previous, current) =>
-                      previous.status != current.status ||
-                      previous.currentPage != current.currentPage,
-                  builder: (context, state) {
-                    if (state.status == FormzStatus.pure) {
-                      return const SizedBox();
-                    } else if (state.status ==
-                        FormzStatus.submissionInProgress) {
-                      if (context.read<ThemeBloc>().state.isCardView) {
-                        return const Expanded(
-                            child: PreviewNewsShimmer(
-                          padding: EdgeInsets.only(
-                              bottom: 60, left: 20, right: 20, top: 10),
-                        ));
-                      } else {
-                        return const ListOfNewsTileShimmer();
-                      }
-                    } else if (state.status == FormzStatus.submissionSuccess) {
-                      if (!context.watch<ThemeBloc>().state.isCardView) {
-                        return Expanded(
-                            child: PaginationListView(
-                          isFailedToLoadMore: state.isFailedToLoadMore,
-                          models: state.resultModels,
-                          onLoadMore: () => context
-                              .read<SearchBloc>()
-                              .add(const SearchEvent.fetchAndAddModels()),
-                        ));
-                      } else {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text('${state.currentPage}/${state.maxPage}'),
-                            SizedBox(
-                              height: MediaQuery.sizeOf(context).height - 167,
-                              width: double.maxFinite,
-                              child: WAppinioSwiper(
-                                onEnd: () => context.read<SearchBloc>().add(
-                                    SearchEvent.search(
-                                        widget.searchController.text)),
-                                currentIndex: state.currentCardIndex,
-                                unlimitedUnswipe: true,
-                                cardsBuilder: (context, index) => WPreviewNews(
-                                    model: state.resultModels[index]),
-                                cardsCount: state.resultModels.length,
-                                pageSavableBloc: context.read<SearchBloc>(),
-                              ),
-                            ),
-                            const SizedBox(height: 60),
-                          ],
-                        );
-                      }
-                    } else {
-                      return RefreshIndicator(
-                        color: themePrimaryColors[
-                            context.read<ThemeBloc>().state.primaryColorIndex],
-                        onRefresh: () async => context.read<SearchBloc>().add(
-                            SearchEvent.search(widget.searchController.text)),
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.height - 173,
-                            width: MediaQuery.of(context).size.width,
-                            child: Text(state.errorMessage,
-                                textAlign: TextAlign.center),
+                final isCardView = context.read<ThemeBloc>().state.isCardView;
+                if (state.status == FormzStatus.pure) {
+                  return const SizedBox();
+                } else if (state.status == FormzStatus.submissionInProgress) {
+                  if (isCardView) {
+                    return const Expanded(
+                        child: PreviewNewsShimmer(
+                      padding: EdgeInsets.only(
+                          bottom: 60, left: 20, right: 20, top: 10),
+                    ));
+                  } else {
+                    return const ListOfNewsTileShimmer();
+                  }
+                } else if (state.status == FormzStatus.submissionSuccess) {
+                  if (!isCardView) {
+                    return Expanded(
+                        child: PaginationListView(
+                      isFailedToLoadMore: state.isFailedToLoadMore,
+                      models: state.resultModels,
+                      onLoadMore: () => context
+                          .read<SearchBloc>()
+                          .add(const SearchEvent.fetchAndAddModels()),
+                    ));
+                  } else {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('${state.currentPage}/${state.maxPage}'),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height - 167,
+                          width: double.maxFinite,
+                          child: WAppinioSwiper(
+                            onEnd: () => context.read<SearchBloc>().add(
+                                SearchEvent.search(
+                                    widget.searchController.text)),
+                            currentIndex: state.currentCardIndex,
+                            unlimitedUnswipe: true,
+                            cardsBuilder: (context, index) =>
+                                WPreviewNews(model: state.resultModels[index]),
+                            cardsCount: state.resultModels.length,
+                            pageSavableBloc: context.read<SearchBloc>(),
                           ),
                         ),
-                      );
-                    }
-                  },
-                );
+                        const SizedBox(height: 60),
+                      ],
+                    );
+                  }
+                } else {
+                  return RefreshIndicator(
+                    color: themePrimaryColors[
+                        context.read<ThemeBloc>().state.primaryColorIndex],
+                    onRefresh: () async => context
+                        .read<SearchBloc>()
+                        .add(SearchEvent.search(widget.searchController.text)),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height - 173,
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(state.errorMessage,
+                            textAlign: TextAlign.center),
+                      ),
+                    ),
+                  );
+                }
               },
             ),
           ],

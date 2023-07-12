@@ -27,7 +27,7 @@ class NewsTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         child: SizedBox(
           height: 80,
-          width: double.maxFinite,
+          width: double.infinity,
           child: Row(children: [
             if (model.media != null)
               ClipRRect(
