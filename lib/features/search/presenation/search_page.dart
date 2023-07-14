@@ -120,7 +120,7 @@ class _SearchPageState extends State<SearchPage> {
                             padding: EdgeInsets.only(
                                 bottom: 60, left: 20, right: 20, top: 10),
                           ),
-                        )
+                        ),
                       ]),
                     );
                   } else {
@@ -137,7 +137,6 @@ class _SearchPageState extends State<SearchPage> {
                     );
                   } else {
                     return Column(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text('${state.currentPage}/${state.maxPage}'),
                         SizedBox(

@@ -118,9 +118,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           BlocBuilder<NewsBloc, NewsState>(
-            buildWhen: (previous, current) => previous.status != current.status,
+            buildWhen: (previous, current) =>
+                previous.status != current.status ||
+                previous.isFailedToLoadMore != current.isFailedToLoadMore,
             builder: (context, state) {
-              print('rebuilt');
+              debugPrint('rebuilt NewsBloc Home');
               final isCardView = context.read<ThemeBloc>().state.isCardView;
               if (state.status == FormzStatus.pure) {
                 context.read<NewsBloc>().add(const NewsEvent.getNews());
