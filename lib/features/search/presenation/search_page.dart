@@ -105,7 +105,7 @@ class _SearchPageState extends State<SearchPage> {
                   previous.status != current.status ||
                   previous.currentPage != current.currentPage,
               builder: (context, state) {
-                final isCardView = context.watch<ThemeBloc>().state.isCardView;
+                final isCardView = context.read<ThemeBloc>().state.isCardView;
                 if (state.status == FormzStatus.pure) {
                   return const SizedBox();
                 } else if (state.status == FormzStatus.submissionInProgress) {

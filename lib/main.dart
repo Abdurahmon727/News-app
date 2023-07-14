@@ -49,39 +49,41 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: Builder(builder: (context) {
-        return MaterialApp(
-          navigatorKey: navigatorKey,
-          title: 'News app',
-          themeMode: context.watch<ThemeBloc>().state.useSystemTheme
-              ? ThemeMode.system
-              : context.read<ThemeBloc>().state.isLight
-                  ? ThemeMode.light
-                  : ThemeMode.dark,
-          darkTheme: AppTheme.darkTheme().copyWith(
-              primaryColor: themePrimaryColors[
-                  context.read<ThemeBloc>().state.primaryColorIndex]),
-          theme: AppTheme.lightTheme().copyWith(
-              primaryColor: themePrimaryColors[
-                  context.read<ThemeBloc>().state.primaryColorIndex]),
-          home: const SplashScreen(),
-          builder: (context, child) {
-            return BlocListener<NewsBloc, NewsState>(
-              listenWhen: (previous, current) =>
-                  previous.topics != current.topics,
-              listener: (context, state) {
-                if (state.topics.isEmpty) {
-                  navigator.pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => const ChooseTopicPage()),
-                      (route) => false);
-                } else {
-                  navigator.pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                      (route) => false);
-                }
+        return BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              navigatorKey: navigatorKey,
+              title: 'News app',
+              themeMode: state.useSystemTheme
+                  ? ThemeMode.system
+                  : state.isLight
+                      ? ThemeMode.light
+                      : ThemeMode.dark,
+              darkTheme: AppTheme.darkTheme().copyWith(
+                  primaryColor: themePrimaryColors[state.primaryColorIndex]),
+              theme: AppTheme.lightTheme().copyWith(
+                  primaryColor: themePrimaryColors[state.primaryColorIndex]),
+              home: const SplashScreen(),
+              builder: (context, child) {
+                return BlocListener<NewsBloc, NewsState>(
+                  listenWhen: (previous, current) =>
+                      previous.topics != current.topics,
+                  listener: (context, state) {
+                    if (state.topics.isEmpty) {
+                      navigator.pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const ChooseTopicPage()),
+                          (route) => false);
+                    } else {
+                      navigator.pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()),
+                          (route) => false);
+                    }
+                  },
+                  child: child ?? const SplashScreen(),
+                );
               },
-              child: child ?? const SplashScreen(),
             );
           },
         );
