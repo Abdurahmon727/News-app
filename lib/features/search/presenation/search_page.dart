@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/widgets/shimmer_container.dart';
 
 import '../../../assets/colors.dart';
 import '../../../assets/constants.dart';
@@ -111,10 +112,17 @@ class _SearchPageState extends State<SearchPage> {
                 } else if (state.status == FormzStatus.submissionInProgress) {
                   if (isCardView) {
                     return const Expanded(
-                        child: PreviewNewsShimmer(
-                      padding: EdgeInsets.only(
-                          bottom: 60, left: 20, right: 20, top: 10),
-                    ));
+                      child: Column(children: [
+                        ShimmerContainer(width: 50, height: 20),
+                        SizedBox(height: 20),
+                        Expanded(
+                          child: PreviewNewsShimmer(
+                            padding: EdgeInsets.only(
+                                bottom: 60, left: 20, right: 20, top: 10),
+                          ),
+                        )
+                      ]),
+                    );
                   } else {
                     return const ListOfNewsTileShimmer();
                   }
