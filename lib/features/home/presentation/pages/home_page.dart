@@ -14,6 +14,7 @@ import '../../../../core/widgets/pagination_loader.dart';
 import '../../../../core/widgets/w_scale.dart';
 import '../bloc/news_bloc.dart';
 import '../widgets/list_of_news_tile_shimmer.dart';
+import '../widgets/news_tile.dart';
 import '../widgets/preview_news.dart';
 import '../widgets/preview_news_shimmer.dart';
 

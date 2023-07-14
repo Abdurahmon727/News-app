@@ -17,68 +17,66 @@ class NewsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => Navigator.push(
           context,
           CupertinoPageRoute(
             builder: (context) => InsideNewsPage(model: model),
           )),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-        child: SizedBox(
-          height: 80,
-          width: double.infinity,
-          child: Row(children: [
-            if (model.media != null)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: SizedBox(
-                  height: 80,
-                  width: 80,
-                  child: CachedNetworkImage(
-                    imageUrl: model.media!,
-                    fit: BoxFit.cover,
-                    errorWidget: (_, __, ___) =>
-                        Image.asset(AppImages.defaultPreviewImage),
-                    placeholder: (_, __) =>
-                        Image.asset(AppImages.defaultPreviewImage),
-                  ),
+      child: Container(
+        height: 80,
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        width: double.infinity,
+        child: Row(children: [
+          if (model.media != null)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: SizedBox(
+                height: 80,
+                width: 80,
+                child: CachedNetworkImage(
+                  imageUrl: model.media!,
+                  fit: BoxFit.cover,
+                  errorWidget: (_, __, ___) =>
+                      Image.asset(AppImages.defaultPreviewImage),
+                  placeholder: (_, __) =>
+                      Image.asset(AppImages.defaultPreviewImage),
                 ),
               ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                      child: Text(
-                    model.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      AppFunctions.dateToPeriod(model.publishedDate),
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          '${model.rights} \u{25CB} ${model.topic}',
-                          maxLines: 1,
-                          style: const TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
             ),
-          ]),
-        ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                    child: Text(
+                  model.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    AppFunctions.dateToPeriod(model.publishedDate),
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '${model.rights} \u{25CB} ${model.topic}',
+                        maxLines: 1,
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ]),
       ),
     );
   }

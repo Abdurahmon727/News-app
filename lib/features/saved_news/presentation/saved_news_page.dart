@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../assets/colors.dart';
 import '../../../core/widgets/w_scale.dart';
 import 'bloc/saved_news_bloc.dart';
-import 'widgets/news_tile.dart';
+import 'widgets/saved_news_tile.dart';
 
 class SavedNewsPage extends StatelessWidget {
   const SavedNewsPage({super.key});
