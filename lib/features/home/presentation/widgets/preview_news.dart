@@ -19,13 +19,11 @@ class WPreviewNews extends StatelessWidget {
       alignment: Alignment.bottomRight,
       children: [
         GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (context) => InsideNewsPage(model: model),
-                ));
-          },
+          onTap: () => Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => InsideNewsPage(model: model),
+              )),
           child: Stack(
             children: [
               ClipRRect(

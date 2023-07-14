@@ -105,7 +105,7 @@ class _SearchPageState extends State<SearchPage> {
                   previous.status != current.status ||
                   previous.currentPage != current.currentPage,
               builder: (context, state) {
-                final isCardView = context.read<ThemeBloc>().state.isCardView;
+                final isCardView = context.watch<ThemeBloc>().state.isCardView;
                 if (state.status == FormzStatus.pure) {
                   return const SizedBox();
                 } else if (state.status == FormzStatus.submissionInProgress) {
@@ -120,14 +120,13 @@ class _SearchPageState extends State<SearchPage> {
                   }
                 } else if (state.status == FormzStatus.submissionSuccess) {
                   if (!isCardView) {
-                    return Expanded(
-                        child: PaginationListView(
+                    return PaginationListView(
                       isFailedToLoadMore: state.isFailedToLoadMore,
                       models: state.resultModels,
                       onLoadMore: () => context
                           .read<SearchBloc>()
                           .add(const SearchEvent.fetchAndAddModels()),
-                    ));
+                    );
                   } else {
                     return Column(
                       mainAxisSize: MainAxisSize.min,

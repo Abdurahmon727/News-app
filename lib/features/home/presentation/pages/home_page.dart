@@ -118,7 +118,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           BlocBuilder<NewsBloc, NewsState>(
+            buildWhen: (previous, current) => previous.status != current.status,
             builder: (context, state) {
+              print('rebuilt');
               final isCardView = context.read<ThemeBloc>().state.isCardView;
               if (state.status == FormzStatus.pure) {
                 context.read<NewsBloc>().add(const NewsEvent.getNews());
@@ -138,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                       controller: controller,
                       padding: const EdgeInsets.only(
                           bottom: 60, left: 20, right: 20, top: 10),
-                      cardsBuilder: (_, index) {
+                      cardsBuilder: (context, index) {
                         return WPreviewNews(model: data[index]);
                       },
                       cardsCount: data.length,
