@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../../../../core/data/either.dart';
 import '../../../../core/data/network_info.dart';
 import '../../../../core/error/exeptions.dart';
@@ -10,6 +12,7 @@ import '../models/news.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
   NewsRepositoryImpl({required this.page});
+
   final int page;
   final _networkInfo = const NetworkInfoImpl();
   final _localDataSource = NewsLocalDataSourceImpl();
@@ -37,6 +40,10 @@ class NewsRepositoryImpl implements NewsRepository {
       } on ServerException catch (e) {
         return Left(ServerFailure(
             errorMessage: e.statusMessage, statusCode: e.statusCode.round()));
+      } on DioException catch (e) {
+        return Left(ServerFailure(
+            errorMessage: 'Something went wrong 😩, ${e.message}',
+            statusCode: 600));
       } catch (e) {
         return Left(const ServerFailure(
             errorMessage: 'Something went wrong 😩', statusCode: 500));
